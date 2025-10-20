@@ -53,15 +53,17 @@
           MofeOluwa <span class="text-primary">Oladeji</span>
         </span>
       </a>
-      <nav class="hidden items-center gap-10 text-sm uppercase tracking-[0.3em] text-muted lg:flex">
-        <a href="#home" class="nav-link">Home</a>
-        <a href="#about" class="nav-link">About</a>
-        <a href="#skills" class="nav-link">Skills</a>
-        <a href="#experience" class="nav-link">Experience</a>
-        <a href="#portfolio" class="nav-link">Portfolio</a>
-        <a href="#testimonials" class="nav-link">Testimonials</a>
-        <a href="#contact" class="nav-link">Contact</a>
-      </nav>
+      <div class="hidden lg:block">
+        <nav class="nav-links">
+          <a href="#home" class="nav-link">Home</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#skills" class="nav-link">Skills</a>
+          <a href="#experience" class="nav-link">Experience</a>
+          <a href="#portfolio" class="nav-link">Portfolio</a>
+          <a href="#testimonials" class="nav-link">Testimonials</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+      </div>
       <button id="mobile-menu-toggle" class="flex h-11 w-11 items-center justify-center rounded-full border border-accent/10 text-accent shadow-neon transition duration-300 hover:border-primary/60 hover:text-primary lg:hidden" aria-label="Toggle navigation">
         <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" />
@@ -80,28 +82,27 @@
   </header>
 
   <main class="relative z-10">
-    <section id="home" class="relative overflow-hidden pb-24 pt-32 sm:pb-32 lg:pt-44">
-      <div class="relative mx-auto flex max-w-7xl flex-col gap-16 px-6 lg:flex-row lg:items-center lg:gap-24">
-        <div class="max-w-xl space-y-10">
-          <p class="inline-flex items-center gap-2 rounded-full border border-primary/15 bg-primary/10 px-5 py-2 text-xs font-semibold tracking-[0.4em] text-primary uppercase">
-            Turning Imagination into Motion
-          </p>
-          <h1 class="text-4xl font-bold leading-tight text-accent sm:text-5xl lg:text-6xl">
-            Futuristic visuals, immersive motion, and digital worlds by <span class="text-primary">MofeOluwa Oladeji</span>
+    <section id="home" class="hero-section">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <span class="script-note" data-parallax data-parallax-speed="0.2">Sketchbook dreams, cinematic motion</span>
+          <h1 class="hero-title" data-parallax data-parallax-speed="0.35">
+            Futuristic visuals and immersive worlds by <span>MofeOluwa Oladeji</span>
           </h1>
-          <p class="text-lg text-muted">
-            Graphic Designer, Animator, and Digital Artist crafting bold motion graphics, avant-garde 3D animations, and expressive digital illustrations that make brands unforgettable.
+          <p class="hero-summary" data-parallax data-parallax-speed="0.3">
+            Graphic designer, animator, and digital artist translating emotion into movement. I craft bold motion graphics, tactile cloth simulations, and expressive illustrations that make stories unforgettable.
           </p>
-          <div class="flex flex-wrap items-center gap-4">
-            <a href="#portfolio" class="group inline-flex items-center gap-3 rounded-full bg-primary px-8 py-3 text-sm font-semibold uppercase tracking-[0.35em] text-background shadow-vivid transition-all duration-300 hover:-translate-y-1 hover:bg-secondary">
+          <div class="hero-actions" data-parallax data-parallax-speed="0.45">
+            <a href="#portfolio" class="button-primary">
               Explore Work
-              <span class="transition-transform duration-300 group-hover:translate-x-1">➜</span>
+              <span>➜</span>
             </a>
-            <a href="#contact" class="inline-flex items-center gap-3 rounded-full border border-accent/10 bg-surface px-8 py-3 text-sm font-semibold uppercase tracking-[0.35em] text-accent transition duration-300 hover:border-primary/60 hover:text-primary">
-              Let’s Collab
-            </a>
+            <a href="#contact" class="button-ghost">Let’s Collab</a>
           </div>
-          <div class="grid gap-4 sm:grid-cols-2">
+          <div class="hero-pill" data-parallax data-parallax-speed="0.25">
+            Currently animating: Book brand visual universe
+          </div>
+          <div class="hero-stats" data-parallax data-parallax-speed="0.4">
             <div class="stat-card">
               <span class="stat-value">+45</span>
               <span class="stat-label">Motion & animation projects unleashed</span>
@@ -112,27 +113,26 @@
             </div>
           </div>
         </div>
-        <div class="relative flex-1">
-          <div class="relative aspect-square max-w-md sm:mx-auto">
-            <div class="absolute inset-0 animate-spin-slow rounded-[3rem] border-4 border-dashed border-primary/30"></div>
-            <div class="absolute inset-4 rounded-[2.5rem] bg-surface shadow-neon"></div>
-            <div class="relative inset-8 flex h-full items-center justify-center rounded-[2rem] bg-white p-6 backdrop-blur-xs shadow-neon">
-              <img src="img/profile.jpg" alt="Profile picture of digital artist" class="h-full w-full rounded-[1.5rem] object-cover" />
-            </div>
-            <div class="absolute -right-6 top-10 w-28 rounded-3xl border border-primary/30 bg-white p-4 text-sm shadow-neon">
-              <p class="text-[11px] uppercase tracking-[0.35em] text-muted">Core Focus</p>
-              <p class="mt-2 text-base font-semibold text-accent">3D Animations</p>
-            </div>
-            <div class="absolute -bottom-8 left-10 w-40 rounded-3xl border border-accent/10 bg-surface p-5 text-sm shadow-neon">
-              <p class="text-[11px] uppercase tracking-[0.35em] text-muted">Current Project</p>
-              <p class="mt-2 text-base font-semibold text-accent">Book Brand Visual Universe</p>
-            </div>
+        <div class="hero-visual" data-parallax data-parallax-speed="0.32">
+          <div class="hero-canvas">
+            <img src="img/profile.jpg" alt="Profile portrait of MofeOluwa Oladeji" />
+            <span class="hero-frame" aria-hidden="true"></span>
+          </div>
+          <span class="hero-orb" aria-hidden="true"></span>
+          <span class="hero-scribble" aria-hidden="true"></span>
+          <div class="hero-floating-chip" data-parallax data-parallax-speed="0.55">
+            <span>Core Focus</span>
+            <p>3D Animations</p>
+          </div>
+          <div class="hero-badge" data-parallax data-parallax-speed="0.5">
+            <span>Currently crafting</span>
+            <strong>Immersive book brand universe</strong>
           </div>
         </div>
       </div>
-      <div class="mx-auto mt-20 flex max-w-5xl flex-wrap items-center justify-center gap-8 text-muted">
-        <p class="text-xs uppercase tracking-[0.6em] text-muted/70">Featured Collaborations</p>
-        <div class="flex flex-wrap items-center gap-6">
+      <div class="hero-clients">
+        <p data-parallax data-parallax-speed="0.18">Featured Collaborations</p>
+        <div class="client-list">
           <span class="client-pill">Branded Creative Agency</span>
           <span class="client-pill">Covenant University</span>
           <span class="client-pill">The Book Forge</span>

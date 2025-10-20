@@ -412,7 +412,8 @@ const initParallaxHero = () => {
 
     parallaxTargets.forEach((node, index) => {
       const depth = (index + 1) / parallaxTargets.length;
-      node.style.transform = `translate3d(${offsetX * depth}px, ${offsetY * depth}px, 0)`;
+      const speed = parseFloat(node.dataset.parallaxSpeed || depth) || depth;
+      node.style.transform = `translate3d(${offsetX * speed}px, ${offsetY * speed}px, 0)`;
     });
   });
 
@@ -451,8 +452,10 @@ const initScrollSpy = () => {
           const href = link.getAttribute('href');
           if (href === `#${id}`) {
             link.classList.add('text-primary');
+            link.setAttribute('aria-current', 'page');
           } else {
             link.classList.remove('text-primary');
+            link.removeAttribute('aria-current');
           }
         });
       });
