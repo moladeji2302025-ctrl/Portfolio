@@ -203,6 +203,7 @@ const modalGallery = modal?.querySelector('.modal-gallery');
 const modalLinks = modal?.querySelector('.modal-links');
 const contactForm = document.getElementById('contact-form');
 const formStatus = document.getElementById('form-status');
+const whatsappButton = document.getElementById('contact-whatsapp');
 const yearNode = document.getElementById('year');
 const mobileToggle = document.getElementById('mobile-menu-toggle');
 const mobileMenu = document.getElementById('mobile-menu');
@@ -455,26 +456,44 @@ const handleModalInteraction = () => {
 };
 
 const initContactForm = () => {
-  if (!contactForm || !formStatus) return;
-  contactForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    formStatus.textContent = 'Sending your universe...';
-    formStatus.style.color = '#6B7280';
-    const submitButton = contactForm.querySelector('button[type="submit"]');
-    if (submitButton) {
-      submitButton.disabled = true;
-      submitButton.classList.add('opacity-60');
-    }
+  if (!contactForm || !formStatus || !whatsappButton) return;
+
+  const openWhatsApp = () => {
+    if (!contactForm.reportValidity()) return;
+
+    const formData = new FormData(contactForm);
+    const name = (formData.get('name') || '').toString().trim();
+    const email = (formData.get('email') || '').toString().trim();
+    const message = (formData.get('message') || '').toString().trim();
+
+    const segments = [
+      name ? `Hi MofeOluwa, I'm ${name}.` : 'Hi MofeOluwa,',
+      message ? `Here's what I have in mind: ${message}` : 'I just explored your portfolio and would love to collaborate.',
+      email ? `You can reach me at ${email}.` : '',
+    ].filter(Boolean);
+
+    const whatsappMessage = segments.join('\n\n');
+    const whatsappUrl = `https://wa.me/2348067505366?text=${encodeURIComponent(whatsappMessage)}`;
+
+    whatsappButton.href = whatsappUrl;
+    formStatus.textContent = 'Opening WhatsApp...';
+    formStatus.style.color = '#8B4513';
+
+    window.open(whatsappUrl, '_blank');
 
     setTimeout(() => {
-    formStatus.textContent = 'Message sent! Expect a response from Mofe soon.';
-    formStatus.style.color = '#8B4513';
-      contactForm.reset();
-      if (submitButton) {
-        submitButton.disabled = false;
-        submitButton.classList.remove('opacity-60');
-      }
-    }, 1200);
+      formStatus.textContent = '';
+    }, 3000);
+  };
+
+  whatsappButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    openWhatsApp();
+  });
+
+  contactForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    openWhatsApp();
   });
 };
 
