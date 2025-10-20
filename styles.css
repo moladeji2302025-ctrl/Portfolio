@@ -102,7 +102,7 @@ a:hover {
 
 .hero-section {
   position: relative;
-  padding: clamp(6rem, 7vw, 8rem) 1.5rem clamp(5rem, 6vw, 7rem);
+  padding: clamp(6.5rem, 8vw, 9rem) clamp(1.75rem, 6vw, 3.75rem) clamp(5.5rem, 7vw, 8.5rem);
   overflow: hidden;
 }
 
@@ -120,8 +120,8 @@ a:hover {
 .hero-grid {
   position: relative;
   display: grid;
-  gap: 3.5rem;
-  max-width: 1160px;
+  gap: clamp(3rem, 7vw, 5rem);
+  max-width: 1200px;
   margin: 0 auto;
   align-items: center;
 }
@@ -136,7 +136,7 @@ a:hover {
 .hero-content {
   position: relative;
   display: grid;
-  gap: 1.9rem;
+  gap: 2.2rem;
   z-index: 1;
 }
 
@@ -181,7 +181,7 @@ a:hover {
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem 1.5rem;
+  gap: 1.5rem 2rem;
   align-items: center;
 }
 
@@ -191,11 +191,11 @@ a:hover {
   align-items: center;
   gap: 0.8rem;
   border-radius: 999px;
-  font-size: 0.78rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  padding: 0.95rem 2.35rem;
+  letter-spacing: 0.08em;
+  text-transform: none;
+  padding: 1rem 2.6rem;
   transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease, color 0.35s ease;
 }
 
@@ -230,11 +230,12 @@ a:hover {
   border-radius: 999px;
   border: 1px solid rgba(139, 69, 19, 0.22);
   background: rgba(255, 255, 255, 0.85);
-  padding: 0.8rem 1.6rem;
-  font-size: 0.82rem;
+  padding: 0.85rem 1.85rem;
+  font-size: 0.92rem;
   color: rgba(47, 37, 23, 0.68);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-transform: none;
+  font-weight: 600;
   box-shadow: 0 20px 55px -45px rgba(139, 69, 19, 0.45);
 }
 
@@ -338,15 +339,15 @@ a:hover {
 }
 
 .hero-floating-chip span {
-  font-size: 0.7rem;
-  letter-spacing: 0.28em;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: rgba(47, 37, 23, 0.55);
 }
 
 .hero-floating-chip p {
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: 1.05rem;
   color: rgba(30, 24, 16, 0.85);
 }
 
@@ -365,15 +366,15 @@ a:hover {
 }
 
 .hero-badge span {
-  font-size: 0.68rem;
-  letter-spacing: 0.26em;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: rgba(47, 37, 23, 0.55);
 }
 
 .hero-badge strong {
   font-family: var(--font-display);
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   color: rgba(30, 24, 16, 0.85);
 }
 
@@ -396,10 +397,10 @@ a:hover {
 }
 
 .hero-clients p {
-  font-size: 0.72rem;
-  letter-spacing: 0.48em;
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(47, 37, 23, 0.5);
+  color: rgba(47, 37, 23, 0.55);
 }
 
 .client-list {
@@ -413,14 +414,14 @@ a:hover {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  padding: 0.65rem 1.6rem;
+  padding: 0.75rem 1.8rem;
   border-radius: 999px;
-  border: 1px solid rgba(139, 69, 19, 0.2);
-  background: rgba(255, 255, 255, 0.9);
-  font-size: 0.72rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: rgba(47, 37, 23, 0.55);
+  border: 1px solid rgba(139, 69, 19, 0.18);
+  background: rgba(255, 255, 255, 0.92);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: none;
+  color: rgba(47, 37, 23, 0.65);
   box-shadow: 0 16px 40px -36px rgba(139, 69, 19, 0.4);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -433,47 +434,41 @@ a:hover {
 
 .testimonial-card {
   position: relative;
-  border-radius: 2.4rem;
-  border: 1px solid rgba(139, 69, 19, 0.18);
-  background: linear-gradient(150deg, rgba(255, 255, 255, 0.95), rgba(255, 243, 209, 0.85));
-  padding: 2.25rem;
-  box-shadow: 0 26px 70px -45px rgba(139, 69, 19, 0.35);
+  border-radius: 1.6rem;
+  border: 1px solid rgba(139, 69, 19, 0.12);
+  background: #ffffff;
+  padding: 2.1rem;
+  box-shadow: 0 20px 65px -48px rgba(17, 17, 23, 0.24);
   transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
 .testimonial-card::before {
-  content: '';
-  position: absolute;
-  top: 1.35rem;
-  right: 1.75rem;
-  width: 48px;
-  height: 48px;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(139,69,19,0.35)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h4v4H7z"/><path d="M7 11c0 2.21-1.79 4-4 4"/><path d="M17 7h4v4h-4z"/><path d="M17 11c0 2.21-1.79 4-4 4"/></svg>') center/contain no-repeat;
-  opacity: 0.6;
+  display: none;
 }
 
 .testimonial-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 32px 95px -50px rgba(139, 69, 19, 0.5);
+  transform: translateY(-6px);
+  box-shadow: 0 28px 80px -55px rgba(17, 17, 23, 0.28);
 }
 
 .testimonial-card p {
-  color: rgba(47, 37, 23, 0.7);
-  font-size: 0.98rem;
+  color: rgba(47, 37, 23, 0.68);
+  font-size: 1rem;
   line-height: 1.85;
 }
 
 .form-field {
   display: grid;
   gap: 0.6rem;
-  font-size: 0.78rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: rgba(47, 37, 23, 0.55);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-transform: none;
+  color: rgba(47, 37, 23, 0.6);
 }
 
 .form-field span {
   font-weight: 600;
+  text-transform: none;
 }
 
 .form-field input,
@@ -501,13 +496,13 @@ a:hover {
   align-items: center;
   gap: 0.55rem;
   border-radius: 999px;
-  border: 1px solid rgba(139, 69, 19, 0.2);
-  background: rgba(255, 255, 255, 0.85);
-  padding: 0.7rem 1.6rem;
-  font-size: 0.72rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(47, 37, 23, 0.65);
+  border: 1px solid rgba(139, 69, 19, 0.18);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.75rem 1.7rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: none;
+  color: rgba(47, 37, 23, 0.68);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -719,28 +714,22 @@ a:hover {
 
 .about-card {
   position: relative;
-  border-radius: 2.8rem;
-  padding: 2.4rem;
-  background: linear-gradient(150deg, rgba(255, 255, 255, 0.94), rgba(255, 243, 209, 0.82));
-  border: 1px solid rgba(139, 69, 19, 0.18);
+  border-radius: 1.8rem;
+  padding: 2.2rem;
+  background: #ffffff;
+  border: 1px solid rgba(139, 69, 19, 0.12);
   overflow: hidden;
-  box-shadow: 0 28px 70px -45px rgba(139, 69, 19, 0.32);
+  box-shadow: 0 22px 65px -48px rgba(17, 17, 23, 0.24);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .about-card::after {
-  content: '';
-  position: absolute;
-  bottom: -3rem;
-  right: -3rem;
-  width: 7.5rem;
-  height: 7.5rem;
-  background: radial-gradient(circle, rgba(139, 69, 19, 0.15), transparent 65%);
+  display: none;
 }
 
 .about-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 34px 90px -45px rgba(139, 69, 19, 0.45);
+  transform: translateY(-6px);
+  box-shadow: 0 28px 80px -50px rgba(17, 17, 23, 0.28);
 }
 
 .about-card h4 {
@@ -761,35 +750,35 @@ a:hover {
   left: 8%;
   bottom: -2.8rem;
   width: min(320px, 80%);
-  border-radius: 2rem;
-  border: 1px solid rgba(139, 69, 19, 0.18);
-  background: rgba(255, 255, 255, 0.92);
-  padding: 1.5rem 1.8rem;
-  box-shadow: 0 30px 85px -50px rgba(139, 69, 19, 0.45);
+  border-radius: 1.6rem;
+  border: 1px solid rgba(139, 69, 19, 0.12);
+  background: #ffffff;
+  padding: 1.4rem 1.6rem;
+  box-shadow: 0 22px 60px -45px rgba(17, 17, 23, 0.22);
   display: grid;
   gap: 0.75rem;
 }
 
 .about-badge span {
-  font-size: 0.7rem;
-  letter-spacing: 0.26em;
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: rgba(47, 37, 23, 0.55);
 }
 
 .about-badge p {
   color: rgba(30, 24, 16, 0.82);
-  font-size: 1rem;
-  line-height: 1.7;
+  font-size: 1.05rem;
+  line-height: 1.75;
 }
 
 .skill-card {
   position: relative;
-  border-radius: 2.2rem;
-  padding: 2rem 2.2rem;
-  background: linear-gradient(150deg, rgba(255, 255, 255, 0.96), rgba(244, 228, 205, 0.75));
-  border: 1px solid rgba(139, 69, 19, 0.18);
-  box-shadow: 0 25px 75px -55px rgba(139, 69, 19, 0.4);
+  border-radius: 1.6rem;
+  padding: 2rem 2.1rem;
+  background: #ffffff;
+  border: 1px solid rgba(139, 69, 19, 0.12);
+  box-shadow: 0 22px 65px -50px rgba(17, 17, 23, 0.24);
   display: grid;
   gap: 1.3rem;
   overflow: hidden;
@@ -797,25 +786,11 @@ a:hover {
 }
 
 .skill-card::before {
-  content: '';
-  position: absolute;
-  left: -3.5rem;
-  top: 50%;
-  width: 6rem;
-  height: 6rem;
-  background: radial-gradient(circle, rgba(139, 69, 19, 0.12), transparent 65%);
-  transform: translateY(-50%);
+  display: none;
 }
 
 .skill-card::after {
-  content: '';
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 3px dotted rgba(139, 69, 19, 0.25);
+  display: none;
 }
 
 .skill-heading {
@@ -832,7 +807,7 @@ a:hover {
   height: 38px;
   padding: 0.4rem;
   border-radius: 50%;
-  background: rgba(139, 69, 19, 0.12);
+  background: rgba(139, 69, 19, 0.1);
 }
 
 .skill-name {
@@ -842,17 +817,17 @@ a:hover {
 }
 
 .skill-level {
-  font-size: 0.78rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(47, 37, 23, 0.55);
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+  text-transform: none;
+  color: rgba(47, 37, 23, 0.6);
 }
 
 .progress {
   position: relative;
   height: 12px;
   border-radius: 999px;
-  background: rgba(139, 69, 19, 0.15);
+  background: rgba(139, 69, 19, 0.1);
   overflow: hidden;
 }
 
@@ -861,12 +836,12 @@ a:hover {
   height: 100%;
   border-radius: inherit;
   background: linear-gradient(120deg, rgba(139, 69, 19, 0.92), rgba(160, 82, 45, 0.75));
-  box-shadow: 0 12px 28px -15px rgba(139, 69, 19, 0.5);
+  box-shadow: 0 10px 24px -16px rgba(139, 69, 19, 0.45);
 }
 
 .skill-card:hover {
-  transform: translateY(-6px) scale(1.01);
-  box-shadow: 0 30px 85px -50px rgba(139, 69, 19, 0.5);
+  transform: translateY(-4px);
+  box-shadow: 0 26px 80px -55px rgba(17, 17, 23, 0.28);
 }
 
 .timeline {
@@ -935,37 +910,38 @@ a:hover {
 
 .filter-pill {
   border-radius: 9999px;
-  border: 1px solid rgba(139, 69, 19, 0.2);
-  background: rgba(255, 255, 255, 0.78);
-  padding: 0.75rem 1.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.25em;
-  font-size: 0.7rem;
-  color: rgba(47, 37, 23, 0.62);
-  transition: all 0.3s ease;
-  box-shadow: 0 18px 42px -36px rgba(139, 69, 19, 0.45);
+  border: 1px solid rgba(139, 69, 19, 0.18);
+  background: #ffffff;
+  padding: 0.7rem 1.6rem;
+  text-transform: none;
+  letter-spacing: 0.04em;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(47, 37, 23, 0.68);
+  transition: all 0.25s ease;
+  box-shadow: none;
 }
 
 .filter-pill:hover,
 .filter-pill:focus-visible {
-  border-color: rgba(139, 69, 19, 0.5);
+  border-color: rgba(139, 69, 19, 0.4);
   color: var(--color-primary);
 }
 
 .filter-pill.active {
-  background: linear-gradient(120deg, rgba(139, 69, 19, 0.92), rgba(160, 82, 45, 0.75));
-  color: #fffaf0;
-  border-color: transparent;
-  box-shadow: 0 24px 60px -35px rgba(139, 69, 19, 0.6);
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+  box-shadow: 0 8px 26px -18px rgba(139, 69, 19, 0.55);
 }
 
 .project-card {
   position: relative;
   overflow: hidden;
-  border-radius: 2.6rem;
-  border: 1px solid rgba(139, 69, 19, 0.15);
-  background: linear-gradient(150deg, rgba(255, 255, 255, 0.96), rgba(255, 243, 209, 0.82));
-  box-shadow: 0 30px 85px -50px rgba(139, 69, 19, 0.45);
+  border-radius: 1.6rem;
+  border: 1px solid rgba(139, 69, 19, 0.12);
+  background: #ffffff;
+  box-shadow: 0 20px 60px -45px rgba(17, 17, 23, 0.25);
   cursor: pointer;
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
@@ -980,8 +956,8 @@ a:hover {
 }
 
 .project-card:hover {
-  transform: translateY(-10px) scale(1.015);
-  box-shadow: 0 38px 110px -55px rgba(139, 69, 19, 0.55);
+  transform: translateY(-8px);
+  box-shadow: 0 32px 90px -55px rgba(17, 17, 23, 0.3);
 }
 
 .project-card:hover::after {
@@ -991,7 +967,7 @@ a:hover {
 .project-card img,
 .project-card video {
   width: 100%;
-  height: 260px;
+  height: clamp(220px, 28vw, 320px);
   object-fit: cover;
   transition: transform 0.6s ease;
   filter: saturate(1.05);
@@ -1004,9 +980,9 @@ a:hover {
 
 .project-info {
   position: relative;
-  padding: 1.95rem;
+  padding: 2.1rem;
   display: grid;
-  gap: 0.85rem;
+  gap: 1.1rem;
   z-index: 1;
 }
 
@@ -1014,66 +990,62 @@ a:hover {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  padding: 0.35rem 1.1rem;
+  padding: 0.4rem 1.1rem;
   border-radius: 999px;
-  background: rgba(139, 69, 19, 0.15);
-  border: 1px solid rgba(139, 69, 19, 0.3);
-  font-size: 0.58rem;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: rgba(47, 37, 23, 0.8);
+  background: rgba(139, 69, 19, 0.1);
+  border: 1px solid rgba(139, 69, 19, 0.22);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: none;
+  color: rgba(47, 37, 23, 0.72);
+  font-weight: 600;
 }
 
 .project-title {
   font-family: var(--font-display);
-  font-size: 1.35rem;
-  color: rgba(30, 24, 16, 0.85);
+  font-size: 1.5rem;
+  color: rgba(30, 24, 16, 0.9);
+  line-height: 1.25;
 }
 
 .project-summary {
-  color: rgba(47, 37, 23, 0.68);
-  font-size: 0.95rem;
-  line-height: 1.7;
+  color: rgba(47, 37, 23, 0.72);
+  font-size: 1rem;
+  line-height: 1.8;
 }
 
 .section-wrapper {
   position: relative;
-  padding: clamp(5rem, 6vw, 6.5rem) 1.75rem;
-  max-width: 1160px;
+  padding: clamp(6rem, 8vw, 8.5rem) clamp(1.5rem, 5vw, 3.5rem);
+  max-width: 1200px;
   margin: 0 auto;
   z-index: 1;
 }
 
 .section-wrapper::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 3rem;
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.8), rgba(255, 243, 209, 0.65));
-  border: 1px solid rgba(139, 69, 19, 0.12);
-  box-shadow: 0 30px 85px -55px rgba(139, 69, 19, 0.4);
-  z-index: -1;
+  display: none;
 }
 
 .section-header {
   display: grid;
-  gap: 0.85rem;
-  max-width: 640px;
-  margin-bottom: 3rem;
+  gap: 1.1rem;
+  max-width: 720px;
+  margin-bottom: 3.75rem;
 }
 
 .section-title {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 3.6vw, 2.8rem);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: rgba(30, 24, 16, 0.88);
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  letter-spacing: normal;
+  text-transform: none;
+  line-height: 1.2;
+  color: rgba(30, 24, 16, 0.9);
 }
 
 .section-subtitle {
-  font-size: 1.02rem;
-  line-height: 1.85;
-  color: rgba(47, 37, 23, 0.68);
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: rgba(47, 37, 23, 0.7);
 }
 
 
@@ -1120,17 +1092,12 @@ a:hover {
 
 @media (max-width: 768px) {
   .section-wrapper {
-    padding: 4.5rem 1.25rem;
-  }
-
-  .section-wrapper::before {
-    inset: 1rem 0;
-    border-radius: 2.5rem;
+    padding: 4.75rem 1.5rem;
   }
 
   .project-card img,
   .project-card video {
-    height: 200px;
+    height: clamp(200px, 45vw, 260px);
   }
 }
 
@@ -1141,17 +1108,21 @@ a:hover {
     margin-top: 1.75rem;
   }
 
+  .filter-pill {
+    padding: 0.65rem 1.2rem;
+    letter-spacing: 0.04em;
+    width: 100%;
+  }
+
   .client-pill {
-    letter-spacing: 0.2em;
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    width: 100%;
+    justify-content: center;
   }
 
   .section-title {
-    letter-spacing: 0.12em;
-  }
-
-  .filter-pill {
-    padding: 0.65rem 1.3rem;
-    letter-spacing: 0.2em;
+    font-size: clamp(2rem, 7vw, 2.6rem);
   }
 
   .modal-body {
