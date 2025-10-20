@@ -1,23 +1,5 @@
 const projects = [
   {
-    id: 'asian-cloth-illustration',
-    title: 'Asian Cloth Illustration',
-    category: 'Digital Art & Illustrations',
-    summary: 'Fabric study illustrating layered silk folds with color-dodge lighting control',
-    thumbnail: 'projects/asian-cloth-illustration/pic1.jpg',
-    mediaType: 'image',
-    mediaSrc: 'projects/asian-cloth-illustration/project.jpg',
-    description:
-      'A digital painting exercise focused on recreation of traditional satin cloth. Painted in Adobe Photoshop with textured brushes, gradient maps, and subtle rim lighting to emphasize edge translucency and the interplay between cool shadows and warm highlights.',
-    tools: ['Adobe Photoshop'],
-    gallery: [
-      'projects/asian-cloth-illustration/pic1.jpg',
-      'projects/asian-cloth-illustration/pic2.jpg',
-      'projects/asian-cloth-illustration/pic3.jpg'
-    ],
-    links: [],
-  },
-  {
     id: 'spiderman-run-cycle',
     title: 'Spiderman Run Cycle',
     category: '3D Animations',
@@ -86,6 +68,34 @@ const projects = [
     links: [],
   },
   {
+    id: 'african-woman-drawing',
+    title: 'Drawing of African Woman',
+    category: 'Traditional Drawings',
+    summary: 'Fabric study illustrating layered silk folds with color-dodge lighting control',
+    thumbnail: 'projects/african-woman-drawing/project.jpg',
+    mediaType: 'image',
+    mediaSrc: 'projects/african-woman-drawing/project.jpg',
+    description:
+      'A digital painting exercise focused on recreation of traditional satin cloth. Painted in Adobe Photoshop with textured brushes, gradient maps, and subtle rim lighting to emphasize edge translucency and the interplay between cool shadows and warm highlights.',
+    tools: ['Traditional Drawing'],
+    gallery: [],
+    links: [],
+  },
+  {
+    id: 'futuristic-swat-helmet',
+    title: 'Futuristic SWAT Helmet',
+    category: '3d Modelling',
+    summary: 'Fabric study illustrating layered silk folds with color-dodge lighting control',
+    thumbnail: 'projects/futuristic-swat-helmet/project.jpg',
+    mediaType: 'image',
+    mediaSrc: 'projects/futuristic-swat-helmet/project.jpg',
+    description:
+      'A digital painting exercise focused on recreation of traditional satin cloth. Painted in Adobe Photoshop with textured brushes, gradient maps, and subtle rim lighting to emphasize edge translucency and the interplay between cool shadows and warm highlights.',
+    tools: ['Blender'],
+    gallery: [],
+    links: [],
+  },
+  {
     id: 'facial-animation',
     title: 'Facial Animation',
     category: '3D Animations',
@@ -99,6 +109,24 @@ const projects = [
     gallery: [
       'projects/facial-animation/pic1.png',
       'projects/facial-animation/pic2.png'
+    ],
+    links: [],
+  },
+  {
+    id: 'asian-cloth-illustration',
+    title: 'Asian Cloth Illustration',
+    category: 'Digital Art & Illustrations',
+    summary: 'Fabric study illustrating layered silk folds with color-dodge lighting control',
+    thumbnail: 'projects/asian-cloth-illustration/pic1.jpg',
+    mediaType: 'image',
+    mediaSrc: 'projects/asian-cloth-illustration/project.jpg',
+    description:
+      'A digital painting exercise focused on recreation of traditional satin cloth. Painted in Adobe Photoshop with textured brushes, gradient maps, and subtle rim lighting to emphasize edge translucency and the interplay between cool shadows and warm highlights.',
+    tools: ['Adobe Photoshop'],
+    gallery: [
+      'projects/asian-cloth-illustration/pic1.jpg',
+      'projects/asian-cloth-illustration/pic2.jpg',
+      'projects/asian-cloth-illustration/pic3.jpg'
     ],
     links: [],
   },
@@ -120,6 +148,20 @@ const projects = [
     links: [],
   },
   {
+    id: 'scorac',
+    title: 'SCORAC Logo',
+    category: 'Motion Graphics',
+    summary: 'Dynamic run-cycle blocking that tracks Spider-Man’s momentum and weight shifts',
+    thumbnail: 'projects/scorac/pic1.png',
+    mediaType: 'video',
+    mediaSrc: 'projects/scorac/video.mp4',
+    description:
+      'A locomotion pass aimed at capturing Spider-Man’s grounded sprint between swings. Key poses lock in silhouette clarity, while offset FK/IK blending, overlapping action, and camera trucking sell the acceleration as he prepares to launch into the next web line.',
+    tools: ['Adobe After Effects'],
+    gallery: [],
+    links: [],
+  },
+  {
     id: 'king-illustration',
     title: 'King Illustration',
     category: 'Digital Art & Illustrations',
@@ -127,20 +169,6 @@ const projects = [
     thumbnail: 'projects/king-illustration/project.jpg',
     mediaType: 'image',
     mediaSrc: 'projects/king-illustration/project.jpg',
-    description:
-      'A digital painting exercise focused on recreation of traditional satin cloth. Painted in Adobe Photoshop with textured brushes, gradient maps, and subtle rim lighting to emphasize edge translucency and the interplay between cool shadows and warm highlights.',
-    tools: ['Adobe Photoshop'],
-    gallery: [],
-    links: [],
-  },
-  {
-    id: 'hoodie-merchant',
-    title: 'Hoodie Merchant',
-    category: 'Digital Art & Illustrations',
-    summary: 'Fabric study illustrating layered silk folds with color-dodge lighting control',
-    thumbnail: 'projects/hoodie-merchant/project.jpg',
-    mediaType: 'image',
-    mediaSrc: 'projects/hoodie-merchant/project.jpg',
     description:
       'A digital painting exercise focused on recreation of traditional satin cloth. Painted in Adobe Photoshop with textured brushes, gradient maps, and subtle rim lighting to emphasize edge translucency and the interplay between cool shadows and warm highlights.',
     tools: ['Adobe Photoshop'],
@@ -182,8 +210,71 @@ const yearNode = document.getElementById('year');
 const mobileToggle = document.getElementById('mobile-menu-toggle');
 const mobileMenu = document.getElementById('mobile-menu');
 
+const MEDIA_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
+
+let mediaObserver;
+
+const loadMediaElement = (element) => {
+  const source = element.dataset.src;
+  if (source && element.dataset.loaded !== 'true') {
+    element.src = source;
+    element.dataset.loaded = 'true';
+    if (element instanceof HTMLVideoElement) {
+      element.load();
+    }
+  }
+
+  if (element instanceof HTMLVideoElement) {
+    const playPromise = element.play?.();
+    if (playPromise instanceof Promise) {
+      playPromise.catch(() => {});
+    }
+  }
+};
+
+const ensureMediaObserver = () => {
+  if (mediaObserver) return mediaObserver;
+  if (!('IntersectionObserver' in window)) {
+    return null;
+  }
+
+  mediaObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const element = entry.target;
+        if (!(element instanceof HTMLVideoElement) && !(element instanceof HTMLImageElement)) {
+          return;
+        }
+
+        if (entry.isIntersecting) {
+          loadMediaElement(element);
+        } else if (element instanceof HTMLVideoElement) {
+          element.pause();
+        }
+      });
+    },
+    { rootMargin: '160px 0px', threshold: 0.2 }
+  );
+
+  return mediaObserver;
+};
+
+const registerMediaElement = (element) => {
+  const observer = ensureMediaObserver();
+  if (!observer) {
+    loadMediaElement(element);
+    return;
+  }
+
+  observer.observe(element);
+};
+
 const renderProjects = (items) => {
   if (!grid) return;
+  if (mediaObserver) {
+    mediaObserver.disconnect();
+  }
+  grid.querySelectorAll('video').forEach((video) => video.pause());
   grid.innerHTML = '';
   const fragment = document.createDocumentFragment();
 
@@ -197,19 +288,27 @@ const renderProjects = (items) => {
 
     if (project.mediaType === 'video') {
       const video = document.createElement('video');
-      video.src = project.mediaSrc;
+      video.dataset.src = project.mediaSrc;
+      video.preload = 'none';
       video.autoplay = true;
       video.loop = true;
       video.muted = true;
       video.playsInline = true;
+      video.setAttribute('muted', '');
+      video.setAttribute('loop', '');
+      video.setAttribute('autoplay', '');
+      video.setAttribute('playsinline', '');
       video.className = 'transition duration-700 ease-out';
       mediaWrapper.appendChild(video);
+      registerMediaElement(video);
     } else {
       const img = document.createElement('img');
-      img.src = project.mediaSrc || project.thumbnail;
       img.alt = project.title;
       img.loading = 'lazy';
+      img.src = MEDIA_PLACEHOLDER;
+      img.dataset.src = project.mediaSrc || project.thumbnail || '';
       mediaWrapper.appendChild(img);
+      registerMediaElement(img);
     }
 
     const info = document.createElement('div');
