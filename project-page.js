@@ -197,19 +197,6 @@ const initDarkMode = () => {
   const darkModeToggleMobile = document.getElementById('dark-mode-toggle-mobile');
   const root = document.documentElement;
 
-  // Check for saved preference in localStorage
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme === 'dark') {
-    root.classList.add('dark-mode');
-    updateToggleState(true);
-  }
-
-  const toggleDarkMode = () => {
-    const isDark = root.classList.toggle('dark-mode');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    updateToggleState(isDark);
-  };
-
   const updateToggleState = (isDark) => {
     [darkModeToggle, darkModeToggleMobile].forEach(toggle => {
       if (!toggle) return;
@@ -225,6 +212,19 @@ const initDarkMode = () => {
       }
     });
   };
+
+  const toggleDarkMode = () => {
+    const isDark = root.classList.toggle('dark-mode');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    updateToggleState(isDark);
+  };
+
+  // Check for saved preference in localStorage
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') {
+    root.classList.add('dark-mode');
+    updateToggleState(true);
+  }
 
   [darkModeToggle, darkModeToggleMobile].forEach(toggle => {
     if (!toggle) return;
