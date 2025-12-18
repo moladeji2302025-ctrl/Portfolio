@@ -1129,7 +1129,9 @@ const initBeigePatterns = () => {
 
     draw() {
       if (!ctx) return;
-      ctx.fillStyle = `rgba(245, 240, 235, ${this.alpha})`;
+      const isDarkMode = document.documentElement.classList.contains('dark-mode');
+      const color = isDarkMode ? '212, 165, 116' : '245, 240, 235';
+      ctx.fillStyle = `rgba(${color}, ${this.alpha})`;
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
       ctx.fill();
@@ -1170,7 +1172,8 @@ const initBeigePatterns = () => {
 
     // Draw connecting lines between nearby particles
     // Optimized: limit connections per particle to avoid O(n²) complexity
-    ctx.strokeStyle = 'rgba(245, 240, 235, 0.15)';
+    const isDarkMode = document.documentElement.classList.contains('dark-mode');
+    ctx.strokeStyle = isDarkMode ? 'rgba(212, 165, 116, 0.15)' : 'rgba(245, 240, 235, 0.15)';
     ctx.lineWidth = 0.5;
     const maxConnectionsPerParticle = 3;
 
