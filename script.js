@@ -1,7 +1,7 @@
 const projects = [
   {
     id: 'spiderman-run-cycle',
-    title: 'Spiderman Run Cycle',
+    title: 'Miles Run Cycle',
     category: '3D Animations',
     summary: 'Stylized sprint cycle capturing Spider-Man\'s elastic momentum between swings',
     thumbnail: 'projects/spiderman-run-cycle/pic1.png',
@@ -35,7 +35,7 @@ const projects = [
   },
   {
     id: 'woman-jumping',
-    title: 'Fighter Woman Jumping',
+    title: 'Character motion animation',
     category: '3D Animations',
     summary: 'Athletic heroine vaulting off a rooftop into a forward dive',
     thumbnail: 'projects/woman-jumping/pic1.png',
@@ -52,7 +52,7 @@ const projects = [
   },
   {
     id: 'woman-punching',
-    title: 'Fighter Woman Punching',
+    title: 'Simple action test',
     category: '3D Animations',
     summary: 'Slow-motion haymaker revealing weight transfer, recoil, and cloth drag',
     thumbnail: 'projects/woman-punching/pic1.png',
@@ -69,7 +69,7 @@ const projects = [
   },
   {
     id: 'african-woman-drawing',
-    title: 'Drawing of African Woman',
+    title: 'Charcoal drawing of African Woman',
     category: 'Traditional Drawings',
     summary: 'Graphite portrait celebrating the strength and serenity of an African matriarch',
     thumbnail: 'projects/african-woman-drawing/project.jpg',
@@ -97,7 +97,7 @@ const projects = [
   },
   {
     id: 'facial-animation',
-    title: 'Facial Animation',
+    title: 'Facial Animation test',
     category: '3D Animations',
     summary: 'Dialogue test pushing nuanced lip sync and brow micro-movements',
     thumbnail: 'projects/facial-animation/pic1.png',
@@ -114,7 +114,7 @@ const projects = [
   },
   {
     id: 'asian-cloth-illustration',
-    title: 'Asian Cloth Illustration',
+    title: 'Cloth Illustration',
     category: 'Digital Art & Illustrations',
     summary: 'Digital painting honoring traditional silk garments under warm lantern light',
     thumbnail: 'projects/asian-cloth-illustration/pic1.jpg',
@@ -163,7 +163,7 @@ const projects = [
   },
   {
     id: 'king-illustration',
-    title: 'King Illustration',
+    title: 'Simple Illustration',
     category: 'Digital Art & Illustrations',
     summary: 'Painterly portrait of a regal figure draped in ornate Ankara textiles',
     thumbnail: 'projects/king-illustration/project.jpg',
@@ -177,7 +177,7 @@ const projects = [
   },
   {
     id: 'adam-sandler-drawing',
-    title: 'Drawing of Adam Sandler',
+    title: 'Charcoal Drawing of Adam Sandler',
     category: 'Traditional Drawings',
     summary: 'Expressive graphite portrait capturing Adam Sandler’s laid-back charm',
     thumbnail: 'projects/adam-sandler-drawing/project.webp',
