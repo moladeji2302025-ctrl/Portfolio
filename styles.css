@@ -1253,3 +1253,28 @@ a, button, .project-card, .filter-pill, input, textarea, select {
   z-index: 1;
   opacity: 0.6;
 }
+
+/* Project Navigation Links */
+.project-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(74, 55, 40, 0.1);
+  background: var(--color-surface);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: var(--color-accent);
+}
+
+.project-nav-link:hover {
+  background: var(--color-highlight);
+  border-color: rgba(112, 66, 20, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -10px rgba(112, 66, 20, 0.15);
+}
+
+.project-nav-link svg {
+  color: var(--color-primary);
+}
