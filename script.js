@@ -2,7 +2,7 @@ const projects = [
   {
     id: 'spiderman-run-cycle',
     title: 'Miles Run Cycle',
-    category: '3D Animations',
+    category: 'Animations',
     summary: 'Stylized sprint cycle capturing Spider-Man\'s elastic momentum between swings',
     thumbnail: 'projects/spiderman-run-cycle/pic1.png',
     mediaType: 'video',
@@ -19,7 +19,7 @@ const projects = [
   {
     id: 'run-cycle',
     title: 'Run Cycle',
-    category: '3D Animations',
+    category: 'Animations',
     summary: 'Clean humanoid run cycle demonstrating balanced contact, recoil, and airborne phases',
     thumbnail: 'projects/run-cycle/pic1.png',
     mediaType: 'video',
@@ -36,7 +36,7 @@ const projects = [
   {
     id: 'woman-jumping',
     title: 'Character motion animation',
-    category: '3D Animations',
+    category: 'Animations',
     summary: 'Athletic heroine vaulting off a rooftop into a forward dive',
     thumbnail: 'projects/woman-jumping/pic1.png',
     mediaType: 'video',
@@ -53,7 +53,7 @@ const projects = [
   {
     id: 'woman-punching',
     title: 'Simple action test',
-    category: '3D Animations',
+    category: 'Animations',
     summary: 'Slow-motion haymaker revealing weight transfer, recoil, and cloth drag',
     thumbnail: 'projects/woman-punching/pic1.png',
     mediaType: 'video',
@@ -70,7 +70,7 @@ const projects = [
   {
     id: 'african-woman-drawing',
     title: 'Charcoal drawing of African Woman',
-    category: 'Traditional Drawings',
+    category: 'Drawings',
     summary: 'Graphite portrait celebrating the strength and serenity of an African matriarch',
     thumbnail: 'projects/african-woman-drawing/project.jpg',
     mediaType: 'image',
@@ -84,7 +84,7 @@ const projects = [
   {
     id: 'futuristic-swat-helmet',
     title: 'Futuristic SWAT Helmet',
-    category: '3d Modelling',
+    category: '3D',
     summary: 'Hard-surface concept of a tactical helmet built for near-future response teams',
     thumbnail: 'projects/futuristic-swat-helmet/project.jpg',
     mediaType: 'image',
@@ -98,7 +98,7 @@ const projects = [
   {
     id: 'facial-animation',
     title: 'Facial Animation test',
-    category: '3D Animations',
+    category: 'Animations',
     summary: 'Dialogue test pushing nuanced lip sync and brow micro-movements',
     thumbnail: 'projects/facial-animation/pic1.png',
     mediaType: 'video',
@@ -115,7 +115,7 @@ const projects = [
   {
     id: 'asian-cloth-illustration',
     title: 'Cloth Illustration',
-    category: 'Digital Art & Illustrations',
+    category: 'Illustrations',
     summary: 'Digital painting honoring traditional silk garments under warm lantern light',
     thumbnail: 'projects/asian-cloth-illustration/pic1.jpg',
     mediaType: 'image',
@@ -164,7 +164,7 @@ const projects = [
   {
     id: 'king-illustration',
     title: 'Simple Illustration',
-    category: 'Digital Art & Illustrations',
+    category: 'Illustrations',
     summary: 'Painterly portrait of a regal figure draped in ornate Ankara textiles',
     thumbnail: 'projects/king-illustration/project.jpg',
     mediaType: 'image',
@@ -178,7 +178,7 @@ const projects = [
   {
     id: 'adam-sandler-drawing',
     title: 'Charcoal Drawing of Adam Sandler',
-    category: 'Traditional Drawings',
+    category: 'Drawings',
     summary: 'Expressive graphite portrait capturing Adam Sandler’s laid-back charm',
     thumbnail: 'projects/adam-sandler-drawing/project.webp',
     mediaType: 'image',
@@ -186,6 +186,20 @@ const projects = [
     description:
       'Pencil sketch rendered on smooth Bristol paper, focusing on Sandler’s relaxed grin and signature casual style. Cross-hatching and blended graphite tones define facial structure while loose garment lines reinforce his easygoing persona.',
     tools: ['Traditional Drawing'],
+    gallery: [],
+    links: [],
+  },
+  {
+    id: 'spider-animation',
+    title: 'Spider Animation',
+    category: 'Animations',
+    summary: 'Dynamic spider locomotion study showcasing realistic leg coordination',
+    thumbnail: 'projects/spider-animation/video.mp4',
+    mediaType: 'video',
+    mediaSrc: 'projects/spider-animation/video.mp4',
+    description:
+      'Animation study exploring the intricate movement patterns of spider locomotion. Features realistic leg coordination, weight distribution, and the characteristic eight-legged gait pattern.',
+    tools: ['Blender'],
     gallery: [],
     links: [],
   },
@@ -564,6 +578,48 @@ const setCurrentYear = () => {
   }
 };
 
+const loadCategoryData = async () => {
+  try {
+    const response = await fetch('./project-data.json');
+    if (!response.ok) {
+      console.warn('Could not load project-data.json, using default categorization');
+      return null;
+    }
+    const categoryData = await response.json();
+    console.log('Loaded category data:', categoryData);
+    return categoryData;
+  } catch (error) {
+    console.warn('Error loading project-data.json:', error);
+    return null;
+  }
+};
+
+const validateProjectCategories = async () => {
+  const categoryData = await loadCategoryData();
+  if (!categoryData) return;
+
+  const categoryToProjects = categoryData;
+  const allCategorizedProjects = new Set();
+  
+  Object.entries(categoryToProjects).forEach(([category, projectIds]) => {
+    projectIds.forEach(id => {
+      allCategorizedProjects.add(id);
+      const project = projects.find(p => p.id === id);
+      if (project && project.category !== category) {
+        console.warn(`Project ${id} has category "${project.category}" but is mapped to "${category}" in project-data.json`);
+      } else if (!project) {
+        console.warn(`Project ${id} from project-data.json not found in projects array`);
+      }
+    });
+  });
+
+  projects.forEach(project => {
+    if (!allCategorizedProjects.has(project.id)) {
+      console.warn(`Project ${project.id} is not categorized in project-data.json`);
+    }
+  });
+};
+
 const initializeApp = () => {
   renderProjects(projects);
   handleFiltering();
@@ -574,6 +630,7 @@ const initializeApp = () => {
   handleScrollAnimations();
   handleParallax();
   setCurrentYear();
+  validateProjectCategories();
 };
 
 if (document.readyState === 'loading') {
