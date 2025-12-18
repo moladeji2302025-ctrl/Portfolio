@@ -15,8 +15,8 @@ window.experiences = [
       'Adobe Illustrator',
       'Layout Design'
     ],
-    achievements: 
-      'Created awareness for the event during the period of planning
+    achievements: [
+      'Created awareness for the event during the period of planning'
     ],
     location: 'Gwarimpa, Abuja, Nigeria',
     type: 'Volunteer'
@@ -31,7 +31,7 @@ window.experiences = [
     description: 'Illustrated backdrops and designs for the 2025 Business Clinic conference in Covenant University',
     responsibilities: [
       'Illustrate backdrop designs for the event',
-      'Create designs for the "Speakers of the event" poster
+      'Create designs for the "Speakers of the event" poster'
     ],
     skills: [
       'Adobe Illustrator',
@@ -51,7 +51,7 @@ window.experiences = [
     period: 'September 2024 - October 2024',
     startDate: '2024-09',
     endDate: '2024-10',
-    description: 'Intern at Branded Creative Agency working with a team of creatives to create imaginative and original motion graphics designs.'
+    description: 'Intern at Branded Creative Agency working with a team of creatives to create imaginative and original motion graphics designs.',
     responsibilities: [
       'Create original and creative motion graphics concepts',
       'Implement concepts created into different brands in need of creative motion contents',
