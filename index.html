@@ -1,3 +1,463 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio of MofeOluwa Oladeji — Graphic Designer, Animator, Digital Artist turning imagination into motion." />
+  <title>MofeOluwa Oladeji | Turning Imagination into Motion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Manrope', 'sans-serif'],
+          },
+          colors: {
+            primary: '#704214',
+            secondary: '#8B5A2B',
+            accent: '#4A3728',
+            background: '#FFFFFF',
+            surface: '#FAFAFA',
+            ink: '#2D2416',
+            muted: '#6B5D50',
+            highlight: '#F5F0EB',
+          },
+          boxShadow: {
+            vivid: '0 20px 60px -25px rgba(112, 66, 20, 0.15)',
+            neon: '0 0 0 1px rgba(74, 55, 40, 0.06), 0 14px 40px -20px rgba(139, 90, 43, 0.2)',
+          },
+          backdropBlur: {
+            xs: '2px',
+          },
+          backgroundSize: {
+            motion: '160% 160%',
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
 <body class="min-h-screen bg-background text-ink relative overflow-x-hidden">
-  <div id="beige-pattern-container"></div> <!-- Added for animations -->
-  <header class="sticky top-0 z-40 backdrop-blur-md/20 bg-white/90 border-b border-accent/10">...
+  <header class="sticky top-0 z-40 backdrop-blur-md/20 bg-white/90 border-b border-accent/10">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+      <a href="#home" class="group relative inline-flex items-center gap-2 text-lg font-semibold tracking-wide text-accent">
+        <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-primary ring-2 ring-primary/20 transition-all duration-500 group-hover:scale-110 group-hover:ring-primary/40">
+          MO
+        </span>
+        <span class="leading-none">
+          MofeOluwa <span class="text-primary">Oladeji</span>
+        </span>
+      </a>
+      <div class="hidden lg:block">
+        <nav class="nav-links">
+          <a href="#home" class="nav-link">Home</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#skills" class="nav-link">Skills</a>
+          <a href="#experience" class="nav-link">Experience</a>
+          <a href="#portfolio" class="nav-link">Portfolio</a>
+          <a href="#testimonials" class="nav-link">Testimonials</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+      </div>
+      <button id="mobile-menu-toggle" class="flex h-11 w-11 items-center justify-center rounded-full border border-accent/10 text-accent shadow-neon transition duration-300 hover:border-primary/60 hover:text-primary lg:hidden" aria-label="Toggle navigation">
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" />
+        </svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="mobile-menu">
+      <a href="#home" class="mobile-link">Home</a>
+      <a href="#about" class="mobile-link">About</a>
+      <a href="#skills" class="mobile-link">Skills</a>
+      <a href="#experience" class="mobile-link">Experience</a>
+      <a href="#portfolio" class="mobile-link">Portfolio</a>
+      <a href="#testimonials" class="mobile-link">Testimonials</a>
+      <a href="#contact" class="mobile-link">Contact</a>
+    </div>
+  </header>
+
+  <main class="relative z-10">
+    <section id="home" class="hero-section">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <span class="script-note" data-parallax data-parallax-speed="0.2">Sketchbook dreams, cinematic motion</span>
+          <h1 class="hero-title" data-parallax data-parallax-speed="0.35">
+            Futuristic visuals and immersive worlds by <span>MofeOluwa Oladeji</span>
+          </h1>
+          <p class="hero-summary" data-parallax data-parallax-speed="0.3">
+            I’m a 3D animator, motion graphic designer, and digital illustrator translating emotion into movement. I craft creative 3D animations, bold motion graphics, and expressive illustrations that make stories unforgettable.
+          </p>
+          <div class="hero-actions" data-parallax data-parallax-speed="0.45">
+            <a href="#portfolio" class="button-primary">
+              Explore Work
+              <span>➜</span>
+            </a>
+            <a href="#contact" class="button-ghost">Let’s Collab</a>
+          </div>
+          <!-- <div class="hero-pill" data-parallax data-parallax-speed="0.25">
+            Currently animating: Book brand visual universe
+          </div> -->
+          <div class="hero-stats" data-parallax data-parallax-speed="0.4">
+            <div class="stat-card">
+              <span class="stat-value">+15</span>
+              <span class="stat-label">3d animation, motion & graphic design projects unleashed</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-value">5</span>
+              <span class="stat-label">Design tools proficiency</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual" data-parallax data-parallax-speed="0.32">
+          <div class="hero-canvas">
+            <img src="img/profile.jpg" alt="Profile portrait of MofeOluwa Oladeji" />
+            <span class="hero-frame" aria-hidden="true"></span>
+          </div>
+          <span class="hero-orb" aria-hidden="true"></span>
+          <span class="hero-scribble" aria-hidden="true"></span>
+          <div class="hero-floating-chip" data-parallax data-parallax-speed="0.55">
+            <span>Core Focus</span>
+            <p>3D Animations</p>
+          </div>
+          <!-- <div class="hero-badge" data-parallax data-parallax-speed="0.5">
+            <span>Currently crafting</span>
+            <strong>Immersive book brand universe</strong>
+          </div> -->
+        </div>
+      </div>
+      <div class="hero-clients">
+        <p data-parallax data-parallax-speed="0.18">Featured Collaborations</p>
+        <div class="client-list">
+          <span class="client-pill">Branded Creative Agency</span>
+          <span class="client-pill">Covenant University EDS Day Business Clinic</span>
+          <span class="client-pill">TEDx Gwarimpa</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section-wrapper">
+      <div class="section-header">
+        <h2 class="section-title">About the Artist</h2>
+        <p class="section-subtitle">I am a 300 level student at Covenant University — weaving storytelling, design, and animation into vivid experiences.</p>
+      </div>
+      <div class="grid gap-12 lg:grid-cols-[1.1fr_1fr]">
+        <div class="relative">
+          <div class="aspect-[4/5] overflow-hidden rounded-[2rem] border border-accent/8 bg-white shadow-neon">
+            <img src="img/at-work.jpg" alt="MofeOluwa working on a digital art project" class="h-full w-full object-cover" />
+          </div>
+          <div class="about-badge">
+            <span class="text-[11px] uppercase tracking-[0.4em] text-muted">Experience</span>
+            <p class="mt-3 text-xl font-semibold text-accent">Crafting visual identities for brands through intuitive motion and hyper-real 3D worlds.</p>
+          </div>
+        </div>
+        <div class="space-y-10">
+          <p class="text-lg leading-relaxed text-muted">
+            With a passion for transporting audiences into imagined realities, I blend graphic design, animation, and digital painting to create experiential visuals. From conceptual art direction to technical execution, I meticulously craft each frame to communicate emotion, rhythm, and purpose.
+          </p>
+          <div class="grid gap-6 sm:grid-cols-2">
+            <div class="about-card">
+              <h3 class="text-sm uppercase tracking-[0.35em] text-muted">Philosophy</h3>
+              <p class="mt-3 text-lg text-accent">Designing for impact, building immersive motion narratives, and pushing digital craftsmanship forward.</p>
+            </div>
+            <div class="about-card">
+              <h3 class="text-sm uppercase tracking-[0.35em] text-muted">Specialty</h3>
+              <p class="mt-3 text-lg text-accent">Dynamic 3D animations, cinematic motion graphics, and tactile cloth simulations.</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-4">
+            <a href="#portfolio" class="inline-flex items-center gap-3 rounded-full border border-primary/40 bg-highlight px-6 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-primary transition duration-300 hover:-translate-y-1">
+              View Latest Projects
+            </a>
+            <a href="#contact" class="inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.35em] text-muted transition duration-300 hover:text-primary">
+              Request Concept Pitch ➜
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section-wrapper">
+      <div class="section-header">
+        <h2 class="section-title">Expert Tools & Superpowers</h2>
+        <p class="section-subtitle">Technical artistry fused with software mastery across motion, simulation, and digital art pipelines.</p>
+      </div>
+      <div class="grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+        <div class="grid gap-6 sm:grid-cols-2">
+          <div class="skill-card" data-animate="scale">
+            <div class="skill-heading">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/blender/blender-original.svg" alt="Blender icon" class="h-10 w-10" />
+              <p class="skill-name">Blender</p>
+            </div>
+            <p class="skill-level">3D Animation Specialist</p>
+            <div class="progress">
+              <span style="width: 92%"></span>
+            </div>
+          </div>
+          <div class="skill-card" data-animate="scale">
+            <div class="skill-heading">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/aftereffects/aftereffects-original.svg" alt="After Effects icon" class="h-10 w-10" />
+              <p class="skill-name">Adobe After Effects</p>
+            </div>
+            <p class="skill-level">Motion Graphics Mastery</p>
+            <div class="progress">
+              <span style="width: 88%"></span>
+            </div>
+          </div>
+          <div class="skill-card" data-animate="scale">
+            <div class="skill-heading">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-plain.svg" alt="Photoshop icon" class="h-10 w-10" />
+              <p class="skill-name">Adobe Photoshop</p>
+            </div>
+            <p class="skill-level">Digital Art</p>
+            <div class="progress">
+              <span style="width: 85%"></span>
+            </div>
+          </div>
+          <div class="skill-card" data-animate="scale">
+            <div class="skill-heading">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg" alt="Illustrator icon" class="h-10 w-10" />
+              <p class="skill-name">Adobe Illustrator</p>
+            </div>
+            <p class="skill-level">Digital Illustrations</p>
+            <div class="progress">
+              <span style="width: 85%"></span>
+            </div>
+          </div>
+          <div class="skill-card" data-animate="scale">
+            <div class="skill-heading">
+              <svg class="h-10 w-10 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="marvelous-designer-icon">
+                <title id="marvelous-designer-icon">Marvelous Designer icon</title>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.75 18.25V5.75h4.1l3.15 4.2 3.15-4.2h4.1v12.5" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.75 5.75l7.25 9.5 7.25-9.5" />
+              </svg>
+              <p class="skill-name">Marvelous Designer</p>
+            </div>
+            <p class="skill-level">Cloth Simulation Visions</p>
+            <div class="progress">
+              <span style="width: 78%"></span>
+            </div>
+          </div>
+          <div class="skill-card" data-animate="scale">
+            <div class="skill-heading">
+              <svg class="h-10 w-10 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L7.5 20.5 3 21.5l1-4.5 11.232-11.768z" />
+              </svg>
+              <p class="skill-name">Pen & Paper Drawings</p>
+            </div>
+            <p class="skill-level">Traditional Drawings</p>
+            <div class="progress">
+              <span style="width: 75%"></span>
+            </div>
+          </div>
+        </div>
+        <div class="rounded-[2rem] border border-accent/10 bg-surface p-8 shadow-neon">
+          <h3 class="text-sm uppercase tracking-[0.35em] text-muted">Toolkit Highlights</h3>
+          <ul class="mt-6 space-y-4 text-sm text-muted">
+            <li class="flex gap-3"><span class="text-primary">▹</span> Cinematic lighting pipelines for immersive 3D narratives.</li>
+            <li class="flex gap-3"><span class="text-primary">▹</span> Procedural cloth simulations merging fashion and motion.</li>
+            <li class="flex gap-3"><span class="text-primary">▹</span> Hybrid workflows combining illustration with motion design.</li>
+            <li class="flex gap-3"><span class="text-primary">▹</span> Render optimization for dynamic social-first content.</li>
+          </ul>
+          <a href="#portfolio" class="mt-8 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.35em] text-accent transition duration-300 hover:text-primary">Dive into the Process ➜</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section-wrapper">
+      <div class="section-header">
+        <h2 class="section-title">Experience Timeline</h2>
+        <p class="section-subtitle">Collaborations that pushed boundaries across brand storytelling, academia, and publishing.</p>
+      </div>
+      <div class="relative mx-auto max-w-4xl">
+  <div class="absolute left-1/2 h-full w-px -translate-x-1/2 bg-primary/40"></div>
+        <div class="timeline">
+          <article class="timeline-card">
+            <div class="timeline-dot"></div>
+            <p class="timeline-date">September 2025 — Present</p>
+            <h3 class="timeline-title">Graphic Designer · TEDx Gwarimpa</h3>
+            <p class="timeline-copy">Own the TEDx Gwarimpa visual system by crafting motion backdrops, social teasers, and on-site signage that echo the event theme and keep every touchpoint cohesive.</p>
+          </article>
+          <article class="timeline-card">
+            <div class="timeline-dot"></div>
+            <p class="timeline-date">June 2025 — July 2025</p>
+            <h3 class="timeline-title">Digital Illustrator & Graphic Designer · Covenant University EDS Day Business Clinic</h3>
+            <p class="timeline-copy">Illustrated founder stories and produced pitch decks, booth graphics, and take-home playbooks that energized Covenant University entrepreneurs during the business clinic.</p>
+          </article>
+          <article class="timeline-card">
+            <div class="timeline-dot"></div>
+            <p class="timeline-date">September 2024 - October 2024</p>
+            <h3 class="timeline-title">Motion Graphics Designer · Branded Creative Agency</h3>
+            <p class="timeline-copy">Developed motion toolkits, typographic reveals, and product loops that helped agency clients launch campaigns across social, out-of-home, and experiential screens.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio" class="section-wrapper">
+      <div class="section-header">
+        <h2 class="section-title">Signature Projects</h2>
+        <p class="section-subtitle">Filter between motion graphics, 3D worlds, cloth simulations, and digital artistry. Tap a project to dive deeper.</p>
+      </div>
+      <div class="flex flex-wrap items-center gap-4" id="portfolio-filters">
+        <button class="filter-pill active" data-filter="all">All</button>
+        <button class="filter-pill" data-filter="Motion Graphics">Motion Graphics</button>
+        <button class="filter-pill" data-filter="3D Animations">3D Animations</button>
+        <button class="filter-pill" data-filter="Cloth Designs & Simulations">Cloth Designs & Simulations</button>
+        <button class="filter-pill" data-filter="Digital Art & Illustrations">Digital Art & Illustrations</button>
+        <button class="filter-pill" data-filter="Traditional Drawings">Traditional Drawings</button>
+        <button class="filter-pill" data-filter="3d Modelling">3D Modelling</button>
+      </div>
+      <div id="portfolio-grid" class="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-3"></div>
+    </section>
+
+    <!-- <section id="testimonials" class="section-wrapper">
+      <div class="section-header">
+        <h2 class="section-title">Voices From Collaborators</h2>
+        <p class="section-subtitle">Trusted by teams that thrive on imagination and visual storytelling.</p>
+      </div>
+      <div class="grid gap-6 md:grid-cols-3">
+        <article class="testimonial-card" data-animate="fade-up">
+          <div class="flex items-center gap-3">
+            <div class="h-12 w-12 rounded-full border border-accent/10 bg-surface"></div>
+            <div>
+              <p class="font-semibold text-accent">Kemi Awosika</p>
+              <p class="text-xs uppercase tracking-[0.35em] text-muted">Creative Director · Branded Creative Agency</p>
+            </div>
+          </div>
+          <p class="mt-6 text-sm text-muted">“Mofe translates abstract concepts into cinematic visuals that consistently exceed stakeholder expectations. Their motion sense is wild.”</p>
+        </article>
+        <article class="testimonial-card" data-animate="fade-up" data-delay="100">
+          <div class="flex items-center gap-3">
+            <div class="h-12 w-12 rounded-full border border-accent/10 bg-surface"></div>
+            <div>
+              <p class="font-semibold text-accent">Dr. Daniel Eke</p>
+              <p class="text-xs uppercase tracking-[0.35em] text-muted">Faculty Lead · Covenant University</p>
+            </div>
+          </div>
+          <p class="mt-6 text-sm text-muted">“Their visuals injected energy into our student showcase. Every frame had intention and emotion — rare to find in student work.”</p>
+        </article>
+        <article class="testimonial-card" data-animate="fade-up" data-delay="200">
+          <div class="flex items-center gap-3">
+            <div class="h-12 w-12 rounded-full border border-accent/10 bg-surface"></div>
+            <div>
+              <p class="font-semibold text-accent">Ifeanyi Chukwu</p>
+              <p class="text-xs uppercase tracking-[0.35em] text-muted">Founder · TEDx Gwarimpa</p>
+            </div>
+          </div>
+          <p class="mt-6 text-sm text-muted">“Mofe shapes narrative-rich animations that feel alive. The cloth simulations and characters are unlike anything we’ve published.”</p>
+        </article>
+      </div>
+    </section> -->
+
+    <section id="contact" class="section-wrapper pb-32">
+      <div class="section-header">
+        <h2 class="section-title">Let’s Build Your Next Visual World</h2>
+        <p class="section-subtitle">Reach out for collaborations, commissions, or bold new experiments.</p>
+      </div>
+      <div class="grid gap-10 lg:grid-cols-2">
+        <form id="contact-form" class="rounded-[2rem] border border-accent/10 bg-surface p-8 shadow-neon">
+          <div class="grid gap-6 sm:grid-cols-2">
+            <label class="form-field">
+              <span>Name</span>
+              <input type="text" name="name" required placeholder="Your name" />
+            </label>
+            <label class="form-field">
+              <span>Email</span>
+              <input type="email" name="email" required placeholder="you@email.com" />
+            </label>
+          </div>
+          <label class="form-field mt-6">
+            <span>Message</span>
+            <textarea name="message" rows="5" required placeholder="Tell me about your vision"></textarea>
+          </label>
+          <p id="form-status" class="mt-4 text-sm text-muted"></p>
+          <a id="contact-whatsapp" href="https://wa.me/2348067505366" target="_blank" rel="noreferrer" class="mt-8 inline-flex items-center gap-3 rounded-full bg-primary px-8 py-3 text-sm font-semibold uppercase tracking-[0.35em] text-background transition duration-300 hover:-translate-y-1 hover:bg-secondary" role="button">
+            Send Message
+          </a>
+        </form>
+        <div class="space-y-8">
+          <div class="rounded-[2rem] border border-accent/10 bg-surface p-8 shadow-neon">
+            <h3 class="text-sm uppercase tracking-[0.35em] text-muted">Connect</h3>
+            <p class="mt-4 text-muted">Let’s collaborate on transforming your ideas into immersive visuals, animated stories, and energetic brand moments.</p>
+            <div class="mt-6 space-y-4 text-sm text-muted">
+              <p class="flex items-center gap-3">
+                <svg class="h-5 w-5 text-accent" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M16 12a4 4 0 10-8 0 4 4 0 008 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 2v2m0 16v2m10-10h-2M6 12H4m14.95 7.95l-1.414-1.414M6.464 6.464 5.05 5.05m12.9 0l-1.414 1.414M6.464 17.536 5.05 18.95" />
+                </svg>
+                Based in Abuja, Nigeria
+              </p>
+              <p class="flex items-center gap-3">
+                <svg class="h-5 w-5 text-accent" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l9 6 9-6" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 19h14a2 2 0 002-2V7a2 2 0 00-1-1.73l-8-4.62-8 4.62A2 2 0 003 7v10a2 2 0 002 2z" />
+                </svg>
+                mofejeriiseoluwa@gmail.com
+              </p>
+              <a href="https://wa.me/2348067505366?text=Hi%20MofeOluwa%2C%20I%20just%20explored%20your%20portfolio%20and%20would%20love%20to%20chat." target="_blank" rel="noreferrer" class="flex items-center gap-3 rounded-full border border-primary/30 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-primary transition duration-300 hover:-translate-y-1 hover:bg-highlight" role="button">
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.92 9.23a15.05 15.05 0 0010.85 10.85l2.26-3.46a1 1 0 01.96-.44 11.36 11.36 0 003.98.36 1 1 0 01.86 1l-.19 3.59a1 1 0 01-.97.94A19 19 0 012 5.21a1 1 0 01.94-.97l3.59-.19a1 1 0 011 .86 11.36 11.36 0 00.36 3.98 1 1 0 01-.44.96z" />
+                </svg>
+                WhatsApp · +234 806 750 5366
+              </a>
+            </div>
+            <div class="mt-6 flex flex-wrap items-center gap-3">
+              <a href="https://www.instagram.com/mofe.osz" target="_blank" rel="noreferrer" class="social-link">Instagram</a>
+              <a href="https://www.linkedin.com/in/mofeoluwa-oladeji-85b7a322a/" target="_blank" rel="noreferrer" class="social-link">LinkedIn</a>
+            </div>
+          </div>
+          <div class="rounded-[2rem] border border-accent/10 bg-surface p-8 shadow-neon">
+            <h3 class="text-sm uppercase tracking-[0.35em] text-muted">Testimonials & Trust</h3>
+            <div class="mt-4 grid gap-3 text-xs uppercase tracking-[0.35em] text-muted sm:grid-cols-2">
+              <span class="rounded-full border border-accent/10 px-4 py-3 text-center">Visual Storyteller</span>
+              <span class="rounded-full border border-accent/10 px-4 py-3 text-center">Animation Lead</span>
+              <span class="rounded-full border border-accent/10 px-4 py-3 text-center">Creative Technologist</span>
+              <span class="rounded-full border border-accent/10 px-4 py-3 text-center">Digital Artist</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-accent/10 bg-surface py-10">
+    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 text-center text-sm text-muted sm:flex-row sm:text-left">
+      <p>© <span id="year"></span> MofeOluwa Oladeji — Designed & animated with intent.</p>
+      <div class="flex items-center gap-4 text-xs uppercase tracking-[0.35em]">
+        <a href="#home" class="text-muted transition hover:text-primary">Back to top</a>
+        <span>·</span>
+        <a href="mailto:hello@mofevision.studio" class="text-muted transition hover:text-primary">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <div id="project-modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-content" role="document">
+      <button class="modal-close" data-close-modal aria-label="Close project details">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      <div class="modal-body">
+        <div class="modal-media"></div>
+        <div class="modal-info">
+          <p class="modal-category"></p>
+          <h3 class="modal-title"></h3>
+          <p class="modal-description"></p>
+          <ul class="modal-tools"></ul>
+          <div class="modal-gallery"></div>
+          <div class="modal-links"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./script.js" type="module"></script>
+</body>
+</html>
