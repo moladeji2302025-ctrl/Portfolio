@@ -906,57 +906,7 @@ const setCurrentYear = () => {
   }
 };
 
-const initDarkMode = () => {
-  const darkModeToggle = document.getElementById('dark-mode-toggle');
-  const darkModeToggleMobile = document.getElementById('dark-mode-toggle-mobile');
-  const root = document.documentElement;
 
-  const updateToggleState = (isDark) => {
-    [darkModeToggle, darkModeToggleMobile].forEach(toggle => {
-      if (!toggle) return;
-      const switchEl = toggle.querySelector('.toggle-switch');
-      if (switchEl) {
-        if (isDark) {
-          switchEl.classList.add('active');
-          switchEl.setAttribute('aria-checked', 'true');
-        } else {
-          switchEl.classList.remove('active');
-          switchEl.setAttribute('aria-checked', 'false');
-        }
-      }
-    });
-  };
-
-  const toggleDarkMode = () => {
-    const isDark = root.classList.toggle('dark-mode');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    updateToggleState(isDark);
-  };
-
-  // Check for saved preference in localStorage
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme === 'dark') {
-    root.classList.add('dark-mode');
-    updateToggleState(true);
-  }
-
-  [darkModeToggle, darkModeToggleMobile].forEach(toggle => {
-    if (!toggle) return;
-    
-    toggle.addEventListener('click', toggleDarkMode);
-    
-    // Keyboard accessibility
-    const switchEl = toggle.querySelector('.toggle-switch');
-    if (switchEl) {
-      switchEl.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          toggleDarkMode();
-        }
-      });
-    }
-  });
-};
 
 const loadCategoryData = async () => {
   try {
@@ -1021,7 +971,6 @@ const initializeApp = () => {
   handleScrollAnimations();
   handleParallax();
   setCurrentYear();
-  initDarkMode();
   validateProjectCategories();
 };
 
@@ -1129,8 +1078,7 @@ const initBeigePatterns = () => {
 
     draw() {
       if (!ctx) return;
-      const isDarkMode = document.documentElement.classList.contains('dark-mode');
-      const color = isDarkMode ? '212, 165, 116' : '245, 240, 235';
+      const color = '245, 240, 235';
       ctx.fillStyle = `rgba(${color}, ${this.alpha})`;
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
@@ -1172,8 +1120,7 @@ const initBeigePatterns = () => {
 
     // Draw connecting lines between nearby particles
     // Optimized: limit connections per particle to avoid O(n²) complexity
-    const isDarkMode = document.documentElement.classList.contains('dark-mode');
-    ctx.strokeStyle = isDarkMode ? 'rgba(212, 165, 116, 0.15)' : 'rgba(245, 240, 235, 0.15)';
+    ctx.strokeStyle = 'rgba(245, 240, 235, 0.15)';
     ctx.lineWidth = 0.5;
     const maxConnectionsPerParticle = 3;
 
