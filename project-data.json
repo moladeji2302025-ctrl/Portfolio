@@ -15,6 +15,7 @@
   ],
   "Animations": [
     "facial-animation",
+    "expression-test",
     "run-cycle",
     "spider-animation",
     "spiderman-run-cycle",
@@ -32,7 +33,14 @@
   "Motion Graphics": [
     "center-of-attraction",
     "scorac",
-    "ekene-chris",
-    "wendo"
+    "ekene-chris-1",
+    "ekene-chris-2",
+    "ekene-chris-3",
+    "wendo-1",
+    "wendo-2",
+    "wendo-3",
+    "wendo-4",
+    "wendo-5",
+    "wendo-6"
   ]
 }
