@@ -1356,10 +1356,7 @@ a, button, .project-card, .filter-pill, input, textarea, select {
 }
 
 @media (max-width: 1024px) {
-  #dark-mode-toggle .toggle-label {
-    display: none;
-  }
-  
+  #dark-mode-toggle .toggle-label,
   #dark-mode-toggle-mobile .toggle-label {
     display: none;
   }
