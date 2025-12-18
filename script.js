@@ -1,4 +1,4 @@
-const projects = [
+window.projects = [
   {
     id: 'spiderman-run-cycle',
     title: 'Miles Run Cycle',
@@ -679,7 +679,7 @@ const setFilterActive = (target) => {
 };
 
 const openModal = (projectId) => {
-  const project = projects.find((item) => item.id === projectId);
+  const project = window.projects.find((item) => item.id === projectId);
   if (!project || !modal || !modalMedia || !modalCategory || !modalTitle || !modalDescription || !modalTools || !modalGallery || !modalLinks) return;
 
   modalMedia.innerHTML = '';
@@ -763,7 +763,7 @@ const handleFiltering = () => {
     }
     
     setFilterActive(target);
-    const filtered = projects.filter((project) => project.category === filter);
+    const filtered = window.projects.filter((project) => project.category === filter);
     renderProjects(filtered);
   });
 };
@@ -774,7 +774,7 @@ const handleProjectClicks = () => {
     if (!card) return;
     const projectId = card.dataset.projectId;
     if (!projectId) return;
-    const project = projects.find(p => p.id === projectId);
+    const project = window.projects.find(p => p.id === projectId);
     if (project) {
       window.location.href = `project.html?id=${projectId}&category=${project.category}`;
     }
@@ -932,7 +932,7 @@ const validateProjectCategories = async () => {
   Object.entries(categoryToProjects).forEach(([category, projectIds]) => {
     projectIds.forEach(id => {
       allCategorizedProjects.add(id);
-      const project = projects.find(p => p.id === id);
+      const project = window.projects.find(p => p.id === id);
       if (project && project.category !== category) {
         console.warn(`Project ${id} has category "${project.category}" but is mapped to "${category}" in project-data.json`);
       } else if (!project) {
@@ -941,7 +941,7 @@ const validateProjectCategories = async () => {
     });
   });
 
-  projects.forEach(project => {
+  window.projects.forEach(project => {
     if (!allCategorizedProjects.has(project.id)) {
       console.warn(`Project ${project.id} is not categorized in project-data.json`);
     }
@@ -950,7 +950,7 @@ const validateProjectCategories = async () => {
 
 const initializeApp = () => {
   // Initialize with Animations category
-  const animationProjects = projects.filter((project) => project.category === 'Animations');
+  const animationProjects = window.projects.filter((project) => project.category === 'Animations');
   renderProjects(animationProjects);
   
   // Ensure the Animations button has the active class

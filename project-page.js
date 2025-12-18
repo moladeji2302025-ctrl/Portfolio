@@ -12,18 +12,18 @@ const getUrlParams = () => {
 
 const findProject = (projectId) => {
   // Access projects array from script.js
-  if (typeof projects === 'undefined') {
+  if (typeof window.projects === 'undefined') {
     console.error('Projects array not found');
     return null;
   }
-  return projects.find(p => p.id === projectId);
+  return window.projects.find(p => p.id === projectId);
 };
 
 const getProjectsByCategory = (category) => {
-  if (typeof projects === 'undefined') {
+  if (typeof window.projects === 'undefined') {
     return [];
   }
-  return projects.filter(p => p.category === category);
+  return window.projects.filter(p => p.category === category);
 };
 
 const getNavigationProjects = (currentProject) => {
