@@ -689,7 +689,7 @@ const openModal = (projectId) => {
 
   if (project.mediaType === 'video') {
     const video = document.createElement('video');
-    video.src = project.mediaSrc;
+    video.src = project.mediaSrc || project.thumbnail;
     video.controls = true;
     video.autoplay = true;
     video.muted = true;
@@ -698,7 +698,7 @@ const openModal = (projectId) => {
     modalMedia.appendChild(video);
   } else if (project.mediaType === 'iframe') {
     const iframe = document.createElement('iframe');
-    iframe.src = project.mediaSrc;
+    iframe.src = project.mediaSrc || project.thumbnail;
     iframe.width = '100%';
     iframe.height = '420';
     iframe.allowFullscreen = true;
@@ -706,7 +706,7 @@ const openModal = (projectId) => {
     modalMedia.appendChild(iframe);
   } else {
     const img = document.createElement('img');
-    img.src = project.mediaSrc;
+    img.src = project.mediaSrc || project.thumbnail;
     img.alt = project.title;
     img.loading = 'lazy';
     modalMedia.appendChild(img);
