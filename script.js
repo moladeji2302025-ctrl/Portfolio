@@ -100,7 +100,9 @@ const projects = [
     description:
       'Performance captured by hand-keying a short monologue. Emphasis on phoneme clarity, cheek compression, and asymmetrical expressions so the character feels alive even in tight close-up renders.',
     tools: ['Blender'],
-    gallery: [],
+    gallery: [
+      'projects/Animations/facial-animation/expression test.mp4'
+    ],
     links: [],
   },
   {
@@ -356,7 +358,10 @@ const projects = [
     description:
       'Multi-part motion graphics project featuring dynamic typography, transitions, and visual effects. Created in After Effects with multiple compositions exploring different visual approaches.',
     tools: ['Adobe After Effects'],
-    gallery: [],
+    gallery: [
+      'projects/Motion Graphics/Ekene Chris/Ekene chris_2.mp4',
+      'projects/Motion Graphics/Ekene Chris/Ekene chris_3.mp4'
+    ],
     links: [],
   },
   {
@@ -370,7 +375,13 @@ const projects = [
     description:
       'Animated brand identity package featuring vector-based motion design, smooth transitions, and cohesive visual language. Multiple iterations showcase different approaches to brand storytelling.',
     tools: ['Adobe After Effects'],
-    gallery: [],
+    gallery: [
+      'projects/Motion Graphics/Wendo/wendo vector 2_1.mp4',
+      'projects/Motion Graphics/Wendo/wendo vector 2 error updated.mp4',
+      'projects/Motion Graphics/Wendo/wendo vector 3.mp4',
+      'projects/Motion Graphics/Wendo/latest comp.mp4',
+      'projects/Motion Graphics/Wendo/chatbox latest.mp4'
+    ],
     links: [],
   },
 ];
@@ -604,12 +615,12 @@ const handleFiltering = () => {
     const filter = target.dataset.filter;
     setFilterActive(target);
 
-    if (!filter || filter === 'all') {
-      renderProjects(projects);
-    } else {
-      const filtered = projects.filter((project) => project.category === filter);
-      renderProjects(filtered);
+    if (!filter) {
+      return;
     }
+    
+    const filtered = projects.filter((project) => project.category === filter);
+    renderProjects(filtered);
   });
 };
 
@@ -791,7 +802,9 @@ const validateProjectCategories = async () => {
 };
 
 const initializeApp = () => {
-  renderProjects(projects);
+  // Initialize with Animations category
+  const animationProjects = projects.filter((project) => project.category === 'Animations');
+  renderProjects(animationProjects);
   handleFiltering();
   handleProjectClicks();
   handleModalInteraction();
