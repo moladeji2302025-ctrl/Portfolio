@@ -906,6 +906,58 @@ const setCurrentYear = () => {
   }
 };
 
+const initDarkMode = () => {
+  const darkModeToggle = document.getElementById('dark-mode-toggle');
+  const darkModeToggleMobile = document.getElementById('dark-mode-toggle-mobile');
+  const root = document.documentElement;
+
+  // Check for saved preference in localStorage
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') {
+    root.classList.add('dark-mode');
+    updateToggleState(true);
+  }
+
+  const toggleDarkMode = () => {
+    const isDark = root.classList.toggle('dark-mode');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    updateToggleState(isDark);
+  };
+
+  const updateToggleState = (isDark) => {
+    [darkModeToggle, darkModeToggleMobile].forEach(toggle => {
+      if (!toggle) return;
+      const switchEl = toggle.querySelector('.toggle-switch');
+      if (switchEl) {
+        if (isDark) {
+          switchEl.classList.add('active');
+          switchEl.setAttribute('aria-checked', 'true');
+        } else {
+          switchEl.classList.remove('active');
+          switchEl.setAttribute('aria-checked', 'false');
+        }
+      }
+    });
+  };
+
+  [darkModeToggle, darkModeToggleMobile].forEach(toggle => {
+    if (!toggle) return;
+    
+    toggle.addEventListener('click', toggleDarkMode);
+    
+    // Keyboard accessibility
+    const switchEl = toggle.querySelector('.toggle-switch');
+    if (switchEl) {
+      switchEl.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleDarkMode();
+        }
+      });
+    }
+  });
+};
+
 const loadCategoryData = async () => {
   try {
     const response = await fetch('./project-data.json');
@@ -969,6 +1021,7 @@ const initializeApp = () => {
   handleScrollAnimations();
   handleParallax();
   setCurrentYear();
+  initDarkMode();
   validateProjectCategories();
 };
 

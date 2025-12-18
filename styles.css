@@ -15,6 +15,20 @@
   --shadow-brush: 0 40px 120px -60px rgba(139, 90, 43, 0.15);
 }
 
+:root.dark-mode {
+  color-scheme: dark;
+  --color-primary: #f5f5dc;
+  --color-secondary: #f5f5dc;
+  --color-accent: #f5f5dc;
+  --color-background: #1a1a1a;
+  --color-surface: #2a2a2a;
+  --color-muted: #d4d4c8;
+  --color-highlight: #3a3a3a;
+  --color-outline: rgba(245, 245, 220, 0.1);
+  --shadow-soft: 0 28px 60px -35px rgba(245, 245, 220, 0.12);
+  --shadow-brush: 0 40px 120px -60px rgba(245, 245, 220, 0.15);
+}
+
 body {
   margin: 0;
   font-family: var(--font-body);
@@ -1218,15 +1232,19 @@ a:hover {
 /* Custom Diamond Cursor */
 .custom-cursor {
   position: fixed;
-  width: 16px;
-  height: 16px;
-  background: #704214;
+  width: 12px;
+  height: 12px;
+  background: var(--color-primary);
   transform: rotate(45deg) translate(-50%, -50%);
   pointer-events: none;
   z-index: 9999;
-  transition: transform 0.1s ease, opacity 0.2s ease;
+  transition: transform 0.1s ease, opacity 0.2s ease, background 0.3s ease;
   opacity: 0;
-  box-shadow: 0 0 8px rgba(112, 66, 20, 0.4);
+  box-shadow: 0 0 6px rgba(112, 66, 20, 0.4);
+}
+
+:root.dark-mode .custom-cursor {
+  box-shadow: 0 0 6px rgba(245, 245, 220, 0.4);
 }
 
 .custom-cursor.active {
@@ -1277,4 +1295,67 @@ a, button, .project-card, .filter-pill, input, textarea, select {
 
 .project-nav-link svg {
   color: var(--color-primary);
+}
+
+/* Dark Mode Toggle */
+.dark-mode-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-accent);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.dark-mode-toggle:hover {
+  color: var(--color-primary);
+}
+
+.toggle-label {
+  white-space: nowrap;
+}
+
+.toggle-switch {
+  position: relative;
+  width: 48px;
+  height: 24px;
+  background: rgba(112, 66, 20, 0.2);
+  border-radius: 24px;
+  transition: background 0.3s ease;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.toggle-switch::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background: var(--color-background);
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-switch.active {
+  background: var(--color-primary);
+}
+
+.toggle-switch.active::before {
+  transform: translateX(24px);
+}
+
+:root.dark-mode .toggle-switch {
+  background: rgba(245, 245, 220, 0.3);
+}
+
+@media (max-width: 1024px) {
+  .dark-mode-toggle .toggle-label {
+    display: none;
+  }
 }
