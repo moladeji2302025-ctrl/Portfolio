@@ -446,3 +446,138 @@ const handleModalInteraction = () => {
     if (!(target instanceof Element)) return;
     if (target.dataset.closeModal !== undefined || target.closest('[data-close-modal]')) {
       closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+      closeModal();
+    }
+  });
+};
+
+const handleContactForm = () => {
+  if (!contactForm || !whatsappButton) return;
+  
+  contactForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+  });
+
+  const nameInput = contactForm.querySelector('input[name="name"]');
+  const emailInput = contactForm.querySelector('input[name="email"]');
+  const messageInput = contactForm.querySelector('textarea[name="message"]');
+
+  whatsappButton.addEventListener('click', (event) => {
+    if (!nameInput || !emailInput || !messageInput) return;
+    
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const message = messageInput.value.trim();
+
+    if (!name || !email || !message) {
+      if (formStatus) {
+        formStatus.textContent = 'Please fill in all fields before sending.';
+        formStatus.style.color = 'var(--color-primary)';
+      }
+      event.preventDefault();
+      return;
+    }
+
+    const whatsappMessage = `Hi MofeOluwa,%0A%0AName: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0A%0AMessage:%0A${encodeURIComponent(message)}`;
+    whatsappButton.href = `https://wa.me/2348067505366?text=${whatsappMessage}`;
+  });
+};
+
+const handleMobileMenu = () => {
+  if (!mobileToggle || !mobileMenu) return;
+  
+  mobileToggle.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+    const isOpen = mobileMenu.classList.contains('open');
+    mobileToggle.setAttribute('aria-expanded', isOpen.toString());
+  });
+
+  mobileMenu.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      mobileToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+};
+
+const handleScrollAnimations = () => {
+  const animatedElements = document.querySelectorAll('[data-animate]');
+  
+  if (!('IntersectionObserver' in window)) {
+    animatedElements.forEach((element) => element.classList.add('revealed'));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const delay = entry.target.dataset.delay || 0;
+          setTimeout(() => {
+            entry.target.classList.add('revealed');
+          }, parseInt(delay, 10));
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15, rootMargin: '0px 0px -100px 0px' }
+  );
+
+  animatedElements.forEach((element) => observer.observe(element));
+};
+
+const handleParallax = () => {
+  const parallaxElements = document.querySelectorAll('[data-parallax]');
+  
+  if (parallaxElements.length === 0) return;
+
+  let ticking = false;
+
+  const updateParallax = () => {
+    const scrollY = window.scrollY;
+    
+    parallaxElements.forEach((element) => {
+      const speed = parseFloat(element.dataset.parallaxSpeed || '0.5');
+      const yPos = -(scrollY * speed);
+      element.style.transform = `translateY(${yPos}px)`;
+    });
+    
+    ticking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  });
+};
+
+const setCurrentYear = () => {
+  if (yearNode) {
+    yearNode.textContent = new Date().getFullYear().toString();
+  }
+};
+
+const initializeApp = () => {
+  renderProjects(projects);
+  handleFiltering();
+  handleProjectClicks();
+  handleModalInteraction();
+  handleContactForm();
+  handleMobileMenu();
+  handleScrollAnimations();
+  handleParallax();
+  setCurrentYear();
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeApp);
+} else {
+  initializeApp();
+}
