@@ -1,11 +1,17 @@
 {
   "Drawings": [
     "adam-sandler-drawing",
-    "african-woman-drawing"
+    "african-woman-drawing",
+    "chilling",
+    "flaming-basketball",
+    "lecrae",
+    "mrs-ige",
+    "trad-attire"
   ],
   "Illustrations": [
     "asian-cloth-illustration",
-    "king-illustration"
+    "king-illustration",
+    "tower-illustration"
   ],
   "Animations": [
     "facial-animation",
@@ -13,13 +19,20 @@
     "spider-animation",
     "spiderman-run-cycle",
     "woman-jumping",
-    "woman-punching"
+    "woman-punching",
+    "black-animation",
+    "ball-bounce",
+    "object-lift",
+    "falling-objects"
   ],
-  "3D": [
-    "futuristic-swat-helmet"
+  "Modelling": [
+    "futuristic-swat-helmet",
+    "futuristic-gun"
   ],
   "Motion Graphics": [
     "center-of-attraction",
-    "scorac"
+    "scorac",
+    "ekene-chris",
+    "wendo"
   ]
 }
