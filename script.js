@@ -945,6 +945,8 @@ const initCustomCursor = () => {
   let cursorX = 0;
   let cursorY = 0;
 
+  let cursorTimeout;
+  
   document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
@@ -952,14 +954,12 @@ const initCustomCursor = () => {
     if (!cursor.classList.contains('active')) {
       cursor.classList.add('active');
     }
-  });
-
-  document.addEventListener('mouseleave', () => {
-    cursor.classList.remove('active');
-  });
-
-  document.addEventListener('mouseenter', () => {
-    cursor.classList.add('active');
+    
+    // Reset timeout to keep cursor visible
+    clearTimeout(cursorTimeout);
+    cursorTimeout = setTimeout(() => {
+      cursor.classList.remove('active');
+    }, 2000);
   });
 
   document.addEventListener('mousedown', () => {
@@ -1046,13 +1046,17 @@ const initBeigePatterns = () => {
     }
   }
 
-  // Create particle grid
+  // Create particle grid with limited particle count for performance
   const createParticles = () => {
     particles = [];
-    const spacing = 60;
-    for (let y = 0; y < canvas.height; y += spacing) {
-      for (let x = 0; x < canvas.width; x += spacing) {
+    const spacing = 80; // Increased spacing to reduce particle count
+    const maxParticles = 150; // Limit maximum particles for performance
+    let count = 0;
+    
+    for (let y = 0; y < canvas.height && count < maxParticles; y += spacing) {
+      for (let x = 0; x < canvas.width && count < maxParticles; x += spacing) {
         particles.push(new Particle(x, y));
+        count++;
       }
     }
   };
@@ -1075,20 +1079,24 @@ const initBeigePatterns = () => {
     });
 
     // Draw connecting lines between nearby particles
+    // Optimized: limit connections per particle to avoid O(n²) complexity
     ctx.strokeStyle = 'rgba(245, 240, 235, 0.15)';
     ctx.lineWidth = 0.5;
+    const maxConnectionsPerParticle = 3;
 
     for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
+      let connections = 0;
+      for (let j = i + 1; j < particles.length && connections < maxConnectionsPerParticle; j++) {
         const dx = particles[i].x - particles[j].x;
         const dy = particles[i].y - particles[j].y;
         const distance = Math.sqrt(dx * dx + dy * dy);
 
-        if (distance < 100) {
+        if (distance < 120) {
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
           ctx.stroke();
+          connections++;
         }
       }
     }
