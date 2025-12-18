@@ -613,12 +613,12 @@ const handleFiltering = () => {
     const target = event.target;
     if (!(target instanceof HTMLButtonElement)) return;
     const filter = target.dataset.filter;
-    setFilterActive(target);
-
+    
     if (!filter) {
       return;
     }
     
+    setFilterActive(target);
     const filtered = projects.filter((project) => project.category === filter);
     renderProjects(filtered);
   });
@@ -805,6 +805,15 @@ const initializeApp = () => {
   // Initialize with Animations category
   const animationProjects = projects.filter((project) => project.category === 'Animations');
   renderProjects(animationProjects);
+  
+  // Ensure the Animations button has the active class
+  if (filtersContainer) {
+    const animationsButton = filtersContainer.querySelector('[data-filter="Animations"]');
+    if (animationsButton) {
+      setFilterActive(animationsButton);
+    }
+  }
+  
   handleFiltering();
   handleProjectClicks();
   handleModalInteraction();
