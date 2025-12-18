@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio of MofeOluwa Oladeji — 3D Animator, motion graphics designer and digital Artist" />
+  <title id="project-title">Project | MofeOluwa Oladeji</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Manrope', 'sans-serif'],
+          },
+          colors: {
+            primary: '#704214',
+            secondary: '#8B5A2B',
+            accent: '#4A3728',
+            background: '#FFFFFF',
+            surface: '#FAFAFA',
+            ink: '#2D2416',
+            muted: '#6B5D50',
+            highlight: '#F5F0EB',
+          },
+          boxShadow: {
+            vivid: '0 20px 60px -25px rgba(112, 66, 20, 0.15)',
+            neon: '0 0 0 1px rgba(74, 55, 40, 0.06), 0 14px 40px -20px rgba(139, 90, 43, 0.2)',
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body class="min-h-screen bg-background text-ink relative overflow-x-hidden">
+  <!-- Beige Pattern Animation Canvas -->
+  <canvas id="beige-patterns-canvas"></canvas>
+  
+  <!-- Custom Diamond Cursor -->
+  <div class="custom-cursor"></div>
+  
+  <header class="sticky top-0 z-40 backdrop-blur-md/20 bg-white/90 border-b border-accent/10">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+      <a href="./index.html" class="group relative inline-flex items-center gap-2 text-lg font-semibold tracking-wide text-accent" aria-label="MofeOluwa Oladeji - Return to home">
+        <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-primary ring-2 ring-primary/20 transition-all duration-500 group-hover:scale-110 group-hover:ring-primary/40">
+          MO
+        </span>
+        <span class="leading-none">
+          MofeOluwa <span class="text-primary">Oladeji</span>
+        </span>
+      </a>
+      <div class="hidden lg:block">
+        <nav class="nav-links">
+          <a href="./index.html" class="nav-link">Home</a>
+          <a href="./index.html#about" class="nav-link">About</a>
+          <a href="./index.html#portfolio" class="nav-link">Portfolio</a>
+          <a href="./index.html#contact" class="nav-link">Contact</a>
+        </nav>
+      </div>
+      <button id="mobile-menu-toggle" class="flex h-11 w-11 items-center justify-center rounded-full border border-accent/10 text-accent shadow-neon transition duration-300 hover:border-primary/60 hover:text-primary lg:hidden" aria-label="Toggle navigation">
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" />
+        </svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="mobile-menu">
+      <a href="./index.html" class="mobile-link">Home</a>
+      <a href="./index.html#about" class="mobile-link">About</a>
+      <a href="./index.html#portfolio" class="mobile-link">Portfolio</a>
+      <a href="./index.html#contact" class="mobile-link">Contact</a>
+    </div>
+  </header>
+
+  <main class="relative z-10">
+    <!-- Project Details Section -->
+    <section class="section-wrapper">
+      <div class="mx-auto max-w-4xl">
+        <!-- Back to Portfolio Link -->
+        <a href="./index.html#portfolio" class="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.35em] text-muted transition duration-300 hover:text-primary mb-8">
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+          Back to Portfolio
+        </a>
+
+        <!-- Project Category & Date -->
+        <div class="flex flex-wrap items-center gap-4 mb-6">
+          <span id="project-category" class="project-chip"></span>
+          <span id="project-date" class="text-sm text-muted"></span>
+        </div>
+
+        <!-- Project Title -->
+        <h1 id="project-heading" class="text-4xl md:text-5xl lg:text-6xl font-bold text-accent mb-6"></h1>
+
+        <!-- Project Summary -->
+        <p id="project-summary" class="text-xl text-muted mb-12"></p>
+
+        <!-- Project Media -->
+        <div id="project-media" class="mb-12 rounded-[2rem] border border-accent/8 bg-white shadow-neon overflow-hidden"></div>
+
+        <!-- Project Description -->
+        <div class="mb-12">
+          <h2 class="text-2xl font-semibold text-accent mb-4">About This Project</h2>
+          <p id="project-description" class="text-lg leading-relaxed text-muted"></p>
+        </div>
+
+        <!-- Tools Used -->
+        <div class="mb-12">
+          <h2 class="text-2xl font-semibold text-accent mb-4">Tools & Technologies</h2>
+          <ul id="project-tools" class="flex flex-wrap gap-3"></ul>
+        </div>
+
+        <!-- Gallery -->
+        <div id="project-gallery-section" class="mb-12 hidden">
+          <h2 class="text-2xl font-semibold text-accent mb-4">Gallery</h2>
+          <div id="project-gallery" class="grid gap-6 sm:grid-cols-2"></div>
+        </div>
+
+        <!-- Project Navigation -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-6 pt-12 border-t border-accent/10">
+          <a id="prev-project" href="#" class="project-nav-link group">
+            <svg class="h-5 w-5 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+            <div>
+              <span class="block text-xs uppercase tracking-[0.35em] text-muted mb-1">Previous</span>
+              <span class="prev-project-title font-semibold">Project</span>
+            </div>
+          </a>
+          <a href="./index.html#portfolio" class="inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.35em] text-muted transition duration-300 hover:text-primary">
+            View All Projects
+          </a>
+          <a id="next-project" href="#" class="project-nav-link group">
+            <div class="text-right">
+              <span class="block text-xs uppercase tracking-[0.35em] text-muted mb-1">Next</span>
+              <span class="next-project-title font-semibold">Project</span>
+            </div>
+            <svg class="h-5 w-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-accent/10 bg-surface py-10">
+    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 text-center text-sm text-muted sm:flex-row sm:text-left">
+      <p>© <span id="year"></span> MofeOluwa Oladeji — Designed & animated with intent.</p>
+      <div class="flex items-center gap-4 text-xs uppercase tracking-[0.35em]">
+        <a href="./index.html" class="text-muted transition hover:text-primary" aria-label="Back to home">Back to Home</a>
+        <span aria-hidden="true">·</span>
+        <a href="mailto:mofejeriiseoluwa@gmail.com" class="text-muted transition hover:text-primary" aria-label="Send email to MofeOluwa">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./script.js" type="module"></script>
+  <script src="./project-page.js" type="module"></script>
+</body>
+</html>
