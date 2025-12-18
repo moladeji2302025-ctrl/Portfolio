@@ -45,7 +45,7 @@
 <body class="min-h-screen bg-background text-ink relative overflow-x-hidden">
   <header class="sticky top-0 z-40 backdrop-blur-md/20 bg-white/90 border-b border-accent/10">
     <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-      <a href="#home" class="group relative inline-flex items-center gap-2 text-lg font-semibold tracking-wide text-accent">
+      <a href="#home" class="group relative inline-flex items-center gap-2 text-lg font-semibold tracking-wide text-accent" aria-label="MofeOluwa Oladeji - Return to home">
         <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-primary ring-2 ring-primary/20 transition-all duration-500 group-hover:scale-110 group-hover:ring-primary/40">
           MO
         </span>
@@ -93,11 +93,11 @@
             I’m a 3D animator, motion graphic designer, and digital illustrator translating emotion into movement. I craft creative 3D animations, bold motion graphics, and expressive illustrations that make stories unforgettable.
           </p>
           <div class="hero-actions" data-parallax data-parallax-speed="0.45">
-            <a href="#portfolio" class="button-primary">
+            <a href="#portfolio" class="button-primary" aria-label="Explore portfolio of work">
               Explore Work
-              <span>➜</span>
+              <span aria-hidden="true">➜</span>
             </a>
-            <a href="#contact" class="button-ghost">Let’s Collab</a>
+            <a href="#contact" class="button-ghost" aria-label="Contact for collaboration">Let’s Collab</a>
           </div>
           <!-- <div class="hero-pill" data-parallax data-parallax-speed="0.25">
             Currently animating: Book brand visual universe
@@ -170,10 +170,10 @@
             </div>
           </div>
           <div class="flex flex-wrap items-center gap-4">
-            <a href="#portfolio" class="inline-flex items-center gap-3 rounded-full border border-primary/40 bg-highlight px-6 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-primary transition duration-300 hover:-translate-y-1">
+            <a href="#portfolio" class="inline-flex items-center gap-3 rounded-full border border-primary/40 bg-highlight px-6 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-primary transition duration-300 hover:-translate-y-1" aria-label="View latest projects in portfolio">
               View Latest Projects
             </a>
-            <a href="#contact" class="inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.35em] text-muted transition duration-300 hover:text-primary">
+            <a href="#contact" class="inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.35em] text-muted transition duration-300 hover:text-primary" aria-label="Request a concept pitch">
               Request Concept Pitch ➜
             </a>
           </div>
@@ -263,7 +263,7 @@
             <li class="flex gap-3"><span class="text-primary">▹</span> Hybrid workflows combining illustration with motion design.</li>
             <li class="flex gap-3"><span class="text-primary">▹</span> Render optimization for dynamic social-first content.</li>
           </ul>
-          <a href="#portfolio" class="mt-8 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.35em] text-accent transition duration-300 hover:text-primary">Dive into the Process ➜</a>
+          <a href="#portfolio" class="mt-8 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.35em] text-accent transition duration-300 hover:text-primary" aria-label="Dive into the creative process">Dive into the Process ➜</a>
         </div>
       </div>
     </section>
@@ -303,14 +303,14 @@
         <h2 class="section-title">Signature Projects</h2>
         <p class="section-subtitle">Filter between motion graphics, 3D worlds, cloth simulations, and digital artistry. Tap a project to dive deeper.</p>
       </div>
-      <div class="flex flex-wrap items-center gap-4" id="portfolio-filters">
-        <button class="filter-pill active" data-filter="all">All</button>
-        <button class="filter-pill" data-filter="Motion Graphics">Motion Graphics</button>
-        <button class="filter-pill" data-filter="3D Animations">3D Animations</button>
-        <button class="filter-pill" data-filter="Cloth Designs & Simulations">Cloth Designs & Simulations</button>
-        <button class="filter-pill" data-filter="Digital Art & Illustrations">Digital Art & Illustrations</button>
-        <button class="filter-pill" data-filter="Traditional Drawings">Traditional Drawings</button>
-        <button class="filter-pill" data-filter="3d Modelling">3D Modelling</button>
+      <div class="flex flex-wrap items-center gap-4" id="portfolio-filters" role="group" aria-label="Filter projects by category">
+        <button class="filter-pill active" data-filter="all" aria-label="Show all projects">All</button>
+        <button class="filter-pill" data-filter="Motion Graphics" aria-label="Filter motion graphics projects">Motion Graphics</button>
+        <button class="filter-pill" data-filter="3D Animations" aria-label="Filter 3D animation projects">3D Animations</button>
+        <button class="filter-pill" data-filter="Cloth Designs & Simulations" aria-label="Filter cloth design and simulation projects">Cloth Designs & Simulations</button>
+        <button class="filter-pill" data-filter="Digital Art & Illustrations" aria-label="Filter digital art and illustration projects">Digital Art & Illustrations</button>
+        <button class="filter-pill" data-filter="Traditional Drawings" aria-label="Filter traditional drawing projects">Traditional Drawings</button>
+        <button class="filter-pill" data-filter="3d Modelling" aria-label="Filter 3D modelling projects">3D Modelling</button>
       </div>
       <div id="portfolio-grid" class="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-3"></div>
     </section>
@@ -407,8 +407,8 @@
               </a>
             </div>
             <div class="mt-6 flex flex-wrap items-center gap-3">
-              <a href="https://www.instagram.com/mofe.osz" target="_blank" rel="noreferrer" class="social-link">Instagram</a>
-              <a href="https://www.linkedin.com/in/mofeoluwa-oladeji-85b7a322a/" target="_blank" rel="noreferrer" class="social-link">LinkedIn</a>
+              <a href="https://www.instagram.com/mofe.osz" target="_blank" rel="noreferrer" class="social-link" aria-label="Visit MofeOluwa's Instagram profile">Instagram</a>
+              <a href="https://www.linkedin.com/in/mofeoluwa-oladeji-85b7a322a/" target="_blank" rel="noreferrer" class="social-link" aria-label="Visit MofeOluwa's LinkedIn profile">LinkedIn</a>
             </div>
           </div>
           <div class="rounded-[2rem] border border-accent/10 bg-surface p-8 shadow-neon">
@@ -429,9 +429,9 @@
     <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 text-center text-sm text-muted sm:flex-row sm:text-left">
       <p>© <span id="year"></span> MofeOluwa Oladeji — Designed & animated with intent.</p>
       <div class="flex items-center gap-4 text-xs uppercase tracking-[0.35em]">
-        <a href="#home" class="text-muted transition hover:text-primary">Back to top</a>
-        <span>·</span>
-        <a href="mailto:hello@mofevision.studio" class="text-muted transition hover:text-primary">Email</a>
+        <a href="#home" class="text-muted transition hover:text-primary" aria-label="Back to top of page">Back to top</a>
+        <span aria-hidden="true">·</span>
+        <a href="mailto:mofejeriiseoluwa@gmail.com" class="text-muted transition hover:text-primary" aria-label="Send email to MofeOluwa">Email</a>
       </div>
     </div>
   </footer>

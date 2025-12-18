@@ -513,13 +513,13 @@ a:hover {
 }
 
 .modal {
-#beige-pattern-container {
   position: fixed;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 50;
+  transition: opacity 0.3s ease;
 }
 
 .modal.hidden {
@@ -567,6 +567,8 @@ a:hover {
   background: rgba(255, 255, 255, 1);
   color: rgba(74, 55, 40, 0.75);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 10;
+  cursor: pointer;
 }
 
 .modal-close:hover {
@@ -879,18 +881,20 @@ a:hover {
 }
 
 .timeline-dot {
-.beige-pattern {
   position: absolute;
   left: -1.65rem;
   top: 2.35rem;
   width: 16px;
   height: 16px;
-  width: 100px;
-  height: 100px;
-  background: radial-gradient(circle, rgba(245, 240, 235, 0.4) 30%, transparent);
   border-radius: 50%;
   background: var(--color-primary);
   box-shadow: 0 0 0 6px rgba(112, 66, 20, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-card:hover .timeline-dot {
+  transform: scale(1.2);
+  box-shadow: 0 0 0 8px rgba(112, 66, 20, 0.2);
 }
 
 .timeline-date {
@@ -1074,6 +1078,78 @@ a:hover {
 
 .animate-spin-slow {
   animation: spin-slow 18s linear infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 6px rgba(112, 66, 20, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(112, 66, 20, 0.25);
+  }
+}
+
+.timeline-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 32px 85px -50px rgba(112, 66, 20, 0.2);
+}
+
+.hero-canvas:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 45px 130px -65px rgba(112, 66, 20, 0.25);
+}
+
+.hero-floating-chip:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 30px 80px -50px rgba(112, 66, 20, 0.2);
+}
+
+.nav-link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.filter-pill:focus-visible,
+.button-primary:focus-visible,
+.button-ghost:focus-visible,
+.social-link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  [data-parallax] {
+    transform: none !important;
+  }
 }
 
 @media (max-width: 1024px) {
