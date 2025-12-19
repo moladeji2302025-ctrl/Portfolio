@@ -606,6 +606,60 @@ const registerMediaElement = (element) => {
   observer.observe(element);
 };
 
+const createProjectCard = (project) => {
+  const card = document.createElement('article');
+  card.className = 'project-card group';
+  card.dataset.projectId = project.id;
+
+  const mediaWrapper = document.createElement('div');
+  mediaWrapper.className = 'overflow-hidden';
+
+  if (project.mediaType === 'video') {
+    const video = document.createElement('video');
+    video.dataset.src = project.mediaSrc;
+    video.preload = 'none';
+    video.autoplay = true;
+    video.loop = true;
+    video.muted = true;
+    video.playsInline = true;
+    video.setAttribute('muted', '');
+    video.setAttribute('loop', '');
+    video.setAttribute('autoplay', '');
+    video.setAttribute('playsinline', '');
+    video.className = 'transition duration-700 ease-out';
+    mediaWrapper.appendChild(video);
+    registerMediaElement(video);
+  } else {
+    const img = document.createElement('img');
+    img.alt = project.title;
+    img.loading = 'lazy';
+    img.src = MEDIA_PLACEHOLDER;
+    img.dataset.src = project.mediaSrc || project.thumbnail || '';
+    mediaWrapper.appendChild(img);
+    registerMediaElement(img);
+  }
+
+  const info = document.createElement('div');
+  info.className = 'project-info';
+
+  const chip = document.createElement('span');
+  chip.className = 'project-chip';
+  chip.textContent = project.category;
+
+  const title = document.createElement('h3');
+  title.className = 'project-title';
+  title.textContent = project.title;
+
+  const summary = document.createElement('p');
+  summary.className = 'project-summary';
+  summary.textContent = project.summary;
+
+  info.append(chip, title, summary);
+  card.append(mediaWrapper, info);
+  
+  return card;
+};
+
 const renderProjects = (items) => {
   if (!grid) return;
   if (mediaObserver) {
@@ -613,62 +667,38 @@ const renderProjects = (items) => {
   }
   grid.querySelectorAll('video').forEach((video) => video.pause());
   grid.innerHTML = '';
-  const fragment = document.createDocumentFragment();
 
-  items.forEach((project) => {
-    const card = document.createElement('article');
-    card.className = 'project-card group';
-    card.dataset.projectId = project.id;
+  const shouldUseSlideshow = items.length >= 4;
 
-    const mediaWrapper = document.createElement('div');
-    mediaWrapper.className = 'overflow-hidden';
+  if (shouldUseSlideshow) {
+    // Create slideshow wrapper
+    const slideshowWrapper = document.createElement('div');
+    slideshowWrapper.className = 'projects-slideshow-wrapper';
+    
+    const slideshowTrack = document.createElement('div');
+    slideshowTrack.className = 'projects-slideshow-track';
 
-    if (project.mediaType === 'video') {
-      const video = document.createElement('video');
-      video.dataset.src = project.mediaSrc;
-      video.preload = 'none';
-      video.autoplay = true;
-      video.loop = true;
-      video.muted = true;
-      video.playsInline = true;
-      video.setAttribute('muted', '');
-      video.setAttribute('loop', '');
-      video.setAttribute('autoplay', '');
-      video.setAttribute('playsinline', '');
-      video.className = 'transition duration-700 ease-out';
-      mediaWrapper.appendChild(video);
-      registerMediaElement(video);
-    } else {
-      const img = document.createElement('img');
-      img.alt = project.title;
-      img.loading = 'lazy';
-      img.src = MEDIA_PLACEHOLDER;
-      img.dataset.src = project.mediaSrc || project.thumbnail || '';
-      mediaWrapper.appendChild(img);
-      registerMediaElement(img);
-    }
+    // Create projects twice for seamless loop
+    const doubledItems = [...items, ...items];
+    doubledItems.forEach((project) => {
+      const card = createProjectCard(project);
+      slideshowTrack.appendChild(card);
+    });
 
-    const info = document.createElement('div');
-    info.className = 'project-info';
-
-    const chip = document.createElement('span');
-    chip.className = 'project-chip';
-    chip.textContent = project.category;
-
-    const title = document.createElement('h3');
-    title.className = 'project-title';
-    title.textContent = project.title;
-
-    const summary = document.createElement('p');
-    summary.className = 'project-summary';
-    summary.textContent = project.summary;
-
-    info.append(chip, title, summary);
-    card.append(mediaWrapper, info);
-    fragment.appendChild(card);
-  });
-
-  grid.appendChild(fragment);
+    slideshowWrapper.appendChild(slideshowTrack);
+    grid.appendChild(slideshowWrapper);
+  } else {
+    // Use static grid for categories with fewer than 4 projects
+    const staticGrid = document.createElement('div');
+    staticGrid.className = 'projects-grid-static';
+    
+    items.forEach((project) => {
+      const card = createProjectCard(project);
+      staticGrid.appendChild(card);
+    });
+    
+    grid.appendChild(staticGrid);
+  }
 };
 
 const setFilterActive = (target) => {

@@ -1197,6 +1197,8 @@ a:hover {
   box-shadow: 0 20px 60px -45px rgba(74, 55, 40, 0.12);
   cursor: pointer;
   transition: transform 0.4s ease, box-shadow 0.4s ease;
+  min-width: 350px;
+  flex-shrink: 0;
 }
 
 .project-card::before {
@@ -1233,7 +1235,7 @@ a:hover {
 .project-card img,
 .project-card video {
   width: 100%;
-  height: clamp(220px, 28vw, 320px);
+  height: clamp(280px, 32vw, 400px);
   object-fit: cover;
   transition: transform 0.6s ease;
   filter: saturate(1.05);
@@ -1594,4 +1596,83 @@ a, button, .project-card, .filter-pill, input, textarea, select {
 
 .project-nav-link svg {
   color: var(--color-primary);
+}
+
+/* Slideshow wrapper for categories with 4+ projects */
+.projects-slideshow-wrapper {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  padding: 1rem 0;
+}
+
+.projects-slideshow-wrapper::before,
+.projects-slideshow-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.projects-slideshow-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, var(--color-background), transparent);
+}
+
+.projects-slideshow-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, var(--color-background), transparent);
+}
+
+.projects-slideshow-track {
+  display: flex;
+  gap: 2rem;
+  animation: slide-infinite 60s linear infinite;
+  width: max-content;
+  will-change: transform;
+}
+
+.projects-slideshow-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes slide-infinite {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* Responsive adjustments for slideshow */
+@media (max-width: 768px) {
+  .project-card {
+    min-width: 280px;
+  }
+  
+  .projects-slideshow-track {
+    gap: 1.5rem;
+  }
+  
+  .projects-slideshow-wrapper::before,
+  .projects-slideshow-wrapper::after {
+    width: 50px;
+  }
+}
+
+/* Grid layout for categories with fewer than 4 projects */
+.projects-grid-static {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
+
+@media (max-width: 768px) {
+  .projects-grid-static {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
 }
