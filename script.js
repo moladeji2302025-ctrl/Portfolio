@@ -1013,8 +1013,38 @@ const initCustomCursor = () => {
   let mouseY = 0;
   let cursorX = 0;
   let cursorY = 0;
-
   let cursorTimeout;
+  let hoverCheckScheduled = false;
+  
+  // Clickable elements selector - organized for maintainability
+  const clickableSelectors = [
+    'a', 'button', 'input', 'textarea', 'select',
+    '.project-card', '.filter-pill', '.stat-card', '.about-card', '.skill-card',
+    '.timeline-card', '.testimonial-card', '.social-link', '.client-pill',
+    '.hero-pill', '.modal-close', '.nav-link', '.mobile-link',
+    '.button-primary', '.button-ghost'
+  ];
+  const clickableSelector = clickableSelectors.join(', ');
+  
+  // Check if hovering over clickable element
+  const checkHoverState = () => {
+    try {
+      const target = document.elementFromPoint(mouseX, mouseY);
+      if (target && typeof target.matches === 'function') {
+        const isHoveringClickable = target.matches(clickableSelector) || target.closest(clickableSelector);
+        
+        if (isHoveringClickable) {
+          cursor.classList.add('hovering');
+        } else {
+          cursor.classList.remove('hovering');
+        }
+      }
+    } catch (error) {
+      // Silently handle any selector errors in production
+    }
+    
+    hoverCheckScheduled = false;
+  };
   
   document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
@@ -1022,6 +1052,12 @@ const initCustomCursor = () => {
     
     if (!cursor.classList.contains('active')) {
       cursor.classList.add('active');
+    }
+    
+    // Throttle hover detection using requestAnimationFrame for better performance
+    if (!hoverCheckScheduled) {
+      hoverCheckScheduled = true;
+      requestAnimationFrame(checkHoverState);
     }
     
     // Reset timeout to keep cursor visible
