@@ -1040,8 +1040,7 @@ const initCustomCursor = () => {
         }
       }
     } catch (error) {
-      // Silently handle any selector errors
-      console.warn('Cursor hover detection error:', error);
+      // Silently handle any selector errors in production
     }
     
     hoverCheckScheduled = false;
