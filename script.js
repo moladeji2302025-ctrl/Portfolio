@@ -1013,11 +1013,19 @@ const initCustomCursor = () => {
   let mouseY = 0;
   let cursorX = 0;
   let cursorY = 0;
-
   let cursorTimeout;
+  let lastCheckTime = 0;
+  const checkInterval = 50; // Check every 50ms for better performance
   
-  // Clickable elements selector
-  const clickableSelector = 'a, button, .project-card, .filter-pill, input, textarea, select, .stat-card, .about-card, .skill-card, .timeline-card, .testimonial-card, .social-link, .client-pill, .hero-pill, .modal-close, .nav-link, .mobile-link, .button-primary, .button-ghost';
+  // Clickable elements selector - organized for maintainability
+  const clickableSelectors = [
+    'a', 'button', 'input', 'textarea', 'select',
+    '.project-card', '.filter-pill', '.stat-card', '.about-card', '.skill-card',
+    '.timeline-card', '.testimonial-card', '.social-link', '.client-pill',
+    '.hero-pill', '.modal-close', '.nav-link', '.mobile-link',
+    '.button-primary', '.button-ghost'
+  ];
+  const clickableSelector = clickableSelectors.join(', ');
   
   document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
@@ -1027,14 +1035,19 @@ const initCustomCursor = () => {
       cursor.classList.add('active');
     }
     
-    // Check if hovering over a clickable element
-    const target = document.elementFromPoint(e.clientX, e.clientY);
-    const isHoveringClickable = target && (target.matches(clickableSelector) || target.closest(clickableSelector));
-    
-    if (isHoveringClickable) {
-      cursor.classList.add('hovering');
-    } else {
-      cursor.classList.remove('hovering');
+    // Throttle hover detection for better performance
+    const now = Date.now();
+    if (now - lastCheckTime >= checkInterval) {
+      lastCheckTime = now;
+      
+      const target = document.elementFromPoint(e.clientX, e.clientY);
+      const isHoveringClickable = target && (target.matches(clickableSelector) || target.closest(clickableSelector));
+      
+      if (isHoveringClickable) {
+        cursor.classList.add('hovering');
+      } else {
+        cursor.classList.remove('hovering');
+      }
     }
     
     // Reset timeout to keep cursor visible
