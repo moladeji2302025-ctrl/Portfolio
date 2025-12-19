@@ -1016,12 +1016,25 @@ const initCustomCursor = () => {
 
   let cursorTimeout;
   
+  // Clickable elements selector
+  const clickableSelector = 'a, button, .project-card, .filter-pill, input, textarea, select, .stat-card, .about-card, .skill-card, .timeline-card, .testimonial-card, .social-link, .client-pill, .hero-pill, .modal-close, .nav-link, .mobile-link, .button-primary, .button-ghost';
+  
   document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
     
     if (!cursor.classList.contains('active')) {
       cursor.classList.add('active');
+    }
+    
+    // Check if hovering over a clickable element
+    const target = document.elementFromPoint(e.clientX, e.clientY);
+    const isHoveringClickable = target && (target.matches(clickableSelector) || target.closest(clickableSelector));
+    
+    if (isHoveringClickable) {
+      cursor.classList.add('hovering');
+    } else {
+      cursor.classList.remove('hovering');
     }
     
     // Reset timeout to keep cursor visible
