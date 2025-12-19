@@ -1632,6 +1632,7 @@ a, button, .project-card, .filter-pill, input, textarea, select {
   gap: 2rem;
   animation: slide-infinite 60s linear infinite;
   width: max-content;
+  will-change: transform;
 }
 
 .projects-slideshow-track:hover {
@@ -1640,10 +1641,10 @@ a, button, .project-card, .filter-pill, input, textarea, select {
 
 @keyframes slide-infinite {
   0% {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
@@ -1667,11 +1668,11 @@ a, button, .project-card, .filter-pill, input, textarea, select {
 .projects-grid-static {
   display: grid;
   gap: 2rem;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
 }
 
 @media (max-width: 768px) {
   .projects-grid-static {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
 }
