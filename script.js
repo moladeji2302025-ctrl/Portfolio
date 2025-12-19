@@ -1014,8 +1014,7 @@ const initCustomCursor = () => {
   let cursorX = 0;
   let cursorY = 0;
   let cursorTimeout;
-  let lastCheckTime = 0;
-  const checkInterval = 50; // Check every 50ms for better performance
+  let hoverCheckScheduled = false;
   
   // Clickable elements selector - organized for maintainability
   const clickableSelectors = [
@@ -1027,6 +1026,27 @@ const initCustomCursor = () => {
   ];
   const clickableSelector = clickableSelectors.join(', ');
   
+  // Check if hovering over clickable element
+  const checkHoverState = () => {
+    try {
+      const target = document.elementFromPoint(mouseX, mouseY);
+      if (target && typeof target.matches === 'function') {
+        const isHoveringClickable = target.matches(clickableSelector) || target.closest(clickableSelector);
+        
+        if (isHoveringClickable) {
+          cursor.classList.add('hovering');
+        } else {
+          cursor.classList.remove('hovering');
+        }
+      }
+    } catch (error) {
+      // Silently handle any selector errors
+      console.warn('Cursor hover detection error:', error);
+    }
+    
+    hoverCheckScheduled = false;
+  };
+  
   document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
@@ -1035,19 +1055,10 @@ const initCustomCursor = () => {
       cursor.classList.add('active');
     }
     
-    // Throttle hover detection for better performance
-    const now = Date.now();
-    if (now - lastCheckTime >= checkInterval) {
-      lastCheckTime = now;
-      
-      const target = document.elementFromPoint(e.clientX, e.clientY);
-      const isHoveringClickable = target && (target.matches(clickableSelector) || target.closest(clickableSelector));
-      
-      if (isHoveringClickable) {
-        cursor.classList.add('hovering');
-      } else {
-        cursor.classList.remove('hovering');
-      }
+    // Throttle hover detection using requestAnimationFrame for better performance
+    if (!hoverCheckScheduled) {
+      hoverCheckScheduled = true;
+      requestAnimationFrame(checkHoverState);
     }
     
     // Reset timeout to keep cursor visible
