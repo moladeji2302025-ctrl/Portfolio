@@ -721,10 +721,12 @@ const openModal = (projectId) => {
     const video = document.createElement('video');
     video.src = project.mediaSrc || project.thumbnail;
     video.controls = true;
+    video.controlsList = 'nodownload';
     video.autoplay = true;
     video.muted = true;
     video.playsInline = true;
     video.poster = project.thumbnail;
+    video.oncontextmenu = () => false;
     modalMedia.appendChild(video);
   } else if (project.mediaType === 'iframe') {
     const iframe = document.createElement('iframe');
@@ -739,6 +741,7 @@ const openModal = (projectId) => {
     img.src = project.mediaSrc || project.thumbnail;
     img.alt = project.title;
     img.loading = 'lazy';
+    img.oncontextmenu = () => false;
     modalMedia.appendChild(img);
   }
 
@@ -757,6 +760,7 @@ const openModal = (projectId) => {
     img.src = image;
     img.alt = `${project.title} gallery visual`;
     img.loading = 'lazy';
+    img.oncontextmenu = () => false;
     modalGallery.appendChild(img);
   });
 

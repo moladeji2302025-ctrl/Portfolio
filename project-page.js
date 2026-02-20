@@ -90,12 +90,14 @@ const renderProjectPage = (project) => {
       const video = document.createElement('video');
       video.src = project.mediaSrc;
       video.controls = true;
+      video.controlsList = 'nodownload';
       video.autoplay = true;
       video.muted = true;
       video.loop = true;
       video.playsInline = true;
       video.className = 'w-full';
       video.poster = project.thumbnail;
+      video.oncontextmenu = () => false;
       mediaContainer.appendChild(video);
     } else if (project.mediaType === 'iframe') {
       const iframe = document.createElement('iframe');
@@ -111,6 +113,7 @@ const renderProjectPage = (project) => {
       img.src = project.mediaSrc || project.thumbnail;
       img.alt = project.title;
       img.className = 'w-full';
+      img.oncontextmenu = () => false;
       mediaContainer.appendChild(img);
     }
   }
@@ -139,6 +142,7 @@ const renderProjectPage = (project) => {
       img.alt = `${project.title} gallery image`;
       img.loading = 'lazy';
       img.className = 'w-full rounded-lg border border-accent/8 shadow-neon';
+      img.oncontextmenu = () => false;
       galleryContainer.appendChild(img);
     });
   }
