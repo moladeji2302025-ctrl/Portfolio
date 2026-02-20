@@ -147,6 +147,29 @@ const renderProjectPage = (project) => {
     });
   }
 
+  // Render other categories
+  const ALL_CATEGORIES = ['Animations', 'Drawings', 'Illustrations', 'Modelling', 'Motion Graphics'];
+  const otherCategoriesList = document.getElementById('other-categories-list');
+  if (otherCategoriesList) {
+    otherCategoriesList.innerHTML = '';
+    const otherCategories = ALL_CATEGORIES.filter(cat => cat !== project.category);
+    otherCategories.forEach(cat => {
+      const anchor = document.createElement('a');
+      anchor.href = `./index.html#portfolio`;
+      anchor.dataset.filterCategory = cat;
+      anchor.textContent = cat;
+      anchor.className = 'inline-flex items-center gap-2 rounded-full border border-primary/30 bg-highlight px-5 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-primary transition duration-300 hover:-translate-y-1 hover:bg-primary hover:text-background';
+      anchor.setAttribute('aria-label', `View ${cat} projects`);
+
+      // When clicked, store the desired filter in sessionStorage so index.html can pick it up on load
+      anchor.addEventListener('click', () => {
+        sessionStorage.setItem('portfolioFilter', cat);
+      });
+
+      otherCategoriesList.appendChild(anchor);
+    });
+  }
+
   // Setup navigation
   const navigation = getNavigationProjects(project);
   
