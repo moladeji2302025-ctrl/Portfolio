@@ -498,76 +498,6 @@ a:hover {
   z-index: -1;
 }
 
-.hero-clients {
-  margin: 4.5rem auto 0;
-  max-width: 960px;
-  display: grid;
-  gap: 1.5rem;
-  justify-items: center;
-  text-align: center;
-  position: relative;
-  padding-top: 2rem;
-}
-
-.hero-clients::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(107, 93, 80, 0.3), transparent);
-}
-
-.hero-clients p {
-  font-size: 0.85rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(107, 93, 80, 0.65);
-}
-
-.client-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.client-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  padding: 0.75rem 1.8rem;
-  border-radius: 999px;
-  border: 1px solid rgba(112, 66, 20, 0.15);
-  background: rgba(255, 255, 255, 1);
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
-  text-transform: none;
-  color: rgba(74, 55, 40, 0.75);
-  box-shadow: 0 16px 40px -36px rgba(112, 66, 20, 0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
-}
-
-.client-pill::before {
-  content: '';
-  position: absolute;
-  left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(107, 93, 80, 0.15);
-}
-
-.client-pill:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 22px 55px -40px rgba(112, 66, 20, 0.2);
-  color: var(--color-primary);
-}
 
 .testimonial-card {
   position: relative;
@@ -1499,17 +1429,6 @@ a:hover {
   }
 
   .filter-pill::before {
-    left: 1.5rem;
-  }
-
-  .client-pill {
-    font-size: 0.82rem;
-    letter-spacing: 0.06em;
-    width: 100%;
-    justify-content: center;
-  }
-
-  .client-pill::before {
     left: 1.5rem;
   }
 
