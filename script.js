@@ -988,9 +988,28 @@ const initializeApp = () => {
   // Initialize with Animations category
   const animationProjects = window.projects.filter((project) => project.category === 'Animations');
   renderProjects(animationProjects);
+
+  // Check if a category filter was stored from a project page navigation
+  const storedFilter = sessionStorage.getItem('portfolioFilter');
+  if (storedFilter) {
+    sessionStorage.removeItem('portfolioFilter');
+    const filteredProjects = window.projects.filter(p => p.category === storedFilter);
+    renderProjects(filteredProjects);
+    // Also update the active filter pill
+    if (filtersContainer) {
+      const buttons = filtersContainer.querySelectorAll('button');
+      buttons.forEach(btn => {
+        if (btn.dataset.filter === storedFilter) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+  }
   
-  // Ensure the Animations button has the active class
-  if (filtersContainer) {
+  // Ensure the Animations button has the active class (only when no stored filter was applied)
+  if (!storedFilter && filtersContainer) {
     const animationsButton = filtersContainer.querySelector('[data-filter="Animations"]');
     if (animationsButton) {
       setFilterActive(animationsButton);
