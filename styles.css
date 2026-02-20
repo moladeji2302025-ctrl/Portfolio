@@ -1664,3 +1664,10 @@ a, button, .project-card, .filter-pill, input, textarea, select {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
 }
+
+/* Prevent downloading/saving of project media */
+video, .modal-media img, .modal-gallery img, #project-media img, #project-gallery img {
+  -webkit-user-drag: none;
+  user-drag: none;
+  pointer-events: auto;
+}
