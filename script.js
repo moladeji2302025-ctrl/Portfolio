@@ -789,8 +789,8 @@ const renderProjectsWithSubcategories = (items) => {
   ];
 
   const subcategoryIcons = {
-    Maya: 'img/maya-icon.svg',
-    Blender: 'img/blender-icon.svg',
+    Maya: 'img/Maya.png',
+    Blender: 'img/Blender.png',
   };
 
   orderedKeys.forEach((subcategory) => {
