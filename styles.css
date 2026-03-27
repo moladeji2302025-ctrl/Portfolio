@@ -1584,7 +1584,27 @@ a, button, .project-card, .filter-pill, input, textarea, select {
   }
 }
 
-/* Prevent downloading/saving of project media */
+/* Subcategory sections within a category */
+.subcategory-section {
+  margin-bottom: 3rem;
+}
+
+.subcategory-section:last-child {
+  margin-bottom: 0;
+}
+
+.subcategory-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-primary, #704214);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid rgba(112, 66, 20, 0.15);
+  letter-spacing: 0.01em;
+}
+
+
 video, .modal-media img, .modal-gallery img, #project-media img, #project-gallery img {
   -webkit-user-drag: none;
   user-drag: none;
