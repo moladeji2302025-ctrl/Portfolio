@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Blender">
+  <!-- Simplified Blender logo mark: outer ring + upper dot + inner dot -->
+  <circle cx="50" cy="58" r="36" fill="none" stroke="#EA7600" stroke-width="9"/>
+  <circle cx="50" cy="33" r="14" fill="#EA7600"/>
+  <circle cx="50" cy="58" r="13" fill="#EA7600"/>
+</svg>

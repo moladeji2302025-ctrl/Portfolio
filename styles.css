@@ -1594,6 +1594,8 @@ a, button, .project-card, .filter-pill, input, textarea, select {
 }
 
 .subcategory-heading {
+  display: flex;
+  align-items: center;
   font-family: 'Playfair Display', serif;
   font-size: 1.25rem;
   font-weight: 600;
@@ -1602,6 +1604,14 @@ a, button, .project-card, .filter-pill, input, textarea, select {
   padding-bottom: 0.5rem;
   border-bottom: 2px solid rgba(112, 66, 20, 0.15);
   letter-spacing: 0.01em;
+}
+
+.subcategory-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  flex-shrink: 0;
+  object-fit: contain;
 }
 
 
