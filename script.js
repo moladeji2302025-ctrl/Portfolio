@@ -788,6 +788,11 @@ const renderProjectsWithSubcategories = (items) => {
     ...[...subcategoryMap.keys()].filter((k) => !preferredOrder.includes(k)).sort(),
   ];
 
+  const subcategoryIcons = {
+    Maya: 'img/maya-icon.svg',
+    Blender: 'img/blender-icon.svg',
+  };
+
   orderedKeys.forEach((subcategory) => {
     const projects = subcategoryMap.get(subcategory);
     const section = document.createElement('div');
@@ -795,7 +800,17 @@ const renderProjectsWithSubcategories = (items) => {
 
     const heading = document.createElement('h3');
     heading.className = 'subcategory-heading';
-    heading.textContent = subcategory;
+
+    const iconSrc = subcategoryIcons[subcategory];
+    if (iconSrc) {
+      const icon = document.createElement('img');
+      icon.src = iconSrc;
+      icon.alt = `${subcategory} software icon`;
+      icon.className = 'subcategory-icon';
+      heading.appendChild(icon);
+    }
+
+    heading.appendChild(document.createTextNode(subcategory));
     section.appendChild(heading);
 
     renderSubcategoryGroup(projects, section);
