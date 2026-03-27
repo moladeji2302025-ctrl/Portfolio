@@ -1,8 +1,25 @@
 window.projects = [
   {
+    id: 'spiderman-halftone',
+    title: 'Spiderman Halftone',
+    category: 'Animations',
+    subcategory: 'Maya',
+    date: 'March 2025',
+    summary: 'Spider-Man rendered with a stylized halftone shader in Maya',
+    thumbnail: 'projects/Animations/Spiderman_with_halftone_shader/spiderman_halftone.mp4',
+    mediaType: 'video',
+    mediaSrc: 'projects/Animations/Spiderman_with_halftone_shader/spiderman_halftone.mp4',
+    description:
+      'A stylized Spider-Man animation created in Maya featuring a distinctive halftone shader that gives the character a comic-book inspired aesthetic. The halftone effect adds a graphic quality to the rendering while maintaining fluid character motion.',
+    tools: ['Maya'],
+    gallery: [],
+    links: [],
+  },
+  {
     id: 'spiderman-run-cycle',
     title: 'Miles Run Cycle',
     category: 'Animations',
+    subcategory: 'Blender',
     date: 'October 2024',
     summary: 'Stylized sprint cycle capturing Spider-Man\'s elastic momentum between swings',
     thumbnail: 'projects/Animations/spiderman-run-cycle/video.mp4',
@@ -18,6 +35,7 @@ window.projects = [
     id: 'run-cycle',
     title: 'Run Cycle',
     category: 'Animations',
+    subcategory: 'Blender',
     date: 'September 2024',
     summary: 'Clean humanoid run cycle demonstrating balanced contact, recoil, and airborne phases',
     thumbnail: 'projects/Animations/run-cycle/video.mkv',
@@ -33,6 +51,7 @@ window.projects = [
     id: 'woman-jumping',
     title: 'Character motion animation',
     category: 'Animations',
+    subcategory: 'Blender',
     date: 'August 2024',
     summary: 'Athletic heroine vaulting off a rooftop into a forward dive',
     thumbnail: 'projects/Animations/woman-jumping/video.mkv',
@@ -51,6 +70,7 @@ window.projects = [
     id: 'woman-punching',
     title: 'Simple action test',
     category: 'Animations',
+    subcategory: 'Blender',
     date: 'July 2024',
     summary: 'Slow-motion haymaker revealing weight transfer, recoil, and cloth drag',
     thumbnail: 'projects/Animations/woman-punching/video.mkv',
@@ -99,6 +119,7 @@ window.projects = [
     id: 'facial-animation',
     title: 'Facial Animation test',
     category: 'Animations',
+    subcategory: 'Blender',
     date: 'December 2024',
     summary: 'Dialogue test pushing nuanced lip sync and brow micro-movements',
     thumbnail: 'projects/Animations/facial-animation/video.mkv',
@@ -114,6 +135,7 @@ window.projects = [
     id: 'expression-test',
     title: 'Expression Test',
     category: 'Animations',
+    subcategory: 'Blender',
     date: 'December 2024',
     summary: 'Character expression study exploring emotional range and facial dynamics',
     thumbnail: 'projects/Animations/facial-animation/expression test.mp4',
@@ -208,6 +230,7 @@ window.projects = [
     id: 'spider-animation',
     title: 'Spider Animation',
     category: 'Animations',
+    subcategory: 'Blender',
     date: 'November 2024',
     summary: 'Dynamic spider locomotion study showcasing realistic leg coordination',
     thumbnail: 'projects/Animations/spider-animation/video.mp4',
@@ -313,6 +336,7 @@ window.projects = [
     id: 'black-animation',
     title: 'Black Animation',
     category: 'Animations',
+    subcategory: 'Blender',
     date: 'August 2024',
     summary: 'Stylized character animation exploring movement and form',
     thumbnail: 'projects/Animations/Black/black.mp4',
@@ -328,6 +352,7 @@ window.projects = [
     id: 'ball-bounce',
     title: 'Ball Bounce Animation',
     category: 'Animations',
+    subcategory: 'Blender',
     date: 'July 2023',
     summary: 'Classic animation exercise demonstrating physics and timing',
     thumbnail: 'projects/Animations/Object related/Ball bounce.mp4',
@@ -343,6 +368,7 @@ window.projects = [
     id: 'object-lift',
     title: 'Object Lift Animation',
     category: 'Animations',
+    subcategory: 'Blender',
     date: 'June 2023',
     summary: 'Weight and effort demonstration through object manipulation',
     thumbnail: 'projects/Animations/Object related/Object lift.mp4',
@@ -358,6 +384,7 @@ window.projects = [
     id: 'falling-objects',
     title: 'Falling Objects Animation',
     category: 'Animations',
+    subcategory: 'Blender',
     date: 'May 2023',
     summary: 'Physics simulation of multiple objects in motion',
     thumbnail: 'projects/Animations/Object related/video_2025-12-14_18-41-07.mp4',
@@ -701,6 +728,89 @@ const renderProjects = (items) => {
   }
 };
 
+const renderSubcategoryGroup = (projects, container) => {
+  const shouldUseSlideshow = projects.length >= 4;
+  if (shouldUseSlideshow) {
+    const slideshowWrapper = document.createElement('div');
+    slideshowWrapper.className = 'projects-slideshow-wrapper';
+    const slideshowTrack = document.createElement('div');
+    slideshowTrack.className = 'projects-slideshow-track';
+    const doubledItems = [...projects, ...projects];
+    doubledItems.forEach((project) => {
+      slideshowTrack.appendChild(createProjectCard(project));
+    });
+    slideshowWrapper.appendChild(slideshowTrack);
+    container.appendChild(slideshowWrapper);
+  } else {
+    const staticGrid = document.createElement('div');
+    staticGrid.className = 'projects-grid-static';
+    projects.forEach((project) => {
+      staticGrid.appendChild(createProjectCard(project));
+    });
+    container.appendChild(staticGrid);
+  }
+};
+
+const renderProjectsWithSubcategories = (items) => {
+  if (!grid) return;
+
+  const hasSubcategories = items.some((p) => p.subcategory);
+  if (!hasSubcategories) {
+    renderProjects(items);
+    return;
+  }
+
+  if (mediaObserver) {
+    mediaObserver.disconnect();
+  }
+  grid.querySelectorAll('video').forEach((video) => video.pause());
+  grid.innerHTML = '';
+
+  // Group projects by subcategory
+  const subcategoryMap = new Map();
+  const noSubcategory = [];
+
+  items.forEach((project) => {
+    if (project.subcategory) {
+      if (!subcategoryMap.has(project.subcategory)) {
+        subcategoryMap.set(project.subcategory, []);
+      }
+      subcategoryMap.get(project.subcategory).push(project);
+    } else {
+      noSubcategory.push(project);
+    }
+  });
+
+  // Render Maya before Blender, then any other subcategories alphabetically
+  const preferredOrder = ['Maya', 'Blender'];
+  const orderedKeys = [
+    ...preferredOrder.filter((k) => subcategoryMap.has(k)),
+    ...[...subcategoryMap.keys()].filter((k) => !preferredOrder.includes(k)).sort(),
+  ];
+
+  orderedKeys.forEach((subcategory) => {
+    const projects = subcategoryMap.get(subcategory);
+    const section = document.createElement('div');
+    section.className = 'subcategory-section';
+
+    const heading = document.createElement('h3');
+    heading.className = 'subcategory-heading';
+    heading.textContent = subcategory;
+    section.appendChild(heading);
+
+    renderSubcategoryGroup(projects, section);
+    grid.appendChild(section);
+  });
+
+  // Render projects without a subcategory at the end
+  if (noSubcategory.length > 0) {
+    const section = document.createElement('div');
+    section.className = 'subcategory-section';
+    renderSubcategoryGroup(noSubcategory, section);
+    grid.appendChild(section);
+  }
+};
+
 const setFilterActive = (target) => {
   if (!filtersContainer) return;
   const buttons = filtersContainer.querySelectorAll('button');
@@ -798,7 +908,7 @@ const handleFiltering = () => {
     
     setFilterActive(target);
     const filtered = window.projects.filter((project) => project.category === filter);
-    renderProjects(filtered);
+    renderProjectsWithSubcategories(filtered);
   });
 };
 
@@ -987,14 +1097,14 @@ const validateProjectCategories = async () => {
 const initializeApp = () => {
   // Initialize with Animations category
   const animationProjects = window.projects.filter((project) => project.category === 'Animations');
-  renderProjects(animationProjects);
+  renderProjectsWithSubcategories(animationProjects);
 
   // Check if a category filter was stored from a project page navigation
   const storedFilter = sessionStorage.getItem('portfolioFilter');
   if (storedFilter) {
     sessionStorage.removeItem('portfolioFilter');
     const filteredProjects = window.projects.filter(p => p.category === storedFilter);
-    renderProjects(filteredProjects);
+    renderProjectsWithSubcategories(filteredProjects);
     // Also update the active filter pill
     if (filtersContainer) {
       const buttons = filtersContainer.querySelectorAll('button');
