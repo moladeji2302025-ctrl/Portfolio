@@ -605,7 +605,17 @@ const createProjectCard = (project) => {
 
   const overlay = document.createElement('div');
   overlay.className = 'project-overlay';
-  overlay.innerHTML = `<p class="section-label" style="font-size:.9rem;margin:0;">${project.category}</p><h3 style="margin:.25rem 0 0;">${project.title}</h3>`;
+  const categoryNode = document.createElement('p');
+  categoryNode.className = 'section-label';
+  categoryNode.style.fontSize = '.9rem';
+  categoryNode.style.margin = '0';
+  categoryNode.textContent = project.category;
+
+  const titleNode = document.createElement('h3');
+  titleNode.style.margin = '.25rem 0 0';
+  titleNode.textContent = project.title;
+
+  overlay.append(categoryNode, titleNode);
 
   const viewButton = document.createElement('a');
   viewButton.className = 'project-view';
@@ -765,7 +775,29 @@ const initVideoLightbox = () => {
   trigger.addEventListener('click', () => {
     const video = trigger.dataset.video;
     if (!video) return;
-    frame.innerHTML = `<iframe src="${video}?autoplay=1" title="Showreel" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+
+    let parsed;
+    try {
+      parsed = new URL(video, window.location.href);
+    } catch (error) {
+      console.warn(`Invalid reel URL provided for video lightbox: ${video}`, error);
+      return;
+    }
+
+    if (!['youtube.com', 'www.youtube.com', 'youtu.be'].includes(parsed.hostname)) {
+      console.warn(`Video lightbox only supports YouTube URLs. Received: ${parsed.hostname}`);
+      return;
+    }
+
+    const iframe = document.createElement('iframe');
+    iframe.title = 'Showreel';
+    iframe.allow = 'autoplay; fullscreen';
+    iframe.allowFullscreen = true;
+
+    const src = parsed.toString();
+    iframe.src = src.includes('?') ? `${src}&autoplay=1` : `${src}?autoplay=1`;
+    frame.replaceChildren(iframe);
+
     lightbox.classList.add('open');
     lightbox.setAttribute('aria-hidden', 'false');
   });
