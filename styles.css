@@ -1636,6 +1636,7 @@ body::after {
   position: fixed;
   pointer-events: none;
   z-index: 0;
+  will-change: transform;
 }
 
 body::before {
@@ -1685,7 +1686,6 @@ header {
 }
 
 .hero-title span {
-  color: var(--color-primary);
   background: linear-gradient(120deg, var(--color-primary), var(--color-secondary));
   -webkit-background-clip: text;
   background-clip: text;
