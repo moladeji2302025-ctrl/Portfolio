@@ -1,178 +1,112 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Portfolio of MofeOluwa Oladeji — 3D Animator, motion graphics designer and digital Artist" />
+  <meta name="description" content="Project details for MofeOluwa Oladeji portfolio." />
   <title id="project-title">Project | MofeOluwa Oladeji</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@1,400;1,500;1,600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Manrope', 'sans-serif'],
-          },
-          colors: {
-            primary: '#6D5CFF',
-            secondary: '#00B8D9',
-            accent: '#1F2547',
-            background: '#F3F6FF',
-            surface: '#FFFFFF',
-            ink: '#11162E',
-            muted: '#5D668A',
-            highlight: '#E8EDFF',
-          },
-          boxShadow: {
-            vivid: '0 24px 60px -20px rgba(82, 74, 205, 0.28)',
-            neon: '0 0 0 1px rgba(109, 92, 255, 0.16), 0 14px 42px -20px rgba(0, 184, 217, 0.45)',
-          },
-        },
-      },
-    };
+    tailwind.config = { theme: { extend: { colors: { bg: '#0f0f0f', 'bg-alt': '#161616', surface: '#1c1c1c', border: 'rgba(255,255,255,0.08)', accent: '#64ffda', muted: '#888888', 'text-primary': '#f5f5f5' } } } };
   </script>
   <link rel="stylesheet" href="./styles.css" />
 </head>
-<body class="min-h-screen bg-background text-ink relative overflow-x-hidden">
-  <!-- Beige Pattern Animation Canvas -->
-  <canvas id="beige-patterns-canvas"></canvas>
-  
-  <!-- Custom Diamond Cursor -->
-  <div class="custom-cursor"></div>
-  
-  <header class="sticky top-0 z-40 backdrop-blur-md/20 bg-white/90 border-b border-accent/10">
-    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-      <div class="flex items-center gap-4">
-        <a href="./index.html" class="group relative inline-flex items-center gap-2 text-lg font-semibold tracking-wide text-accent" aria-label="MofeOluwa Oladeji - Return to home">
-          <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-primary ring-2 ring-primary/20 transition-all duration-500 group-hover:scale-110 group-hover:ring-primary/40">
-            MO
-          </span>
-          <span class="leading-none">
-            MofeOluwa <span class="text-primary">Oladeji</span>
-          </span>
-        </a>
-      </div>
-      <div class="hidden lg:flex lg:items-center lg:gap-6">
-        <nav class="nav-links">
-          <a href="./index.html" class="nav-link">Home</a>
-          <a href="./index.html#about" class="nav-link">About</a>
-          <a href="./index.html#portfolio" class="nav-link">Portfolio</a>
-          <a href="./index.html#contact" class="nav-link">Contact</a>
-        </nav>
-      </div>
-      <div class="flex items-center gap-4 lg:hidden">
-        <button id="mobile-menu-toggle" class="flex h-11 w-11 items-center justify-center rounded-full border border-accent/10 text-accent shadow-neon transition duration-300 hover:border-primary/60 hover:text-primary" aria-label="Toggle navigation">
-          <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" />
-          </svg>
-        </button>
-      </div>
-    </div>
-    <div id="mobile-menu" class="mobile-menu">
-      <a href="./index.html" class="mobile-link">Home</a>
-      <a href="./index.html#about" class="mobile-link">About</a>
-      <a href="./index.html#portfolio" class="mobile-link">Portfolio</a>
-      <a href="./index.html#contact" class="mobile-link">Contact</a>
+<body>
+  <div class="custom-cursor" aria-hidden="true"></div>
+  <div class="page-wipe" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html#home" class="logo">MO</a>
+      <nav class="nav-links">
+        <a class="nav-link" href="index.html#home">Home</a>
+        <a class="nav-link" href="index.html#portfolio">Portfolio</a>
+        <a class="nav-link" href="about.html">About</a>
+      </nav>
+      <a class="nav-cta" href="index.html#contact">Hire Me</a>
+      <button id="mobile-menu-toggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
     </div>
   </header>
 
-  <main class="relative z-10">
-    <!-- Project Details Section -->
-    <section class="section-wrapper">
-      <div class="mx-auto max-w-4xl">
-        <!-- Back to Portfolio Link -->
-        <a href="./index.html#portfolio" class="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.35em] text-muted transition duration-300 hover:text-primary mb-8">
-          <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-          </svg>
-          Back to Portfolio
+  <div id="mobile-menu" class="mobile-menu">
+    <a href="index.html#home">Home</a>
+    <a href="index.html#portfolio">Portfolio</a>
+    <a href="about.html">About</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+
+  <main>
+    <section class="section detail-hero">
+      <div class="container reveal" data-animate>
+        <span class="section-label">Project</span>
+        <h1 class="section-title" id="project-heading">Project Title</h1>
+        <div class="detail-meta">
+          <span class="tag-pill" id="project-category">Category</span>
+          <span class="tag-pill" id="project-date">Date</span>
+        </div>
+        <p class="section-kicker" id="project-summary"></p>
+      </div>
+      <div class="container detail-visual" id="project-media"></div>
+    </section>
+
+    <section class="section">
+      <div class="container detail-layout">
+        <article class="reveal" data-animate>
+          <div class="section-heading">
+            <span class="section-label">Project</span>
+            <h2 class="section-title">Overview</h2>
+          </div>
+          <p id="project-description" class="muted"></p>
+
+          <div class="section-heading" style="margin-top:1.6rem;">
+            <span class="section-label">Tools</span>
+            <h3 class="section-title" style="font-size:3rem;">Used</h3>
+          </div>
+          <ul id="project-tools" class="detail-meta"></ul>
+
+          <div class="section-heading" style="margin-top:1.6rem;">
+            <span class="section-label">Explore</span>
+            <h3 class="section-title" style="font-size:3rem;">More Categories</h3>
+          </div>
+          <div id="other-categories-list" class="detail-meta"></div>
+        </article>
+
+        <aside id="project-gallery-section" class="reveal" data-animate>
+          <div class="section-heading">
+            <span class="section-label">Gallery</span>
+            <h2 class="section-title">Frames</h2>
+          </div>
+          <div id="project-gallery" class="masonry"></div>
+        </aside>
+      </div>
+
+      <div class="container nav-pager">
+        <a id="prev-project" class="pager-link" href="#">
+          <span class="section-label" style="font-size:.9rem;">← Previous Project</span>
+          <strong class="prev-project-title">Previous</strong>
         </a>
-
-        <!-- Project Category & Date -->
-        <div class="flex flex-wrap items-center gap-4 mb-6">
-          <span id="project-category" class="project-chip"></span>
-          <span id="project-date" class="text-sm text-muted"></span>
-        </div>
-
-        <!-- Project Title -->
-        <h1 id="project-heading" class="text-4xl md:text-5xl lg:text-6xl font-bold text-accent mb-6"></h1>
-
-        <!-- Project Summary -->
-        <p id="project-summary" class="text-xl text-muted mb-12"></p>
-
-        <!-- Project Media -->
-        <div id="project-media" class="mb-12 rounded-[2rem] border border-accent/8 bg-white shadow-neon overflow-hidden"></div>
-
-        <!-- Project Description -->
-        <div class="mb-12">
-          <h2 class="text-2xl font-semibold text-accent mb-4">About This Project</h2>
-          <p id="project-description" class="text-lg leading-relaxed text-muted"></p>
-        </div>
-
-        <!-- Tools Used -->
-        <div class="mb-12">
-          <h2 class="text-2xl font-semibold text-accent mb-4">Tools & Technologies</h2>
-          <ul id="project-tools" class="flex flex-wrap gap-3"></ul>
-        </div>
-
-        <!-- Gallery -->
-        <div id="project-gallery-section" class="mb-12 hidden">
-          <h2 class="text-2xl font-semibold text-accent mb-4">Gallery</h2>
-          <div id="project-gallery" class="grid gap-6 sm:grid-cols-2"></div>
-        </div>
-
-        <!-- Explore Other Categories -->
-        <div id="other-categories-section" class="mb-12">
-          <h2 class="text-2xl font-semibold text-accent mb-6">Explore Other Categories</h2>
-          <div id="other-categories-list" class="flex flex-wrap gap-3"></div>
-        </div>
-
-        <!-- Project Navigation -->
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-6 pt-12 border-t border-accent/10">
-          <a id="prev-project" href="#" class="project-nav-link group">
-            <svg class="h-5 w-5 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
-            <div>
-              <span class="block text-xs uppercase tracking-[0.35em] text-muted mb-1">Previous</span>
-              <span class="prev-project-title font-semibold">Project</span>
-            </div>
-          </a>
-          <a href="./index.html#portfolio" class="inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.35em] text-muted transition duration-300 hover:text-primary">
-            View All Projects
-          </a>
-          <a id="next-project" href="#" class="project-nav-link group">
-            <div class="text-right">
-              <span class="block text-xs uppercase tracking-[0.35em] text-muted mb-1">Next</span>
-              <span class="next-project-title font-semibold">Project</span>
-            </div>
-            <svg class="h-5 w-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
-          </a>
-        </div>
+        <a id="next-project" class="pager-link" href="#">
+          <span class="section-label" style="font-size:.9rem;">Next Project →</span>
+          <strong class="next-project-title">Next</strong>
+        </a>
       </div>
     </section>
   </main>
 
-  <footer class="border-t border-accent/10 bg-surface py-10">
-    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 text-center text-sm text-muted sm:flex-row sm:text-left">
-      <p>© <span id="year"></span> MofeOluwa Oladeji — Designed & animated with intent.</p>
-      <div class="flex items-center gap-4 text-xs uppercase tracking-[0.35em]">
-        <a href="./index.html" class="text-muted transition hover:text-primary" aria-label="Back to home">Back to Home</a>
-        <span aria-hidden="true">·</span>
-        <a href="mailto:mofejeriiseoluwa@gmail.com" class="text-muted transition hover:text-primary" aria-label="Send email to MofeOluwa">Email</a>
-      </div>
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <p>© <span id="year"></span> MofeOluwa Oladeji. All Rights Reserved.</p>
+      <p><a href="index.html#portfolio" class="inline-link">Back to Portfolio</a></p>
     </div>
   </footer>
 
-  <script src="./script.js" type="module"></script>
-  <script src="./project-page.js" type="module"></script>
+  <script src="./script.js"></script>
+  <script src="./project-page.js"></script>
 </body>
 </html>

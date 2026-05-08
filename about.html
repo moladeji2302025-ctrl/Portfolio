@@ -1,404 +1,116 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Learn more about MofeOluwa Oladeji — 3D Animator, motion graphics designer and digital Artist" />
-  <title>More About Me | MofeOluwa Oladeji</title>
+  <meta name="description" content="About MofeOluwa Oladeji — creative profile and process." />
+  <title>About | MofeOluwa Oladeji</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@1,400;1,500;1,600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Manrope', 'sans-serif'],
-          },
-          colors: {
-            primary: '#6D5CFF',
-            secondary: '#00B8D9',
-            accent: '#1F2547',
-            background: '#F3F6FF',
-            surface: '#FFFFFF',
-            ink: '#11162E',
-            muted: '#5D668A',
-            highlight: '#E8EDFF',
-          },
-          boxShadow: {
-            vivid: '0 24px 60px -20px rgba(82, 74, 205, 0.28)',
-            neon: '0 0 0 1px rgba(109, 92, 255, 0.16), 0 14px 42px -20px rgba(0, 184, 217, 0.45)',
-          },
-        },
-      },
-    };
+    tailwind.config = { theme: { extend: { colors: { bg: '#0f0f0f', 'bg-alt': '#161616', surface: '#1c1c1c', border: 'rgba(255,255,255,0.08)', accent: '#64ffda', muted: '#888888', 'text-primary': '#f5f5f5' } } } };
   </script>
   <link rel="stylesheet" href="./styles.css" />
 </head>
-<body class="min-h-screen bg-background text-ink relative overflow-x-hidden">
-  <!-- Beige Pattern Animation Canvas -->
-  <canvas id="beige-patterns-canvas"></canvas>
-  
-  <!-- Custom Diamond Cursor -->
-  <div class="custom-cursor"></div>
-  
-  <header class="sticky top-0 z-40 backdrop-blur-md/20 bg-white/90 border-b border-accent/10">
-    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-      <div class="flex items-center gap-4">
-        <a href="./index.html" class="group relative inline-flex items-center gap-2 text-lg font-semibold tracking-wide text-accent" aria-label="MofeOluwa Oladeji - Return to home">
-          <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-primary ring-2 ring-primary/20 transition-all duration-500 group-hover:scale-110 group-hover:ring-primary/40">
-            MO
-          </span>
-          <span class="leading-none">
-            MofeOluwa <span class="text-primary">Oladeji</span>
-          </span>
-        </a>
-      </div>
-      <div class="hidden lg:flex lg:items-center lg:gap-6">
-        <nav class="nav-links">
-          <a href="./index.html" class="nav-link">Home</a>
-          <a href="./index.html#about" class="nav-link">About</a>
-          <a href="./index.html#experience" class="nav-link">Experience</a>
-          <a href="./index.html#portfolio" class="nav-link">Portfolio</a>
-          <a href="./index.html#contact" class="nav-link">Contact</a>
-        </nav>
-      </div>
-      <div class="flex items-center gap-4 lg:hidden">
-        <button id="mobile-menu-toggle" class="flex h-11 w-11 items-center justify-center rounded-full border border-accent/10 text-accent shadow-neon transition duration-300 hover:border-primary/60 hover:text-primary" aria-label="Toggle navigation">
-          <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" />
-          </svg>
-        </button>
-      </div>
-    </div>
-    <div id="mobile-menu" class="mobile-menu">
-      <a href="./index.html" class="mobile-link">Home</a>
-      <a href="./index.html#about" class="mobile-link">About</a>
-      <a href="./index.html#experience" class="mobile-link">Experience</a>
-      <a href="./index.html#portfolio" class="mobile-link">Portfolio</a>
-      <a href="./index.html#contact" class="mobile-link">Contact</a>
+<body>
+  <div class="custom-cursor" aria-hidden="true"></div>
+  <div class="page-wipe" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html#home" class="logo">MO</a>
+      <nav class="nav-links">
+        <a class="nav-link" href="index.html#home">Home</a>
+        <a class="nav-link" href="index.html#about">About</a>
+        <a class="nav-link" href="index.html#portfolio">Portfolio</a>
+        <a class="nav-link" href="experience.html?id=tedx-gwarimpa">Experience</a>
+      </nav>
+      <a class="nav-cta" href="index.html#contact">Collaborate</a>
+      <button id="mobile-menu-toggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
     </div>
   </header>
 
-  <main class="relative z-10">
-    <!-- More About Me Section -->
-    <section class="section-wrapper">
-      <div class="mx-auto max-w-4xl">
-        <!-- Back to Home Link -->
-        <a href="./index.html#about" class="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.35em] text-muted transition duration-300 hover:text-primary mb-8">
-          <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-          </svg>
-          Back to Home
-        </a>
+  <div id="mobile-menu" class="mobile-menu">
+    <a href="index.html#home">Home</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#portfolio">Portfolio</a>
+    <a href="experience.html?id=tedx-gwarimpa">Experience</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
 
-        <!-- Page Title -->
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-accent mb-6" style="font-family: var(--font-display);">More About Me</h1>
-        
-        <!-- Biography Section -->
-        <div class="mb-12">
-          <h2 class="text-2xl md:text-3xl font-semibold text-accent mb-6" style="font-family: var(--font-display);">My Journey</h2>
-          <div class="grid gap-8 lg:grid-cols-2 items-start">
-            <!-- Text Content -->
-            <div class="space-y-4 text-lg leading-relaxed text-muted">
-              <p>
-                Hello! I'm MofeOluwa Oladeji, a passionate 3D animator, motion graphics designer, and digital artist based in Abuja, Nigeria. Currently in my 3rd year studying Computer Science at Covenant University.
-              </p>
-              <p>
-                I am committed to mastering the art of computer animation and illustrations, concept art and storytelling, through the use of various software tools and techniques that help pass the story across.
-              </p> 
-              <p>
-                I have a relentless passion for bringing original and creative ideas to life, through whatever creative means possible for me
-              </p>
-            </div>
-            <!-- Drawing Image -->
-            <div class="relative">
-              <div class="aspect-[4/5] overflow-hidden rounded-[2rem] border border-accent/10 bg-white shadow-neon transition-transform duration-500 hover:scale-[1.02] hover:shadow-vivid">
-                <img src="projects/photo_2025-12-20_20-06-54.jpg" alt="MofeOluwa Oladeji working on a digital art project" class="h-full w-full object-cover" loading="lazy" />
-              </div>
-              <div class="mt-4 text-center">
-                <p class="text-sm text-muted italic">Oladeji MofeOluwa--20th December 2025</p>
-              </div>
-            </div>
+  <main>
+    <section class="section detail-hero">
+      <div class="container reveal" data-animate>
+        <span class="section-label">About</span>
+        <h1 class="section-title">MofeOluwa Oladeji</h1>
+        <p class="section-kicker">3D Animator, Motion Graphics Designer, Digital Illustrator, and Computer Science student at Covenant University.</p>
+      </div>
+      <div class="container detail-visual reveal" data-animate>
+        <img src="img/at-work.jpg" alt="MofeOluwa at work" style="width:100%;height:100%;object-fit:cover;" />
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container detail-layout">
+        <article class="reveal" data-animate>
+          <div class="section-heading">
+            <span class="section-label">Creative</span>
+            <h2 class="section-title">Identity</h2>
           </div>
+          <p>I'm a creative thinker with a wild imagination and a passion for Animation and Storytelling. Experienced in 3D Animation, drawing, and digital visual arts.</p>
+          <p class="muted">I build work that feels cinematic, emotive, and intentionally crafted — combining technical precision with strong artistic storytelling.</p>
+          <p class="about-quote">“Every frame should carry feeling, rhythm, and purpose.”</p>
+        </article>
+        <aside class="reveal" data-animate>
+          <div class="section-heading">
+            <span class="section-label">Core</span>
+            <h2 class="section-title">Focus</h2>
+          </div>
+          <div class="cards-grid" style="grid-template-columns:1fr;">
+            <article class="skill-card"><h3>3D Animation</h3><p class="muted">Character performance, action beats, stylized movement.</p></article>
+            <article class="skill-card"><h3>Motion Design</h3><p class="muted">Brand narratives, kinetic typography, and digital campaigns.</p></article>
+            <article class="skill-card"><h3>Digital Art</h3><p class="muted">Illustrative storytelling, visual development, and character sketches.</p></article>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-heading reveal" data-animate>
+          <span class="section-label">My</span>
+          <h2 class="section-title">Process</h2>
         </div>
-
-        <!-- Core Values Section -->
-        <div class="mb-12">
-          <h2 class="text-2xl md:text-3xl font-semibold text-accent mb-6" style="font-family: var(--font-display);">Core Values & Philosophy</h2>
-          <div class="grid gap-6 sm:grid-cols-2">
-            <div class="rounded-[2rem] border border-accent/10 bg-surface p-6 shadow-neon">
-              <div class="flex items-start gap-4">
-                <div class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-                  <svg class="h-6 w-6 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="text-lg font-semibold text-accent mb-2">Creative Innovation</h3>
-                  <p class="text-sm text-muted leading-relaxed">Constantly pushing boundaries and exploring new techniques to create unique, memorable visual experiences that stand out.</p>
-                </div>
-              </div>
-            </div>
-            
-            <div class="rounded-[2rem] border border-accent/10 bg-surface p-6 shadow-neon">
-              <div class="flex items-start gap-4">
-                <div class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-                  <svg class="h-6 w-6 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="text-lg font-semibold text-accent mb-2">Continuous Learning</h3>
-                  <p class="text-sm text-muted leading-relaxed">Embracing every project as an opportunity to grow, learn new skills, and refine my craft in the ever-evolving digital landscape.</p>
-                </div>
-              </div>
-            </div>
-            
-            <div class="rounded-[2rem] border border-accent/10 bg-surface p-6 shadow-neon">
-              <div class="flex items-start gap-4">
-                <div class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-                  <svg class="h-6 w-6 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="text-lg font-semibold text-accent mb-2">Purposeful Design</h3>
-                  <p class="text-sm text-muted leading-relaxed">Every frame, every motion, every design choice serves a purpose—to communicate emotion, tell a story, or create impact.</p>
-                </div>
-              </div>
-            </div>
-            
-            <div class="rounded-[2rem] border border-accent/10 bg-surface p-6 shadow-neon">
-              <div class="flex items-start gap-4">
-                <div class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-                  <svg class="h-6 w-6 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="text-lg font-semibold text-accent mb-2">Collaborative Spirit</h3>
-                  <p class="text-sm text-muted leading-relaxed">Building meaningful partnerships with clients and teams, translating visions into reality through open communication.</p>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="process-grid">
+          <article class="process-item reveal" data-animate><div class="process-no">01</div><h3>Listen</h3><p class="muted">Understand your goal, audience, and desired emotional tone.</p></article>
+          <article class="process-item reveal" data-animate data-delay="80"><div class="process-no">02</div><h3>Build</h3><p class="muted">Develop concept art, motion tests, and polished production visuals.</p></article>
+          <article class="process-item reveal" data-animate data-delay="160"><div class="process-no">03</div><h3>Refine</h3><p class="muted">Review feedback and finalize for the platforms that matter most.</p></article>
         </div>
+      </div>
+    </section>
 
-        <!-- Skills & Achievements Section -->
-        <div class="mb-12">
-          <h2 class="text-2xl md:text-3xl font-semibold text-accent mb-6" style="font-family: var(--font-display);">Skills & Achievements</h2>
-          
-          <!-- Technical Skills -->
-          <div class="mb-8">
-            <h3 class="text-xl font-semibold text-accent mb-4">Technical Proficiency</h3>
-            <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              <div class="flex items-center gap-3 rounded-2xl border border-accent/10 bg-white p-4 shadow-sm">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/blender/blender-original.svg" alt="Blender" class="h-8 w-8" />
-                <div>
-                  <p class="font-semibold text-accent">Blender</p>
-                  <p class="text-xs text-muted">3D Animation & Modeling</p>
-                </div>
-              </div>
-              <div class="flex items-center gap-3 rounded-2xl border border-accent/10 bg-white p-4 shadow-sm">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/aftereffects/aftereffects-original.svg" alt="After Effects" class="h-8 w-8" />
-                <div>
-                  <p class="font-semibold text-accent">After Effects</p>
-                  <p class="text-xs text-muted">Motion Graphics</p>
-                </div>
-              </div>
-              <div class="flex items-center gap-3 rounded-2xl border border-accent/10 bg-white p-4 shadow-sm">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-plain.svg" alt="Photoshop" class="h-8 w-8" />
-                <div>
-                  <p class="font-semibold text-accent">Photoshop</p>
-                  <p class="text-xs text-muted">Digital Art</p>
-                </div>
-              </div>
-              <div class="flex items-center gap-3 rounded-2xl border border-accent/10 bg-white p-4 shadow-sm">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg" alt="Illustrator" class="h-8 w-8" />
-                <div>
-                  <p class="font-semibold text-accent">Illustrator</p>
-                  <p class="text-xs text-muted">Vector Graphics</p>
-                </div>
-              </div>
-              <div class="flex items-center gap-3 rounded-2xl border border-accent/10 bg-white p-4 shadow-sm">
-                <svg class="h-8 w-8 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.75 18.25V5.75h4.1l3.15 4.2 3.15-4.2h4.1v12.5" />
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.75 5.75l7.25 9.5 7.25-9.5" />
-                </svg>
-                <div>
-                  <p class="font-semibold text-accent">Marvelous Designer</p>
-                  <p class="text-xs text-muted">Cloth Simulation</p>
-                </div>
-              </div>
-              <div class="flex items-center gap-3 rounded-2xl border border-accent/10 bg-white p-4 shadow-sm">
-                <svg class="h-8 w-8 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L7.5 20.5 3 21.5l1-4.5 11.232-11.768z" />
-                </svg>
-                <div>
-                  <p class="font-semibold text-accent">Traditional Art</p>
-                  <p class="text-xs text-muted">Drawing & Sketching</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Key Achievements -->
-          <div class="mb-8">
-            <h3 class="text-xl font-semibold text-accent mb-4">Key Achievements</h3>
-            <ul class="space-y-3">
-              <li class="flex gap-3 text-muted">
-                <span class="text-primary">▹</span>
-                <span>Successfully delivered visual identity and motion graphics for TEDx Gwarimpa event</span>
-              </li>
-              <li class="flex gap-3 text-muted">
-                <span class="text-primary">▹</span>
-                <span>Created comprehensive illustration and graphic design materials for Covenant University EDS Day Business Clinic</span>
-              </li>
-              <li class="flex gap-3 text-muted">
-                <span class="text-primary">▹</span>
-                <span>Developed motion graphics toolkits and product animations for Branded Creative Agency clients</span>
-              </li>
-              <li class="flex gap-3 text-muted">
-                <span class="text-primary">▹</span>
-                <span>Mastered 6 industry-leading design tools with advanced proficiency</span>
-              </li>
-              <li class="flex gap-3 text-muted">
-                <span class="text-primary">▹</span>
-                <span>Completed 15+ professional projects across 3D animation, motion graphics, and illustration</span>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Education -->
-          <div>
-            <h3 class="text-xl font-semibold text-accent mb-4">Education</h3>
-            <div class="rounded-[2rem] border border-accent/10 bg-surface p-6 shadow-neon">
-              <div class="flex items-start gap-4">
-                <div class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-                  <svg class="h-6 w-6 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
-                  </svg>
-                </div>
-                <div>
-                  <h4 class="text-lg font-semibold text-accent mb-1">Bachelor of Science in Computer Science</h4>
-                  <p class="text-sm text-primary font-semibold mb-2">Covenant University, Ota, Nigeria</p>
-                  <p class="text-sm text-muted">3rd Year Student | Expected Graduation: 2026</p>
-                  <p class="text-sm text-muted mt-3">Combining technical computer science knowledge with creative digital artistry to bridge the gap between technology and visual storytelling.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- What Drives Me Section -->
-        <div class="mb-12">
-          <h2 class="text-2xl md:text-3xl font-semibold text-accent mb-6" style="font-family: var(--font-display);">What Drives Me</h2>
-          <div class="rounded-[2rem] border border-accent/10 bg-surface p-8 shadow-neon">
-            <p class="text-lg leading-relaxed text-muted mb-4">
-              I believe that great design isn't just about aesthetics—it's about creating experiences that resonate, stories that linger, and visuals that inspire action. My work is driven by three core principles:
-            </p>
-            <ul class="space-y-3 text-muted">
-              <li class="flex gap-3">
-                <span class="text-primary font-bold">1.</span>
-                <span><strong class="text-accent">Emotional Connection:</strong> Every animation should evoke a feeling, every design should tell a story.</span>
-              </li>
-              <li class="flex gap-3">
-                <span class="text-primary font-bold">2.</span>
-                <span><strong class="text-accent">Technical Excellence:</strong> Mastering tools is just the beginning; using them with intention is where magic happens.</span>
-              </li>
-              <li class="flex gap-3">
-                <span class="text-primary font-bold">3.</span>
-                <span><strong class="text-accent">Collaborative Vision:</strong> The best projects emerge from partnerships where ideas flow freely and creativity thrives.</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Contact CTA Section -->
-        <div class="mb-12">
-          <h2 class="text-2xl md:text-3xl font-semibold text-accent mb-6" style="font-family: var(--font-display);">Let's Create Together</h2>
-          <div class="rounded-[2rem] border border-accent/10 bg-gradient-to-br from-highlight to-surface p-8 shadow-neon">
-            <p class="text-lg leading-relaxed text-muted mb-6">
-              Whether you have a project in mind, need creative consultation, or just want to connect over shared passions, I'd love to hear from you. Let's collaborate and bring your vision to life through the power of motion and design.
-            </p>
-            <div class="flex flex-wrap gap-4">
-              <a href="./index.html#contact" class="inline-flex items-center gap-3 rounded-full bg-primary px-8 py-3 text-sm font-semibold uppercase tracking-[0.35em] text-background transition duration-300 hover:-translate-y-1 hover:bg-secondary">
-                Get in Touch
-              </a>
-              <a href="https://wa.me/2348067505366?text=Hi%20MofeOluwa%2C%20I%20just%20read%20your%20about%20page%20and%20would%20love%20to%20collaborate!" target="_blank" rel="noreferrer" class="inline-flex items-center gap-3 rounded-full border border-primary/30 bg-white px-8 py-3 text-sm font-semibold uppercase tracking-[0.35em] text-primary transition duration-300 hover:-translate-y-1 hover:bg-highlight">
-                <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.92 9.23a15.05 15.05 0 0010.85 10.85l2.26-3.46a1 1 0 01.96-.44 11.36 11.36 0 003.98.36 1 1 0 01.86 1l-.19 3.59a1 1 0 01-.97.94A19 19 0 012 5.21a1 1 0 01.94-.97l3.59-.19a1 1 0 011 .86 11.36 11.36 0 00.36 3.98 1 1 0 01-.44.96z" />
-                </svg>
-                WhatsApp Me
-              </a>
-              <a href="mailto:mofejeriiseoluwa@gmail.com" class="inline-flex items-center gap-3 rounded-full border border-primary/30 bg-white px-8 py-3 text-sm font-semibold uppercase tracking-[0.35em] text-primary transition duration-300 hover:-translate-y-1 hover:bg-highlight">
-                <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l9 6 9-6" />
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 19h14a2 2 0 002-2V7a2 2 0 00-1-1.73l-8-4.62-8 4.62A2 2 0 003 7v10a2 2 0 002 2z" />
-                </svg>
-                Email Me
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Back to Home Link -->
-        <div class="flex justify-center pt-8 border-t border-accent/10">
-          <a href="./index.html" class="inline-flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.35em] text-muted transition duration-300 hover:text-primary">
-            <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
-            Return to Home
-          </a>
-        </div>
+    <section class="section" id="contact">
+      <div class="container cta-block reveal" data-animate>
+        <span class="section-label">Let's</span>
+        <h2 class="section-title">Create</h2>
+        <p class="section-kicker" style="margin-inline:auto;">Open to collaborations, internships, and creative partnerships worldwide.</p>
+        <a class="btn btn-primary" href="mailto:mofejeriiseoluwa@gmail.com">Send Message →</a>
       </div>
     </section>
   </main>
 
-  <footer class="border-t border-accent/10 bg-surface py-10">
-    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 text-center text-sm text-muted sm:flex-row sm:text-left">
-      <p>© <span id="year"></span> MofeOluwa Oladeji — Designed & animated with intent.</p>
-      <div class="flex items-center gap-4 text-xs uppercase tracking-[0.35em]">
-        <a href="./index.html" class="text-muted transition hover:text-primary" aria-label="Back to home">Back to Home</a>
-        <span aria-hidden="true">·</span>
-        <a href="mailto:mofejeriiseoluwa@gmail.com" class="text-muted transition hover:text-primary" aria-label="Send email to MofeOluwa">Email</a>
-      </div>
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <p>© <span id="year"></span> MofeOluwa Oladeji. All Rights Reserved.</p>
+      <p><a href="index.html" class="inline-link">Back to Home</a></p>
     </div>
   </footer>
 
-  <script src="./script.js" type="module"></script>
-  <script>
-    // Set current year
-    const yearNode = document.getElementById('year');
-    if (yearNode) {
-      yearNode.textContent = new Date().getFullYear().toString();
-    }
-
-    // Mobile menu functionality
-    const mobileToggle = document.getElementById('mobile-menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    
-    if (mobileToggle && mobileMenu) {
-      mobileToggle.addEventListener('click', () => {
-        mobileMenu.classList.toggle('open');
-        const isOpen = mobileMenu.classList.contains('open');
-        mobileToggle.setAttribute('aria-expanded', isOpen.toString());
-      });
-
-      mobileMenu.querySelectorAll('a').forEach((link) => {
-        link.addEventListener('click', () => {
-          mobileMenu.classList.remove('open');
-          mobileToggle.setAttribute('aria-expanded', 'false');
-        });
-      });
-    }
-  </script>
+  <script src="./script.js"></script>
 </body>
 </html>
