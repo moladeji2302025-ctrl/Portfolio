@@ -13,17 +13,17 @@ A modern, immersive portfolio experience for **MofeOluwa Oladeji**, a graphic de
 
 ## 🎨 Color Palette
 
-The warm brown palette is centralized in `tailwind.config.js` and mirrored for the CDN build:
+The modern indigo/cyan palette is centralized in `tailwind.config.js` and mirrored for the CDN build:
 
 | Token | Hex | Usage |
 | --- | --- | --- |
-| `primary` | `#8B4513` | Rich brown for call-to-action accents |
-| `secondary` | `#A0522D` | Warm sienna for hover states and depth |
-| `accent` | `#1E1E24` | Dark typography and UI chrome |
-| `background` | `#FEF6B6` | Soft parchment page backdrop |
-| `surface` | `#FFF3D1` | Elevated cards and panels |
-| `muted` | `#6B7280` | Secondary text |
-| `highlight` | `#F4E4CD` | Gentle sepia wash for chips and badges |
+| `primary` | `#6D5CFF` | Core accent for call-to-actions and focal UI |
+| `secondary` | `#00B8D9` | Cyan glow for highlights and interactive depth |
+| `accent` | `#1F2547` | Rich navy for typography and structure |
+| `background` | `#F3F6FF` | Cool luminous page backdrop |
+| `surface` | `#FFFFFF` | Elevated cards and modal panels |
+| `muted` | `#5D668A` | Secondary text |
+| `highlight` | `#E8EDFF` | Soft glassy layer for chips and badges |
 
 ## 🚀 Getting Started
 
