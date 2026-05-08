@@ -124,7 +124,7 @@ const renderProjectPage = (project) => {
     toolsContainer.innerHTML = '';
     project.tools.forEach(tool => {
       const li = document.createElement('li');
-      li.className = 'rounded-full border border-accent/20 bg-surface px-5 py-2 text-sm font-semibold text-accent';
+      li.className = 'tag-pill';
       li.textContent = tool;
       toolsContainer.appendChild(li);
     });
@@ -141,7 +141,7 @@ const renderProjectPage = (project) => {
       img.src = image;
       img.alt = `${project.title} gallery image`;
       img.loading = 'lazy';
-      img.className = 'w-full rounded-lg border border-accent/8 shadow-neon';
+      img.className = 'w-full';
       img.oncontextmenu = () => false;
       galleryContainer.appendChild(img);
     });
@@ -158,7 +158,7 @@ const renderProjectPage = (project) => {
       anchor.href = `./index.html#portfolio`;
       anchor.dataset.filterCategory = cat;
       anchor.textContent = cat;
-      anchor.className = 'inline-flex items-center gap-2 rounded-full border border-primary/30 bg-highlight px-5 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-primary transition duration-300 hover:-translate-y-1 hover:bg-primary hover:text-background';
+      anchor.className = 'tag-pill';
       anchor.setAttribute('aria-label', `View ${cat} projects`);
 
       // When clicked, store the desired filter in sessionStorage so index.html can pick it up on load
@@ -240,6 +240,10 @@ const initCustomCursor = () => {
     if (!cursor.classList.contains('active')) {
       cursor.classList.add('active');
     }
+
+    const target = document.elementFromPoint(mouseX, mouseY);
+    const hovering = !!(target && target.closest('a, button, .pager-link, .tag-pill, input'));
+    cursor.classList.toggle('hovering', hovering);
     
     clearTimeout(cursorTimeout);
     cursorTimeout = setTimeout(() => {

@@ -101,7 +101,7 @@ const renderExperiencePage = (experience) => {
     skillsContainer.innerHTML = '';
     experience.skills.forEach(skill => {
       const li = document.createElement('li');
-      li.className = 'rounded-full border border-accent/20 bg-surface px-5 py-2 text-sm font-semibold text-accent';
+      li.className = 'tag-pill';
       li.textContent = skill;
       skillsContainer.appendChild(li);
     });
@@ -189,6 +189,10 @@ const initCustomCursor = () => {
     if (!cursor.classList.contains('active')) {
       cursor.classList.add('active');
     }
+
+    const target = document.elementFromPoint(mouseX, mouseY);
+    const hovering = !!(target && target.closest('a, button, .pager-link, .tag-pill, input'));
+    cursor.classList.toggle('hovering', hovering);
     
     clearTimeout(cursorTimeout);
     cursorTimeout = setTimeout(() => {
