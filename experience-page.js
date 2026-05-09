@@ -71,7 +71,7 @@ const renderExperiencePage = (experience) => {
   // Update summary
   const summary = document.getElementById('experience-summary');
   if (summary) {
-    summary.textContent = experience.summary;
+    summary.textContent = experience.summary || experience.description;
   }
 
   // Update description

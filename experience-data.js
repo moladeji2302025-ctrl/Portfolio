@@ -6,6 +6,7 @@ window.experiences = [
     period: 'September 2025 — December 2025',
     startDate: '2025-09',
     endDate: '6th December 2025',
+    summary: 'Designed event publicity assets and social graphics for the TEDx Gwarimpa campaign.',
     description: 'I Worked with the TEDx Gwarimpa publicity team to create stunning graphics for the TEDx event which took place on the 6th, December, 2025.',
     responsibilities: [
       'Designed Graphics contents for the social media team',
@@ -28,6 +29,7 @@ window.experiences = [
     period: 'June 2025 — July 2025',
     startDate: '2025-06',
     endDate: '2025-07',
+    summary: 'Created conference illustration assets and event visuals for the 2025 Business Clinic.',
     description: 'Illustrated backdrops and designs for the 2025 Business Clinic conference in Covenant University',
     responsibilities: [
       'Illustrate backdrop designs for the event',
@@ -48,9 +50,10 @@ window.experiences = [
     id: 'branded-creative-agency',
     title: 'Motion Graphics Designer',
     organization: 'Branded Creative Agency',
-    period: 'September 2024 - October 2024',
+    period: 'September 2024 — October 2024',
     startDate: '2024-09',
     endDate: '2024-10',
+    summary: 'Produced motion graphics concepts and branded visuals for client campaigns and internal creative work.',
     description: 'Intern at Branded Creative Agency working with a team of creatives to create imaginative and original motion graphics designs.',
     responsibilities: [
       'Create original and creative motion graphics concepts',
