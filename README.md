@@ -39,6 +39,7 @@ serve .
 ## 📁 Structure
 
 - `index.html` — Main page with all sections and modal container.
+- `experience-data.js` — Experience entries used by the homepage highlights and detail page.
 - `styles.css` — Custom styling and motion layers augmenting Tailwind.
 - `script.js` — Interactivity, project data, filters, modal logic, animations.
 - `tailwind.config.js` — Flipaclip-inspired color tokens (`primary`, `secondary`, `accent`, `background`, `surface`, `muted`, `highlight`) and shared design primitives.
@@ -46,6 +47,7 @@ serve .
 ## 🛠️ Customization Tips
 
 - Update the `projects` array in `script.js` to add or edit portfolio entries.
+- Update `experience-data.js` to edit professional roles shown on the homepage and experience detail page.
 - Swap imagery or videos by replacing the URLs in the data objects.
 - Adjust the color palette once in `tailwind.config.js` (mirrored in the inline CDN config) or fine-tune motion/glow layers inside `styles.css`.
 

@@ -398,6 +398,10 @@ a {
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
+.experience-grid {
+  align-items: stretch;
+}
+
 .skill-card,
 .update-card,
 .faq-item,
@@ -415,6 +419,21 @@ a {
   transform: translateY(-6px);
   border-color: var(--accent);
   box-shadow: 0 0 0 1px var(--accent), 0 20px 40px var(--accent-glow);
+}
+
+.experience-card {
+  min-height: 100%;
+}
+
+.experience-org {
+  margin: 0.4rem 0 0.8rem;
+  color: var(--white);
+  font-weight: 700;
+}
+
+.experience-meta {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .skill-icon {
