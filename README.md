@@ -11,19 +11,18 @@ A modern, immersive portfolio experience for **MofeOluwa Oladeji**, a graphic de
 - Testimonials, collaborations, and contact form for a complete professional presence.
 - Fully responsive layout with smooth transitions and scroll-triggered reveals.
 
-## 🎨 Color Palette
+## 🎨 Design System
 
-The modern indigo/cyan palette is centralized in `tailwind.config.js` and mirrored for the CDN build:
+The site uses a dark studio-inspired palette defined in `styles.css`, mirrored in the inline Tailwind CDN config, and aligned with `tailwind.config.js`:
 
-| Token | Hex | Usage |
+| Token | Value | Usage |
 | --- | --- | --- |
-| `primary` | `#6D5CFF` | Core accent for call-to-actions and focal UI |
-| `secondary` | `#00B8D9` | Cyan glow for highlights and interactive depth |
-| `accent` | `#1F2547` | Rich navy for typography and structure |
-| `background` | `#F3F6FF` | Cool luminous page backdrop |
-| `surface` | `#FFFFFF` | Elevated cards and modal panels |
-| `muted` | `#5D668A` | Secondary text |
-| `highlight` | `#E8EDFF` | Soft glassy layer for chips and badges |
+| `bg` | `#0f0f0f` | Main page background |
+| `bg-alt` | `#161616` | Alternate section backgrounds |
+| `surface` | `#1c1c1c` | Cards, panels, and overlays |
+| `accent` | `#64ffda` | Buttons, highlights, and emphasis |
+| `muted` | `#888888` | Secondary text |
+| `text-primary` | `#f5f5f5` | Main text color |
 
 ## 🚀 Getting Started
 
@@ -38,20 +37,27 @@ serve .
 
 ## 📁 Structure
 
-- `index.html` — Main page with all sections and modal container.
-- `styles.css` — Custom styling and motion layers augmenting Tailwind.
-- `script.js` — Interactivity, project data, filters, modal logic, animations.
-- `tailwind.config.js` — Flipaclip-inspired color tokens (`primary`, `secondary`, `accent`, `background`, `surface`, `muted`, `highlight`) and shared design primitives.
+- `index.html` — Main landing page with hero, portfolio, experience, testimonials, FAQ, updates, and contact sections.
+- `about.html` — About page with profile details and creative process.
+- `project.html` — Dynamic project detail page.
+- `experience.html` — Dynamic experience detail page.
+- `styles.css` — Shared styling and motion layers for every page.
+- `script.js` — Shared homepage interactivity and the portfolio project data source.
+- `experience-data.js` — Experience data used by the homepage and `experience.html`.
+- `project-page.js` — Project detail rendering and navigation logic.
+- `experience-page.js` — Experience detail rendering and navigation logic.
+- `tailwind.config.js` — Shared Tailwind tokens matching the CDN configuration.
 
 ## 🛠️ Customization Tips
 
-- Update the `projects` array in `script.js` to add or edit portfolio entries.
+- Update the `window.projects` array in `script.js` to add or edit portfolio entries.
+- Update `window.experiences` in `experience-data.js` to add or edit experience entries.
 - Swap imagery or videos by replacing the URLs in the data objects.
-- Adjust the color palette once in `tailwind.config.js` (mirrored in the inline CDN config) or fine-tune motion/glow layers inside `styles.css`.
+- Adjust the shared dark palette in `styles.css`, `tailwind.config.js`, and the inline CDN config blocks when needed.
 
 ## 📬 Contact Form
 
-The contact form is front-end only and currently simulates a send confirmation. Connect it to a backend service or form handler (e.g., Formspree, Netlify, Supabase) to enable real submissions.
+The contact form currently uses a `mailto:` action. Connect it to a backend service or form handler (for example Formspree, Netlify Forms, or Supabase) for production-ready submissions.
 
 ## 📄 License
 
