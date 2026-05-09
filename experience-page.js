@@ -1,3 +1,4 @@
+(() => {
 const getUrlParams = () => {
   const params = new URLSearchParams(window.location.search);
   return {
@@ -362,3 +363,4 @@ if (document.readyState === 'loading') {
 } else {
   initExperiencePage();
 }
+})();
