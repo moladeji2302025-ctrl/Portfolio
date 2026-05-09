@@ -1,3 +1,4 @@
+(() => {
 // Import projects from script.js
 // Note: Since script.js uses 'const projects', we need to make sure it's accessible
 // We'll load the project data from the query parameter
@@ -413,3 +414,4 @@ if (document.readyState === 'loading') {
 } else {
   initProjectPage();
 }
+})();

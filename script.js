@@ -626,6 +626,47 @@ const createProjectCard = (project) => {
   return card;
 };
 
+const createExperienceCard = (experience) => {
+  const card = document.createElement('article');
+  card.className = 'skill-card reveal';
+  card.dataset.animate = '';
+
+  const organization = document.createElement('p');
+  organization.className = 'section-label';
+  organization.style.fontSize = '.9rem';
+  organization.style.margin = '0 0 0.35rem';
+  organization.textContent = experience.organization;
+
+  const title = document.createElement('h3');
+  title.textContent = experience.title;
+
+  const summary = document.createElement('p');
+  summary.className = 'muted';
+  summary.textContent = experience.summary || experience.description;
+
+  const meta = document.createElement('div');
+  meta.className = 'detail-meta';
+  meta.style.margin = '1rem 0';
+
+  const period = document.createElement('span');
+  period.className = 'tag-pill';
+  period.textContent = experience.period;
+
+  const type = document.createElement('span');
+  type.className = 'tag-pill';
+  type.textContent = experience.type;
+
+  meta.append(period, type);
+
+  const link = document.createElement('a');
+  link.className = 'read-link';
+  link.href = `experience.html?id=${experience.id}`;
+  link.textContent = 'View Experience →';
+
+  card.append(organization, title, summary, meta, link);
+  return card;
+};
+
 const initPortfolio = () => {
   const grid = document.getElementById('portfolio-grid');
   if (!grid) return;
@@ -663,6 +704,23 @@ const initPortfolio = () => {
     }
     sessionStorage.removeItem('portfolioFilter');
   }
+};
+
+const initExperiencePreview = () => {
+  const grid = document.getElementById('experience-grid');
+  if (!grid || !Array.isArray(window.experiences)) return;
+
+  const experiences = [...window.experiences]
+    .sort((left, right) => (right.startDate || '').localeCompare(left.startDate || ''))
+    .slice(0, 3);
+
+  if (experiences.length === 0) {
+    grid.closest('section')?.classList.add('hidden');
+    return;
+  }
+
+  grid.innerHTML = '';
+  experiences.forEach((experience) => grid.appendChild(createExperienceCard(experience)));
 };
 
 const initMobileMenu = () => {
@@ -942,6 +1000,7 @@ const setCurrentYear = () => {
 
 const initApp = () => {
   initPortfolio();
+  initExperiencePreview();
   initMobileMenu();
   initScrollReveal();
   initCounters();
