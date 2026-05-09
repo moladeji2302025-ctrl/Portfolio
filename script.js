@@ -577,6 +577,12 @@ const FEATURED_PROJECT_IDS = [
 
 const resolveProjectThumb = (project) => project.thumbnail || project.mediaSrc || '';
 
+const sortExperiences = (experiences) => [...experiences].sort((first, second) => {
+  const firstDate = Date.parse(`${first.startDate || ''}-01`) || 0;
+  const secondDate = Date.parse(`${second.startDate || ''}-01`) || 0;
+  return secondDate - firstDate;
+});
+
 const createProjectCard = (project) => {
   const card = document.createElement('article');
   card.className = 'project-card reveal';
@@ -663,6 +669,58 @@ const initPortfolio = () => {
     }
     sessionStorage.removeItem('portfolioFilter');
   }
+};
+
+const createExperienceCard = (experience) => {
+  const card = document.createElement('article');
+  card.className = 'skill-card reveal experience-card';
+  card.dataset.animate = '';
+  card.dataset.staggerItem = '';
+
+  const meta = document.createElement('p');
+  meta.className = 'section-label';
+  meta.style.fontSize = '.9rem';
+  meta.style.margin = '0';
+  meta.textContent = experience.period;
+
+  const title = document.createElement('h3');
+  title.textContent = experience.title;
+
+  const organization = document.createElement('p');
+  organization.className = 'experience-org';
+  organization.textContent = experience.organization;
+
+  const summary = document.createElement('p');
+  summary.className = 'muted';
+  summary.textContent = experience.summary || experience.description;
+
+  const details = document.createElement('div');
+  details.className = 'detail-meta experience-meta';
+
+  [experience.type, experience.location].filter(Boolean).forEach((value) => {
+    const pill = document.createElement('span');
+    pill.className = 'tag-pill';
+    pill.textContent = value;
+    details.appendChild(pill);
+  });
+
+  const link = document.createElement('a');
+  link.className = 'read-link';
+  link.href = `experience.html?id=${experience.id}`;
+  link.textContent = 'View Role →';
+
+  card.append(meta, title, organization, summary, details, link);
+  return card;
+};
+
+const initExperienceHighlights = () => {
+  const grid = document.getElementById('experience-grid');
+  const experiences = window.experiences || [];
+  if (!grid || experiences.length === 0) return;
+
+  grid.innerHTML = '';
+  sortExperiences(experiences)
+    .forEach((experience) => grid.appendChild(createExperienceCard(experience)));
 };
 
 const initMobileMenu = () => {
@@ -942,6 +1000,7 @@ const setCurrentYear = () => {
 
 const initApp = () => {
   initPortfolio();
+  initExperienceHighlights();
   initMobileMenu();
   initScrollReveal();
   initCounters();
