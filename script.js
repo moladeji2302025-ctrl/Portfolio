@@ -626,6 +626,44 @@ const createProjectCard = (project) => {
   return card;
 };
 
+const createExperienceCard = (experience) => {
+  const card = document.createElement('article');
+  card.className = 'skill-card reveal';
+  card.dataset.animate = '';
+
+  const label = document.createElement('p');
+  label.className = 'section-label';
+  label.style.fontSize = '.9rem';
+  label.style.margin = '0 0 0.4rem';
+  label.textContent = experience.organization;
+
+  const title = document.createElement('h3');
+  title.textContent = experience.title;
+
+  const summary = document.createElement('p');
+  summary.className = 'muted';
+  summary.textContent = experience.summary || experience.description;
+
+  const meta = document.createElement('div');
+  meta.className = 'detail-meta';
+  meta.style.marginTop = '1rem';
+
+  [experience.period, experience.type, experience.location].filter(Boolean).forEach((value) => {
+    const item = document.createElement('span');
+    item.className = 'tag-pill';
+    item.textContent = value;
+    meta.appendChild(item);
+  });
+
+  const link = document.createElement('a');
+  link.className = 'read-link';
+  link.href = `experience.html?id=${experience.id}`;
+  link.textContent = 'Read More →';
+
+  card.append(label, title, summary, meta, link);
+  return card;
+};
+
 const initPortfolio = () => {
   const grid = document.getElementById('portfolio-grid');
   if (!grid) return;
@@ -663,6 +701,16 @@ const initPortfolio = () => {
     }
     sessionStorage.removeItem('portfolioFilter');
   }
+};
+
+const initExperience = () => {
+  const grid = document.getElementById('experience-grid');
+  if (!grid || !Array.isArray(window.experiences)) return;
+
+  grid.innerHTML = '';
+  window.experiences.forEach((experience) => {
+    grid.appendChild(createExperienceCard(experience));
+  });
 };
 
 const initMobileMenu = () => {
@@ -942,6 +990,7 @@ const setCurrentYear = () => {
 
 const initApp = () => {
   initPortfolio();
+  initExperience();
   initMobileMenu();
   initScrollReveal();
   initCounters();
