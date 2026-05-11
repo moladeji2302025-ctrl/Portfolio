@@ -148,7 +148,7 @@ const renderProjectPage = (project) => {
   }
 
   // Render other categories
-  const ALL_CATEGORIES = ['Animations', 'Drawings', 'Illustrations', 'Modelling', 'Motion Graphics'];
+  const ALL_CATEGORIES = ['Motion Graphics', 'Animations', 'Illustrations', 'Drawings', 'Modelling'];
   const otherCategoriesList = document.getElementById('other-categories-list');
   if (otherCategoriesList) {
     otherCategoriesList.innerHTML = '';
