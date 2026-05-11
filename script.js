@@ -791,12 +791,8 @@ const initPortfolio = () => {
   const grid = document.getElementById('portfolio-grid');
   if (!grid) return;
 
-  const selected = FEATURED_PROJECT_IDS
-    .map((id) => window.projects.find((project) => project.id === id))
-    .filter(Boolean);
-
   grid.innerHTML = '';
-  selected.forEach((project) => grid.appendChild(createProjectCard(project)));
+  window.projects.forEach((project) => grid.appendChild(createProjectCard(project)));
 
   const buttons = document.querySelectorAll('.filter-btn');
   const applyFilter = (filterValue) => {
