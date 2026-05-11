@@ -174,8 +174,8 @@ const renderProjectPage = (project) => {
   const navigation = getNavigationProjects(project);
   
   const prevLink = document.getElementById('prev-project');
-  if (prevLink && navigation.prev) {
-    prevLink.href = `project.html?id=${navigation.prev.id}&category=${navigation.prev.category}`;
+  if (prevLink && navigation.prev?.id && navigation.prev?.category) {
+    prevLink.href = `project.html?id=${encodeURIComponent(navigation.prev.id)}&category=${encodeURIComponent(navigation.prev.category)}`;
     const prevTitle = prevLink.querySelector('.prev-project-title');
     if (prevTitle) {
       prevTitle.textContent = navigation.prev.title;
@@ -183,8 +183,8 @@ const renderProjectPage = (project) => {
   }
 
   const nextLink = document.getElementById('next-project');
-  if (nextLink && navigation.next) {
-    nextLink.href = `project.html?id=${navigation.next.id}&category=${navigation.next.category}`;
+  if (nextLink && navigation.next?.id && navigation.next?.category) {
+    nextLink.href = `project.html?id=${encodeURIComponent(navigation.next.id)}&category=${encodeURIComponent(navigation.next.category)}`;
     const nextTitle = nextLink.querySelector('.next-project-title');
     if (nextTitle) {
       nextTitle.textContent = navigation.next.title;
@@ -212,7 +212,7 @@ const handleMobileMenu = () => {
   });
 };
 
-const setCurrentYear = () => {
+const setProjectPageCurrentYear = () => {
   const yearNode = document.getElementById('year');
   if (yearNode) {
     yearNode.textContent = new Date().getFullYear().toString();
@@ -222,7 +222,7 @@ const setCurrentYear = () => {
 
 
 // Custom Diamond Cursor Implementation
-const initCustomCursor = () => {
+const initProjectPageCustomCursor = () => {
   const cursor = document.querySelector('.custom-cursor');
   if (!cursor) return;
 
@@ -403,8 +403,8 @@ const initProjectPage = () => {
   const project = findProject(id);
   renderProjectPage(project);
   handleMobileMenu();
-  setCurrentYear();
-  initCustomCursor();
+  setProjectPageCurrentYear();
+  initProjectPageCustomCursor();
   initBeigePatterns();
 };
 
