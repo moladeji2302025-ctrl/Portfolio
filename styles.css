@@ -458,6 +458,37 @@ a {
 }
 
 .portfolio-grid {
+  display: block;
+}
+
+.category-section {
+  margin-bottom: 3.5rem;
+}
+
+.category-section.is-hidden {
+  display: none;
+}
+
+.category-header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.category-header .section-label {
+  font-size: 1rem;
+}
+
+.category-title {
+  margin: 0.1rem 0 0;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.category-grid {
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -524,6 +555,13 @@ a {
 .project-card.is-hidden {
   opacity: 0.1;
   pointer-events: none;
+}
+
+.project-card-link {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  cursor: pointer;
 }
 
 .stats-band {
@@ -987,6 +1025,7 @@ a {
   }
 
   .portfolio-grid,
+  .category-grid,
   .updates-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1025,6 +1064,7 @@ a {
   .faq-grid,
   .stats-grid,
   .portfolio-grid,
+  .category-grid,
   .updates-grid,
   .nav-pager {
     grid-template-columns: 1fr;

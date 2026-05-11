@@ -620,12 +620,17 @@ const createProjectCard = (project) => {
 
   overlay.append(categoryNode, titleNode);
 
-  const viewButton = document.createElement('a');
+  const viewButton = document.createElement('span');
   viewButton.className = 'project-view';
-  viewButton.href = `project.html?id=${project.id}&category=${encodeURIComponent(project.category)}`;
   viewButton.textContent = 'View';
 
-  card.append(overlay, viewButton);
+  // Full-cover transparent link makes the entire card clickable
+  const cardLink = document.createElement('a');
+  cardLink.className = 'project-card-link';
+  cardLink.href = `project.html?id=${project.id}&category=${encodeURIComponent(project.category)}`;
+  cardLink.setAttribute('aria-label', `View ${project.title}`);
+
+  card.append(overlay, viewButton, cardLink);
   return card;
 };
 
@@ -671,14 +676,40 @@ const initPortfolio = () => {
   const grid = document.getElementById('portfolio-grid');
   if (!grid) return;
 
+  const CATEGORY_ORDER = ['Motion Graphics', 'Animations', 'Illustrations', 'Drawings', 'Modelling'];
+
   grid.innerHTML = '';
-  window.projects.forEach((project) => grid.appendChild(createProjectCard(project)));
+  CATEGORY_ORDER.forEach((cat) => {
+    const catProjects = window.projects.filter((p) => p.category === cat);
+    if (catProjects.length === 0) return;
+
+    const section = document.createElement('div');
+    section.className = 'category-section';
+    section.dataset.category = cat;
+
+    const header = document.createElement('div');
+    header.className = 'category-header';
+    const catLabel = document.createElement('span');
+    catLabel.className = 'section-label';
+    catLabel.textContent = `${catProjects.length} Project${catProjects.length !== 1 ? 's' : ''}`;
+    const catTitle = document.createElement('h3');
+    catTitle.className = 'category-title';
+    catTitle.textContent = cat;
+    header.append(catLabel, catTitle);
+
+    const catGrid = document.createElement('div');
+    catGrid.className = 'category-grid';
+    catProjects.forEach((project) => catGrid.appendChild(createProjectCard(project)));
+
+    section.append(header, catGrid);
+    grid.appendChild(section);
+  });
 
   const buttons = document.querySelectorAll('.filter-btn');
   const applyFilter = (filterValue) => {
-    grid.querySelectorAll('.project-card').forEach((card) => {
-      const show = filterValue === 'all' || card.dataset.category === filterValue;
-      card.classList.toggle('is-hidden', !show);
+    grid.querySelectorAll('.category-section').forEach((section) => {
+      const show = filterValue === 'all' || section.dataset.category === filterValue;
+      section.classList.toggle('is-hidden', !show);
     });
   };
 
