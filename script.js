@@ -691,7 +691,7 @@ const initPortfolio = () => {
     header.className = 'category-header';
     const catLabel = document.createElement('span');
     catLabel.className = 'section-label';
-    catLabel.textContent = cat;
+    catLabel.textContent = `${catProjects.length} Project${catProjects.length !== 1 ? 's' : ''}`;
     const catTitle = document.createElement('h3');
     catTitle.className = 'category-title';
     catTitle.textContent = cat;
