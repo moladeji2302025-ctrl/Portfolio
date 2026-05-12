@@ -1009,13 +1009,13 @@ const initFaq = () => {
   });
 };
 
-const sanitizeInput = (value) =>
+const sanitizeInput = (value = '') =>
   value
     .replace(/[<>]/g, '')
     .replace(/[\u0000-\u001F\u007F]/g, ' ')
     .trim();
 
-const sanitizeMessage = (value) =>
+const sanitizeMessage = (value = '') =>
   value
     .replace(/[<>]/g, '')
     .replace(/\u0000/g, '')
@@ -1062,7 +1062,7 @@ const initContactForm = () => {
     }
 
     if (formEndpoint.includes('your-email@example.com')) {
-      setFeedback('The contact form endpoint is not configured yet. Replace your-email@example.com in index.html with your real inbox address.', true);
+      setFeedback('The contact form endpoint is not configured yet. Update both action and data-form-endpoint in index.html with your real endpoint.', true);
       return;
     }
 
