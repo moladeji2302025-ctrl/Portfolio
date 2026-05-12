@@ -102,6 +102,7 @@ const renderProjectPage = (project) => {
     } else if (project.mediaType === 'iframe') {
       const iframe = document.createElement('iframe');
       iframe.src = project.mediaSrc;
+      iframe.setAttribute('title', `${project.title} preview`);
       iframe.allowFullscreen = true;
       iframe.loading = 'lazy';
       iframe.className = 'detail-media detail-media-iframe';
