@@ -1011,13 +1011,13 @@ const initFaq = () => {
 
 const sanitizeInput = (value = '') =>
   value
-    .replace(/[<>]/g, '')
+    .replace(/[<>"'`\\]/g, '')
     .replace(/[\u0000-\u001F\u007F]/g, ' ')
     .trim();
 
 const sanitizeMessage = (value = '') =>
   value
-    .replace(/[<>]/g, '')
+    .replace(/[<>"'`\\]/g, '')
     .replace(/\u0000/g, '')
     .trim();
 
@@ -1032,6 +1032,7 @@ const initContactForm = () => {
   const feedback = document.getElementById('contact-form-feedback');
   const submitButton = form.querySelector('button[type="submit"]');
   const formEndpoint = (form.dataset.formEndpoint || form.getAttribute('action') || '').trim();
+  const formEndpointPlaceholder = 'https://formsubmit.co/ajax/your-email@example.com';
   const formSubject = (form.dataset.formSubject || 'Portfolio contact form').trim();
 
   if (!nameInput || !emailInput || !messageInput || !feedback || !submitButton || !formEndpoint) return;
@@ -1061,7 +1062,7 @@ const initContactForm = () => {
       return;
     }
 
-    if (formEndpoint.includes('your-email@example.com')) {
+    if (formEndpoint === formEndpointPlaceholder) {
       setFeedback('The contact form endpoint is not configured yet. Update both action and data-form-endpoint in index.html with your real endpoint.', true);
       return;
     }
@@ -1091,7 +1092,8 @@ const initContactForm = () => {
       form.reset();
       setFeedback('Thanks! Your message has been sent successfully.');
     } catch (error) {
-      setFeedback('Sorry, your message could not be sent. Please try again in a moment.', true);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown submission error.';
+      setFeedback(`Sorry, your message could not be sent (${errorMessage}). Please try again in a moment.`, true);
     } finally {
       submitButton.disabled = false;
       submitButton.removeAttribute('aria-busy');
