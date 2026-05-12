@@ -1062,7 +1062,7 @@ const initContactForm = () => {
     }
 
     if (formEndpoint.includes('your-email@example.com')) {
-      setFeedback('The contact form endpoint is not configured yet. Please update it before going live.', true);
+      setFeedback('The contact form endpoint is not configured yet. Replace your-email@example.com in index.html with your real inbox address.', true);
       return;
     }
 
@@ -1085,7 +1085,7 @@ const initContactForm = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Form submission failed.');
+        throw new Error(`Form submission failed with status ${response.status}.`);
       }
 
       form.reset();
