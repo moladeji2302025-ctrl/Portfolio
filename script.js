@@ -1032,6 +1032,7 @@ const initContactForm = () => {
   const feedback = document.getElementById('contact-form-feedback');
   const submitButton = form.querySelector('button[type="submit"]');
   const formEndpoint = (form.dataset.formEndpoint || form.getAttribute('action') || '').trim();
+  const formSubject = (form.dataset.formSubject || 'Portfolio contact form').trim();
 
   if (!nameInput || !emailInput || !messageInput || !feedback || !submitButton || !formEndpoint) return;
 
@@ -1056,17 +1057,12 @@ const initContactForm = () => {
     emailInput.value = email;
     messageInput.value = message;
 
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-    if (name.length < 2 || name.length > 120) {
-      setFeedback('Please enter a valid name (2-120 characters).', true);
+    if (!form.reportValidity()) {
       return;
     }
-    if (!emailPattern.test(email)) {
-      setFeedback('Please enter a valid email address.', true);
-      return;
-    }
-    if (message.length < 10 || message.length > 2000) {
-      setFeedback('Please enter a message between 10 and 2000 characters.', true);
+
+    if (formEndpoint.includes('your-email@example.com')) {
+      setFeedback('The contact form endpoint is not configured yet. Please update it before going live.', true);
       return;
     }
 
@@ -1084,7 +1080,7 @@ const initContactForm = () => {
           name,
           email,
           message,
-          _subject: 'Portfolio contact form'
+          _subject: formSubject
         })
       });
 

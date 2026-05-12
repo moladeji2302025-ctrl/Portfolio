@@ -235,10 +235,10 @@
           <form
             class="newsletter"
             id="contact-form"
-            action="https://formsubmit.co/ajax/mofejeriiseoluwa@gmail.com"
-            data-form-endpoint="https://formsubmit.co/ajax/mofejeriiseoluwa@gmail.com"
+            action="https://formsubmit.co/ajax/your-email@example.com"
+            data-form-endpoint="https://formsubmit.co/ajax/your-email@example.com"
+            data-form-subject="Portfolio contact form"
             method="post"
-            novalidate
           >
             <input
               type="text"
@@ -246,6 +246,8 @@
               name="name"
               placeholder="Your name"
               autocomplete="name"
+              minlength="2"
+              maxlength="120"
               required
             />
             <input
@@ -260,8 +262,10 @@
               id="contact-message"
               name="message"
               placeholder="Tell me about your project"
-              autocomplete="on"
+              autocomplete="off"
               rows="4"
+              minlength="10"
+              maxlength="2000"
               required
             ></textarea>
             <input type="text" id="contact-company" name="_honey" class="contact-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />

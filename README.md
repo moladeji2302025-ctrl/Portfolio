@@ -57,7 +57,7 @@ serve .
 
 ## 📬 Contact Form
 
-The contact form now submits through a form-handler endpoint (`FormSubmit` AJAX endpoint by default) instead of `mailto:`.
+The contact form now submits through a form-handler endpoint (`FormSubmit` AJAX pattern) instead of `mailto:`.
 
 - Autofill is enabled with stable `id`/`name` fields and field-level `autocomplete` attributes.
 - A hidden honeypot field is included to reduce bot spam.
@@ -69,6 +69,7 @@ Update the form endpoint in `index.html`:
 
 - `action="https://formsubmit.co/ajax/your-email@example.com"`
 - `data-form-endpoint="https://formsubmit.co/ajax/your-email@example.com"`
+- Optionally set `data-form-subject="Portfolio contact form"` to customize the submitted subject line.
 
 You can also swap this with your preferred provider (for example Formspree or Netlify Forms) without exposing private keys in client-side code.
 
