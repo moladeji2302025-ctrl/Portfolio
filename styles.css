@@ -953,8 +953,27 @@ a {
 
 .detail-visual {
   border: 1px solid var(--border);
-  overflow: hidden;
-  aspect-ratio: 21/9;
+  background: var(--surface);
+}
+
+.detail-media {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+.detail-media-iframe {
+  border: 0;
+  min-height: clamp(320px, 58vh, 760px);
+}
+
+.detail-media-video {
+  background: #000;
+  max-height: min(80vh, 860px);
+}
+
+.detail-media-image {
+  height: auto;
 }
 
 .detail-meta {
@@ -1033,6 +1052,10 @@ a {
   .hero-side {
     left: 0.8rem;
   }
+
+  .detail-media-iframe {
+    min-height: clamp(280px, 50vh, 560px);
+  }
 }
 
 @media (max-width: 768px) {
@@ -1086,6 +1109,10 @@ a {
 
   .stat:last-child {
     border-bottom: 0;
+  }
+
+  .detail-media-iframe {
+    min-height: clamp(220px, 42vh, 420px);
   }
 }
 
