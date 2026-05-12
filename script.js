@@ -1032,7 +1032,6 @@ const initContactForm = () => {
   const feedback = document.getElementById('contact-form-feedback');
   const submitButton = form.querySelector('button[type="submit"]');
   const formEndpoint = (form.dataset.formEndpoint || form.getAttribute('action') || '').trim();
-  const formEndpointPlaceholder = 'https://formsubmit.co/ajax/your-email@example.com';
   const formSubject = (form.dataset.formSubject || 'Portfolio contact form').trim();
 
   if (!nameInput || !emailInput || !messageInput || !feedback || !submitButton || !formEndpoint) return;
@@ -1059,11 +1058,6 @@ const initContactForm = () => {
     messageInput.value = message;
 
     if (!form.reportValidity()) {
-      return;
-    }
-
-    if (formEndpoint === formEndpointPlaceholder) {
-      setFeedback('The contact form endpoint is not configured yet. Update both action and data-form-endpoint in index.html with your real endpoint.', true);
       return;
     }
 
