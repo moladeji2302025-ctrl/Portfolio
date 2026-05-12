@@ -95,24 +95,23 @@ const renderProjectPage = (project) => {
       video.muted = true;
       video.loop = true;
       video.playsInline = true;
-      video.className = 'w-full';
+      video.className = 'detail-media detail-media-video';
       video.poster = project.thumbnail;
       video.oncontextmenu = () => false;
       mediaContainer.appendChild(video);
     } else if (project.mediaType === 'iframe') {
       const iframe = document.createElement('iframe');
       iframe.src = project.mediaSrc;
-      iframe.width = '100%';
-      iframe.height = '600';
+      iframe.setAttribute('title', `${project.title} preview`);
       iframe.allowFullscreen = true;
       iframe.loading = 'lazy';
-      iframe.className = 'w-full';
+      iframe.className = 'detail-media detail-media-iframe';
       mediaContainer.appendChild(iframe);
     } else {
       const img = document.createElement('img');
       img.src = project.mediaSrc || project.thumbnail;
       img.alt = project.title;
-      img.className = 'w-full';
+      img.className = 'detail-media detail-media-image';
       img.oncontextmenu = () => false;
       mediaContainer.appendChild(img);
     }
