@@ -561,6 +561,15 @@ window.projects = [
 ];
 
 const yearNode = document.getElementById('year');
+const PROFILE_IMAGES = [
+  'WhatsApp Image 2026-04-26 at 20.19.48 (1).jpeg',
+  'WhatsApp Image 2026-04-26 at 20.19.48.jpeg',
+  'WhatsApp Image 2026-04-26 at 20.19.49.jpeg',
+  'WhatsApp Image 2026-04-26 at 20.19.51.jpeg',
+  'WhatsApp Image 2026-04-26 at 20.19.54.jpeg',
+  'WhatsApp Image 2026-04-26 at 20.19.56.jpeg',
+  'WhatsApp Image 2026-04-26 at 20.19.57.jpeg'
+];
 
 const FEATURED_PROJECT_IDS = [
   'asian-cloth-illustration',
@@ -890,6 +899,15 @@ const initVideoLightbox = () => {
   });
 };
 
+const initHeroProfileImage = () => {
+  const imageNode = document.getElementById('hero-profile-image');
+  if (!imageNode || PROFILE_IMAGES.length === 0) return;
+
+  const randomIndex = Math.floor(Math.random() * PROFILE_IMAGES.length);
+  const selectedImage = PROFILE_IMAGES[randomIndex];
+  imageNode.src = `./Profile/${encodeURIComponent(selectedImage)}`;
+};
+
 const initCustomCursor = () => {
   const cursor = document.querySelector('.custom-cursor');
   if (!cursor || window.matchMedia('(pointer: coarse)').matches) return;
@@ -1025,6 +1043,7 @@ const initApp = () => {
   initScrollReveal();
   initCounters();
   initVideoLightbox();
+  initHeroProfileImage();
   initCustomCursor();
   initNavHighlight();
   initTestimonials();
