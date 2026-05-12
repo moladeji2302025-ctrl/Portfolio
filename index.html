@@ -232,9 +232,45 @@
           <span class="section-label">Let's</span>
           <h2 class="section-title">Collaborate</h2>
           <p class="section-kicker" style="margin-inline:auto;">Have a project in mind? Let's build something unforgettable together.</p>
-          <form class="newsletter" action="mailto:mofejeriiseoluwa@gmail.com" method="post" enctype="text/plain">
-            <input type="email" name="email" placeholder="Your email address" required />
+          <form
+            class="newsletter"
+            id="contact-form"
+            action="https://formsubmit.co/ajax/your-email@example.com"
+            data-form-endpoint="https://formsubmit.co/ajax/your-email@example.com"
+            data-form-subject="Portfolio contact form"
+            method="post"
+          >
+            <input
+              type="text"
+              id="contact-name"
+              name="name"
+              placeholder="Your name"
+              autocomplete="name"
+              minlength="2"
+              maxlength="120"
+              required
+            />
+            <input
+              type="email"
+              id="contact-email"
+              name="email"
+              placeholder="Your email address"
+              autocomplete="email"
+              required
+            />
+            <textarea
+              id="contact-message"
+              name="message"
+              placeholder="Tell me about your project"
+              autocomplete="off"
+              rows="4"
+              minlength="10"
+              maxlength="2000"
+              required
+            ></textarea>
+            <input type="text" id="contact-company" name="_honey" class="contact-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" role="presentation" />
             <button class="btn btn-primary" type="submit">Send Message →</button>
+            <p class="form-feedback" id="contact-form-feedback" role="status" aria-live="polite" hidden></p>
           </form>
         </div>
       </div>

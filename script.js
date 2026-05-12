@@ -1009,6 +1009,98 @@ const initFaq = () => {
   });
 };
 
+const sanitizeInput = (value = '') =>
+  value
+    .replace(/[<>"'`\\]/g, '')
+    .replace(/[\u0000-\u001F\u007F]/g, ' ')
+    .trim();
+
+const sanitizeMessage = (value = '') =>
+  value
+    .replace(/[<>"'`\\]/g, '')
+    .replace(/\u0000/g, '')
+    .trim();
+
+const initContactForm = () => {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+
+  const nameInput = document.getElementById('contact-name');
+  const emailInput = document.getElementById('contact-email');
+  const messageInput = document.getElementById('contact-message');
+  const honeypotInput = document.getElementById('contact-company');
+  const feedback = document.getElementById('contact-form-feedback');
+  const submitButton = form.querySelector('button[type="submit"]');
+  const formEndpoint = (form.dataset.formEndpoint || form.getAttribute('action') || '').trim();
+  const formEndpointPlaceholder = 'https://formsubmit.co/ajax/your-email@example.com';
+  const formSubject = (form.dataset.formSubject || 'Portfolio contact form').trim();
+
+  if (!nameInput || !emailInput || !messageInput || !feedback || !submitButton || !formEndpoint) return;
+
+  const setFeedback = (message, isError = false) => {
+    feedback.hidden = !message;
+    feedback.textContent = message;
+    feedback.classList.toggle('is-error', isError);
+    feedback.classList.toggle('is-success', !isError && Boolean(message));
+  };
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    setFeedback('');
+
+    if (honeypotInput?.value) return;
+
+    const name = sanitizeInput(nameInput.value);
+    const email = emailInput.value.trim();
+    const message = sanitizeMessage(messageInput.value);
+
+    nameInput.value = name;
+    emailInput.value = email;
+    messageInput.value = message;
+
+    if (!form.reportValidity()) {
+      return;
+    }
+
+    if (formEndpoint === formEndpointPlaceholder) {
+      setFeedback('The contact form endpoint is not configured yet. Update both action and data-form-endpoint in index.html with your real endpoint.', true);
+      return;
+    }
+
+    submitButton.disabled = true;
+    submitButton.setAttribute('aria-busy', 'true');
+
+    try {
+      const response = await fetch(formEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+          _subject: formSubject
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(`Form submission failed with status ${response.status}.`);
+      }
+
+      form.reset();
+      setFeedback('Thanks! Your message has been sent successfully.');
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown submission error.';
+      setFeedback(`Sorry, your message could not be sent (${errorMessage}). Please try again in a moment.`, true);
+    } finally {
+      submitButton.disabled = false;
+      submitButton.removeAttribute('aria-busy');
+    }
+  });
+};
+
 const initPageTransition = () => {
   const wipe = document.querySelector('.page-wipe');
   if (!wipe) return;
@@ -1048,6 +1140,7 @@ const initApp = () => {
   initNavHighlight();
   initTestimonials();
   initFaq();
+  initContactForm();
   initPageTransition();
   setCurrentYear();
 };
