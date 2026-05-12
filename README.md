@@ -57,7 +57,20 @@ serve .
 
 ## 📬 Contact Form
 
-The contact form currently uses a `mailto:` action. Connect it to a backend service or form handler (for example Formspree, Netlify Forms, or Supabase) for production-ready submissions.
+The contact form now submits through a form-handler endpoint (`FormSubmit` AJAX endpoint by default) instead of `mailto:`.
+
+- Autofill is enabled with stable `id`/`name` fields and field-level `autocomplete` attributes.
+- A hidden honeypot field is included to reduce bot spam.
+- Client-side validation/sanitization and inline success/error feedback are included in `script.js`.
+
+### Configure for production
+
+Update the form endpoint in `index.html`:
+
+- `action="https://formsubmit.co/ajax/your-email@example.com"`
+- `data-form-endpoint="https://formsubmit.co/ajax/your-email@example.com"`
+
+You can also swap this with your preferred provider (for example Formspree or Netlify Forms) without exposing private keys in client-side code.
 
 ## 📄 License
 

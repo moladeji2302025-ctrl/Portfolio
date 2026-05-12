@@ -1009,6 +1009,100 @@ const initFaq = () => {
   });
 };
 
+const sanitizeInput = (value) =>
+  value
+    .replace(/[<>]/g, '')
+    .replace(/[\u0000-\u001F\u007F]/g, ' ')
+    .trim();
+
+const sanitizeMessage = (value) =>
+  value
+    .replace(/[<>]/g, '')
+    .replace(/\u0000/g, '')
+    .trim();
+
+const initContactForm = () => {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+
+  const nameInput = document.getElementById('contact-name');
+  const emailInput = document.getElementById('contact-email');
+  const messageInput = document.getElementById('contact-message');
+  const honeypotInput = document.getElementById('contact-company');
+  const feedback = document.getElementById('contact-form-feedback');
+  const submitButton = form.querySelector('button[type="submit"]');
+  const formEndpoint = (form.dataset.formEndpoint || form.getAttribute('action') || '').trim();
+
+  if (!nameInput || !emailInput || !messageInput || !feedback || !submitButton || !formEndpoint) return;
+
+  const setFeedback = (message, isError = false) => {
+    feedback.hidden = !message;
+    feedback.textContent = message;
+    feedback.classList.toggle('is-error', isError);
+    feedback.classList.toggle('is-success', !isError && Boolean(message));
+  };
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    setFeedback('');
+
+    if (honeypotInput?.value) return;
+
+    const name = sanitizeInput(nameInput.value);
+    const email = emailInput.value.trim();
+    const message = sanitizeMessage(messageInput.value);
+
+    nameInput.value = name;
+    emailInput.value = email;
+    messageInput.value = message;
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (name.length < 2 || name.length > 120) {
+      setFeedback('Please enter a valid name (2-120 characters).', true);
+      return;
+    }
+    if (!emailPattern.test(email)) {
+      setFeedback('Please enter a valid email address.', true);
+      return;
+    }
+    if (message.length < 10 || message.length > 2000) {
+      setFeedback('Please enter a message between 10 and 2000 characters.', true);
+      return;
+    }
+
+    submitButton.disabled = true;
+    submitButton.setAttribute('aria-busy', 'true');
+
+    try {
+      const response = await fetch(formEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+          _subject: 'Portfolio contact form'
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Form submission failed.');
+      }
+
+      form.reset();
+      setFeedback('Thanks! Your message has been sent successfully.');
+    } catch (error) {
+      setFeedback('Sorry, your message could not be sent. Please try again in a moment.', true);
+    } finally {
+      submitButton.disabled = false;
+      submitButton.removeAttribute('aria-busy');
+    }
+  });
+};
+
 const initPageTransition = () => {
   const wipe = document.querySelector('.page-wipe');
   if (!wipe) return;
@@ -1048,6 +1142,7 @@ const initApp = () => {
   initNavHighlight();
   initTestimonials();
   initFaq();
+  initContactForm();
   initPageTransition();
   setCurrentYear();
 };
