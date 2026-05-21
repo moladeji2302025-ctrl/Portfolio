@@ -153,7 +153,7 @@ window.projects = [
     category: 'Illustrations',
     date: 'May 2024',
     summary: 'Digital painting honoring traditional silk garments under warm lantern light',
-    thumbnail: 'projects/Illustrations/asian-cloth-illustration/pic1.jpg',
+    thumbnail: 'projects/Illustrations/asian-cloth-illustration/project.jpg',
     mediaType: 'image',
     mediaSrc: 'projects/Illustrations/asian-cloth-illustration/project.jpg',
     description:
