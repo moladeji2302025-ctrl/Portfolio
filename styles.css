@@ -1160,7 +1160,8 @@ a {
   }
 
   .hero {
-    min-height: auto;
+    min-height: calc(100vh - var(--nav-height-mobile));
+    min-height: calc(100svh - var(--nav-height-mobile));
   }
 
   .hero-inner,
