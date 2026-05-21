@@ -8,6 +8,8 @@
   --accent: #64ffda;
   --accent-glow: rgba(100, 255, 218, 0.15);
   --white: #ffffff;
+  --nav-height: 82px;
+  --nav-height-mobile: 72px;
 }
 
 * {
@@ -104,7 +106,7 @@ a {
 }
 
 .nav-wrap {
-  min-height: 82px;
+  min-height: var(--nav-height);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -237,8 +239,8 @@ a {
 }
 
 .hero {
-  min-height: calc(100vh - 82px);
-  min-height: calc(100svh - 82px);
+  min-height: calc(100vh - var(--nav-height));
+  min-height: calc(100svh - var(--nav-height));
   position: relative;
   display: flex;
   align-items: center;
@@ -1229,7 +1231,7 @@ a {
   }
 
   .nav-wrap {
-    min-height: 72px;
+    min-height: var(--nav-height-mobile);
   }
 
   .mobile-menu a {
