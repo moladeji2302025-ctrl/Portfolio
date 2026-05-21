@@ -1170,7 +1170,6 @@ a {
   .portfolio-grid,
   .category-grid,
   .updates-grid,
-  .footer-grid,
   .nav-pager {
     grid-template-columns: 1fr;
   }
@@ -1239,6 +1238,10 @@ a {
 
   .project-card {
     min-height: 220px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
   }
 }
 
