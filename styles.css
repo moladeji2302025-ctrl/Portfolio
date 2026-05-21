@@ -240,7 +240,6 @@ a {
 
 .hero {
   min-height: calc(100vh - var(--nav-height));
-  min-height: calc(100svh - var(--nav-height));
   position: relative;
   display: flex;
   align-items: center;
@@ -1161,7 +1160,6 @@ a {
 
   .hero {
     min-height: calc(100vh - var(--nav-height-mobile));
-    min-height: calc(100svh - var(--nav-height-mobile));
   }
 
   .hero-inner,
@@ -1241,6 +1239,18 @@ a {
 
   .project-card {
     min-height: 220px;
+  }
+}
+
+@supports (height: 100svh) {
+  .hero {
+    min-height: calc(100svh - var(--nav-height));
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      min-height: calc(100svh - var(--nav-height-mobile));
+    }
   }
 }
 
