@@ -287,6 +287,12 @@ a {
   gap: 1rem;
 }
 
+.reel-feedback {
+  margin-top: 0.85rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
 .hero-media {
   justify-self: end;
   width: min(480px, 92%);
