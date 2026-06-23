@@ -852,9 +852,9 @@ const initVideoLightbox = () => {
   if (!trigger || !feedback) return;
 
   trigger.addEventListener('click', () => {
-    if (!feedback.hidden) return;
-    feedback.hidden = false;
+    if (trigger.disabled) return;
     feedback.textContent = 'Reel currently unavailable';
+    feedback.setAttribute('aria-hidden', 'false');
     trigger.disabled = true;
   });
 };
