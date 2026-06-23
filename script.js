@@ -848,54 +848,10 @@ const initCounters = () => {
 
 const initVideoLightbox = () => {
   const trigger = document.getElementById('play-reel');
-  const lightbox = document.getElementById('video-lightbox');
-  const frame = document.getElementById('video-lightbox-frame');
-  const close = document.getElementById('video-lightbox-close');
-  if (!trigger || !lightbox || !frame || !close) return;
-
-  const closeLightbox = () => {
-    lightbox.classList.remove('open');
-    lightbox.setAttribute('aria-hidden', 'true');
-    frame.innerHTML = '';
-  };
+  if (!trigger) return;
 
   trigger.addEventListener('click', () => {
-    const video = trigger.dataset.video;
-    if (!video) return;
-
-    let parsed;
-    try {
-      parsed = new URL(video, window.location.href);
-    } catch (error) {
-      console.warn(`Invalid reel URL provided for video lightbox: ${video}`, error);
-      return;
-    }
-
-    if (!['youtube.com', 'www.youtube.com', 'youtu.be'].includes(parsed.hostname)) {
-      console.warn(`Video lightbox only supports YouTube URLs. Received: ${parsed.hostname}`);
-      return;
-    }
-
-    const iframe = document.createElement('iframe');
-    iframe.title = 'Showreel';
-    iframe.allow = 'autoplay; fullscreen';
-    iframe.allowFullscreen = true;
-
-    const src = parsed.toString();
-    iframe.src = src.includes('?') ? `${src}&autoplay=1` : `${src}?autoplay=1`;
-    frame.replaceChildren(iframe);
-
-    lightbox.classList.add('open');
-    lightbox.setAttribute('aria-hidden', 'false');
-  });
-
-  close.addEventListener('click', closeLightbox);
-  lightbox.addEventListener('click', (event) => {
-    if (event.target === lightbox) closeLightbox();
-  });
-
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') closeLightbox();
+    window.alert('Reel currently unavailable');
   });
 };
 
