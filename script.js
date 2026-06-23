@@ -848,10 +848,12 @@ const initCounters = () => {
 
 const initVideoLightbox = () => {
   const trigger = document.getElementById('play-reel');
-  if (!trigger) return;
+  const feedback = document.getElementById('reel-feedback');
+  if (!trigger || !feedback) return;
 
   trigger.addEventListener('click', () => {
-    window.alert('Reel currently unavailable');
+    feedback.hidden = false;
+    feedback.textContent = 'Reel currently unavailable';
   });
 };
 
