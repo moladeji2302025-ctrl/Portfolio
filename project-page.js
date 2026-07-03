@@ -6,7 +6,8 @@ const getUrlParams = () => {
   const params = new URLSearchParams(window.location.search);
   return {
     id: params.get('id'),
-    category: params.get('category')
+    category: params.get('category'),
+    variant: params.get('variant')
   };
 };
 
@@ -39,7 +40,86 @@ const getNavigationProjects = (currentProject) => {
   };
 };
 
-const renderProjectPage = (project) => {
+const renderProjectMedia = (mediaContainer, { mediaType, mediaSrc, thumbnail, title }) => {
+  mediaContainer.innerHTML = '';
+
+  if (mediaType === 'video') {
+    const video = document.createElement('video');
+    video.src = mediaSrc;
+    video.controls = true;
+    video.controlsList = 'nodownload';
+    video.autoplay = true;
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.className = 'detail-media detail-media-video';
+    if (thumbnail) video.poster = thumbnail;
+    video.oncontextmenu = () => false;
+    mediaContainer.appendChild(video);
+  } else if (mediaType === 'iframe') {
+    const iframe = document.createElement('iframe');
+    iframe.src = mediaSrc;
+    iframe.setAttribute('title', `${title} preview`);
+    iframe.allowFullscreen = true;
+    iframe.loading = 'lazy';
+    iframe.className = 'detail-media detail-media-iframe';
+    mediaContainer.appendChild(iframe);
+  } else {
+    const img = document.createElement('img');
+    img.src = mediaSrc || thumbnail;
+    img.alt = title;
+    img.className = 'detail-media detail-media-image';
+    img.oncontextmenu = () => false;
+    mediaContainer.appendChild(img);
+  }
+};
+
+const renderVariantSwitcher = (project, mediaContainer, initialVariantId) => {
+  const switcherContainer = document.getElementById('project-variants');
+  if (!switcherContainer) return;
+
+  switcherContainer.innerHTML = '';
+
+  if (!Array.isArray(project.variants) || project.variants.length === 0) {
+    switcherContainer.style.display = 'none';
+    return;
+  }
+
+  switcherContainer.style.display = '';
+
+  const requestedIndex = project.variants.findIndex((variant) => variant.id === initialVariantId);
+  const defaultIndex = project.variants.findIndex((variant) => variant.mediaSrc === project.mediaSrc);
+  const startIndex = requestedIndex >= 0 ? requestedIndex : Math.max(0, defaultIndex);
+
+  const buttons = project.variants.map((variant, index) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'filter-btn';
+    button.textContent = variant.label;
+    button.classList.toggle('active', index === startIndex);
+    button.addEventListener('click', () => {
+      buttons.forEach((btn) => btn.classList.remove('active'));
+      button.classList.add('active');
+      renderProjectMedia(mediaContainer, {
+        mediaType: variant.mediaType,
+        mediaSrc: variant.mediaSrc,
+        thumbnail: variant.thumbnail || project.thumbnail,
+        title: project.title
+      });
+    });
+    switcherContainer.appendChild(button);
+    return button;
+  });
+
+  renderProjectMedia(mediaContainer, {
+    mediaType: project.variants[startIndex].mediaType,
+    mediaSrc: project.variants[startIndex].mediaSrc,
+    thumbnail: project.variants[startIndex].thumbnail || project.thumbnail,
+    title: project.title
+  });
+};
+
+const renderProjectPage = (project, initialVariantId) => {
   if (!project) {
     document.body.innerHTML = '<div class="min-h-screen flex items-center justify-center"><p class="text-xl text-muted">Project not found</p></div>';
     return;
@@ -81,39 +161,20 @@ const renderProjectPage = (project) => {
     description.textContent = project.description;
   }
 
-  // Render project media
+  // Render project media (and variant switcher, if this project has style/version variants)
   const mediaContainer = document.getElementById('project-media');
   if (mediaContainer) {
-    mediaContainer.innerHTML = '';
-    
-    if (project.mediaType === 'video') {
-      const video = document.createElement('video');
-      video.src = project.mediaSrc;
-      video.controls = true;
-      video.controlsList = 'nodownload';
-      video.autoplay = true;
-      video.muted = true;
-      video.loop = true;
-      video.playsInline = true;
-      video.className = 'detail-media detail-media-video';
-      video.poster = project.thumbnail;
-      video.oncontextmenu = () => false;
-      mediaContainer.appendChild(video);
-    } else if (project.mediaType === 'iframe') {
-      const iframe = document.createElement('iframe');
-      iframe.src = project.mediaSrc;
-      iframe.setAttribute('title', `${project.title} preview`);
-      iframe.allowFullscreen = true;
-      iframe.loading = 'lazy';
-      iframe.className = 'detail-media detail-media-iframe';
-      mediaContainer.appendChild(iframe);
+    if (Array.isArray(project.variants) && project.variants.length > 0) {
+      renderVariantSwitcher(project, mediaContainer, initialVariantId);
     } else {
-      const img = document.createElement('img');
-      img.src = project.mediaSrc || project.thumbnail;
-      img.alt = project.title;
-      img.className = 'detail-media detail-media-image';
-      img.oncontextmenu = () => false;
-      mediaContainer.appendChild(img);
+      const switcherContainer = document.getElementById('project-variants');
+      if (switcherContainer) switcherContainer.style.display = 'none';
+      renderProjectMedia(mediaContainer, {
+        mediaType: project.mediaType,
+        mediaSrc: project.mediaSrc,
+        thumbnail: project.thumbnail,
+        title: project.title
+      });
     }
   }
 
@@ -392,15 +453,15 @@ const initBeigePatterns = () => {
 };
 
 const initProjectPage = () => {
-  const { id } = getUrlParams();
-  
+  const { id, variant } = getUrlParams();
+
   if (!id) {
     window.location.href = './index.html#portfolio';
     return;
   }
 
   const project = findProject(id);
-  renderProjectPage(project);
+  renderProjectPage(project, variant);
   handleMobileMenu();
   setProjectPageCurrentYear();
   initProjectPageCustomCursor();
