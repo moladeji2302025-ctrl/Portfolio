@@ -76,9 +76,9 @@ window.projects = [
     subcategory: 'War Story',
     date: 'July 2026',
     summary: 'Narrative battle sequence explored across three stylistic render passes',
-    thumbnail: 'projects/Animations/War story refined_1.mp4',
+    thumbnail: 'projects/Animations/War story refined_2.mp4',
     mediaType: 'video',
-    mediaSrc: 'projects/Animations/War story refined_1.mp4',
+    mediaSrc: 'projects/Animations/War story refined_2.mp4',
     description:
       'A narrative war story sequence rendered across three stylistic passes, iterating on shading, lighting, and mood while keeping the same animation and camera work. Use the style tabs to compare each render.',
     tools: ['Blender'],
