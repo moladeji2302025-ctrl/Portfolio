@@ -275,6 +275,26 @@ a {
   display: block;
 }
 
+.hero-line .brush-word {
+  position: relative;
+  display: inline-block;
+  font-family: 'Caveat Brush', cursive;
+  text-transform: none;
+  color: #ff6b5e;
+  font-size: 1.2em;
+  line-height: 1;
+  padding-right: 0.15em;
+}
+
+.hero-line .brush-icon {
+  position: absolute;
+  left: 100%;
+  top: 70%;
+  font-size: 0.42em;
+  transform: translate(-85%, -50%) rotate(-20deg);
+  display: inline-block;
+}
+
 .hero-copy {
   color: var(--text-muted);
   max-width: 540px;
