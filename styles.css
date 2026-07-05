@@ -1302,6 +1302,6 @@ a {
 
 @media (max-width: 480px) {
   .container {
-    width: min(1200px, calc(100% - 1.5rem));
+    width: min(1200px, calc(100% - 3.5rem));
   }
 }
