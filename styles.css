@@ -290,9 +290,15 @@ a {
   position: absolute;
   left: 100%;
   top: 70%;
-  font-size: 0.42em;
-  transform: translate(-85%, -50%) rotate(-20deg);
+  transform: translate(-38%, -88%) rotate(0deg);
   display: inline-block;
+  color: var(--accent);
+}
+
+.hero-line .brush-icon svg {
+  width: 0.75em;
+  height: 0.75em;
+  display: block;
 }
 
 .hero-copy {
