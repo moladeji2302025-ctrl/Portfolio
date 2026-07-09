@@ -220,6 +220,23 @@ window.projects = [
     links: [],
   },
   {
+    id: 'character-design-turnaround',
+    title: 'Character Design Turnaround',
+    category: 'Illustrations',
+    date: 'July 2026',
+    summary: 'Three-quarter character turnaround exploring a bespectacled figure from multiple angles',
+    thumbnail: 'projects/Illustrations/character design/Illustration_001.png',
+    mediaType: 'image',
+    mediaSrc: 'projects/Illustrations/character design/Illustration_001.png',
+    description:
+      'Character design study presenting front, back, and side views of a bespectacled figure to establish consistent proportions and silhouette. Flat cel-shaded rendering with clean linework keeps the focus on form and turnaround accuracy.',
+    tools: ['Digital Illustration'],
+    gallery: [
+      'projects/Illustrations/character design/char_001.png'
+    ],
+    links: [],
+  },
+  {
     id: 'center-of-attraction',
     title: 'Center Of Attraction',
     category: 'Motion Graphics',
@@ -622,6 +639,7 @@ const PROFILE_IMAGES = [
 ];
 
 const FEATURED_PROJECT_IDS = [
+  'character-design-turnaround',
   'asian-cloth-illustration',
   'king-illustration',
   'lecrae',
