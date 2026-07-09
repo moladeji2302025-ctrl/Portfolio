@@ -1,5 +1,21 @@
 window.projects = [
   {
+    id: 'project-preview',
+    title: 'Project Preview',
+    category: 'Animations',
+    subcategory: 'Blender',
+    date: 'July 2026',
+    summary: 'Latest work-in-progress preview rendered ahead of final polish',
+    thumbnail: 'projects/Animations/project-preview/video.mkv',
+    mediaType: 'video',
+    mediaSrc: 'projects/Animations/project-preview/video.mkv',
+    description:
+      'Preview render of a new project, capturing the core motion and timing before final polish and lighting.',
+    tools: ['Blender'],
+    gallery: [],
+    links: [],
+  },
+  {
     id: 'spiderman-run-cycle',
     title: 'Miles Run Cycle',
     category: 'Animations',
