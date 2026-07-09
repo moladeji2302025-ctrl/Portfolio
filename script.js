@@ -151,21 +151,6 @@ window.projects = [
     links: [],
   },
   {
-    id: 'futuristic-swat-helmet',
-    title: 'Futuristic SWAT Helmet',
-    category: 'Modelling',
-    date: 'June 2024',
-    summary: 'Hard-surface concept of a tactical helmet built for near-future response teams',
-    thumbnail: 'projects/Modelling/futuristic-swat-helmet/project.jpg',
-    mediaType: 'image',
-    mediaSrc: 'projects/Modelling/futuristic-swat-helmet/project.jpg',
-    description:
-      'Modeled in Blender with non-destructive modifiers, showcasing angular plating, visor vents, and layered ridges. Final renders highlight metallic roughness maps and emissive trims prepared for HUD callouts.',
-    tools: ['Blender'],
-    gallery: [],
-    links: [],
-  },
-  {
     id: 'facial-animation',
     title: 'Facial Animation test',
     category: 'Animations',
@@ -467,21 +452,6 @@ window.projects = [
     links: [],
   },
   {
-    id: 'futuristic-gun',
-    title: 'Futuristic Gun Model',
-    category: 'Modelling',
-    date: 'April 2023',
-    summary: 'Sci-fi weapon design with sleek futuristic aesthetics',
-    thumbnail: 'projects/Modelling/Futuristic gun.jpg',
-    mediaType: 'image',
-    mediaSrc: 'projects/Modelling/Futuristic gun.jpg',
-    description:
-      '3D modeled futuristic firearm concept featuring angular design, technical detailing, and sci-fi aesthetics. Created with attention to both form and fictional function.',
-    tools: ['Blender'],
-    gallery: [],
-    links: [],
-  },
-  {
     id: 'ekene-chris-1',
     title: 'Ekene Chris - Part 1',
     category: 'Motion Graphics',
@@ -646,8 +616,6 @@ const FEATURED_PROJECT_IDS = [
   'adam-sandler-drawing',
   'african-woman-drawing',
   'flaming-basketball',
-  'futuristic-gun',
-  'futuristic-swat-helmet',
   'timeline-1',
   'spider-animation',
   'woman-punching',
@@ -753,7 +721,7 @@ const initPortfolio = () => {
   const grid = document.getElementById('portfolio-grid');
   if (!grid) return;
 
-  const CATEGORY_ORDER = ['Motion Graphics', 'Animations', 'Illustrations', 'Drawings', 'Modelling'];
+  const CATEGORY_ORDER = ['Motion Graphics', 'Animations', 'Illustrations', 'Drawings'];
 
   grid.innerHTML = '';
   CATEGORY_ORDER.forEach((cat) => {
