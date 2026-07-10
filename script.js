@@ -255,6 +255,29 @@ window.projects = [
     links: [],
   },
   {
+    id: 'character-design-lady-study',
+    title: 'Character Design Lady Study',
+    category: 'Illustrations',
+    date: 'July 2026',
+    summary: 'Layered lady character study ending in a polished final render',
+    thumbnail: 'projects/Illustrations/character design/lady_final_001.png',
+    mediaType: 'image',
+    mediaSrc: 'projects/Illustrations/character design/lady_final_001.png',
+    description:
+      'Character design exploration built through a sequence of lady studies, moving from earlier passes into a refined final render. The finished image is used as the portfolio thumbnail, while the remaining frames document the progression and refinements that shaped the final look.',
+    tools: ['Digital Illustration'],
+    gallery: [
+      'projects/Illustrations/character design/lady_001.png',
+      'projects/Illustrations/character design/lady 1_001.png',
+      'projects/Illustrations/character design/lady 2_001.png',
+      'projects/Illustrations/character design/lady 3_001.png',
+      'projects/Illustrations/character design/lady 4_001.png',
+      'projects/Illustrations/character design/lady 5_001.png',
+      'projects/Illustrations/character design/lady 6_001.png'
+    ],
+    links: [],
+  },
+  {
     id: 'center-of-attraction',
     title: 'Center Of Attraction',
     category: 'Motion Graphics',
