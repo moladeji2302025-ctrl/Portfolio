@@ -278,6 +278,21 @@ window.projects = [
     links: [],
   },
   {
+    id: 'eye-study',
+    title: 'Eye Study',
+    category: 'Illustrations',
+    date: 'July 2026',
+    summary: 'Close-up render exploring iris detail, lash structure, and skin shading',
+    thumbnail: 'projects/Illustrations/character design/eye_final_001.png',
+    mediaType: 'image',
+    mediaSrc: 'projects/Illustrations/character design/eye_final_001.png',
+    description:
+      'Detailed close-up study of an eye, focused on iris texture, lash clusters, and the interplay of light across the sclera and surrounding skin. Cel-shaded rendering with warm tones builds depth and realism at a magnified scale.',
+    tools: ['Digital Illustration'],
+    gallery: [],
+    links: [],
+  },
+  {
     id: 'center-of-attraction',
     title: 'Center Of Attraction',
     category: 'Motion Graphics',
