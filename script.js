@@ -283,13 +283,16 @@ window.projects = [
     category: 'Illustrations',
     date: 'July 2026',
     summary: 'Close-up render exploring iris detail, lash structure, and skin shading',
-    thumbnail: 'projects/Illustrations/character design/eye_final_001.png',
+    thumbnail: 'projects/Illustrations/character design/eye_new_001.png',
     mediaType: 'image',
-    mediaSrc: 'projects/Illustrations/character design/eye_final_001.png',
+    mediaSrc: 'projects/Illustrations/character design/eye_new_001.png',
     description:
       'Detailed close-up study of an eye, focused on iris texture, lash clusters, and the interplay of light across the sclera and surrounding skin. Cel-shaded rendering with warm tones builds depth and realism at a magnified scale.',
     tools: ['Digital Illustration'],
-    gallery: [],
+    gallery: [
+      'projects/Illustrations/character design/eye2_001.png',
+      'projects/Illustrations/character design/eye1_001.png'
+    ],
     links: [],
   },
   {
