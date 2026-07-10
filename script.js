@@ -238,6 +238,23 @@ window.projects = [
     links: [],
   },
   {
+    id: 'character-design-portrait',
+    title: 'Character Design Portrait',
+    category: 'Illustrations',
+    date: 'July 2026',
+    summary: 'Upward-gazing bald character study with piercing teal eyes',
+    thumbnail: 'projects/Illustrations/character design/ref1_001.png',
+    mediaType: 'image',
+    mediaSrc: 'projects/Illustrations/character design/ref1_001.png',
+    description:
+      'Character portrait study focused on facial structure and expression, rendered in flat cel-shading with bold rim lighting across the scalp and jaw. Striking teal eyes and a raised chin give the figure a watchful, resolute presence.',
+    tools: ['Digital Illustration'],
+    gallery: [
+      'projects/Illustrations/character design/ref_001.png'
+    ],
+    links: [],
+  },
+  {
     id: 'center-of-attraction',
     title: 'Center Of Attraction',
     category: 'Motion Graphics',
