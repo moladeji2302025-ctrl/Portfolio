@@ -230,7 +230,7 @@ window.projects = [
     mediaType: 'image',
     mediaSrc: 'projects/Illustrations/character design/Illustration_001.png',
     description:
-      'Character design study presenting front, back, and side views of a bespectacled figure to establish consistent proportions and silhouette. Flat cel-shaded rendering with clean linework keeps the focus on form and turnaround accuracy.',
+      'Character design illustration presenting front, back, and side views of a bespectacled figure to establish consistent proportions and silhouette. Flat cel-shaded rendering with clean linework keeps the focus on form and turnaround accuracy.',
     tools: ['Digital Illustration'],
     gallery: [
       'projects/Illustrations/character design/char_001.png'
@@ -242,12 +242,12 @@ window.projects = [
     title: 'Character Design Portrait',
     category: 'Illustrations',
     date: 'July 2026',
-    summary: 'Upward-gazing bald character study with piercing teal eyes',
+    summary: 'Upward-gazing bald character illustration with piercing teal eyes',
     thumbnail: 'projects/Illustrations/character design/ref_001.png',
     mediaType: 'image',
     mediaSrc: 'projects/Illustrations/character design/ref_001.png',
     description:
-      'Character portrait study focused on facial structure and expression, rendered in flat cel-shading with bold rim lighting across the scalp and jaw. Striking teal eyes and a raised chin give the figure a watchful, resolute presence.',
+      'Character portrait illustration focused on facial structure and expression, rendered in flat cel-shading with bold rim lighting across the scalp and jaw. Striking teal eyes and a raised chin give the figure a watchful, resolute presence.',
     tools: ['Digital Illustration'],
     gallery: [
       'projects/Illustrations/character design/ref1_001.png'
@@ -255,16 +255,16 @@ window.projects = [
     links: [],
   },
   {
-    id: 'character-design-lady-study',
-    title: 'Character Design Lady Study',
+    id: 'character-design-lady-illustration',
+    title: 'Character Design Lady Illustration',
     category: 'Illustrations',
     date: 'July 2026',
-    summary: 'Layered lady character study ending in a polished final render',
+    summary: 'Layered lady character illustration ending in a polished final render',
     thumbnail: 'projects/Illustrations/character design/lady_final_001.png',
     mediaType: 'image',
     mediaSrc: 'projects/Illustrations/character design/lady_final_001.png',
     description:
-      'Character design exploration built through a sequence of lady studies, moving from earlier passes into a refined final render. The finished image is used as the portfolio thumbnail, while the remaining frames document the progression and refinements that shaped the final look.',
+      'Character design exploration built through a sequence of lady illustrations, moving from earlier passes into a refined final render. The finished image is used as the portfolio thumbnail, while the remaining frames document the progression and refinements that shaped the final look.',
     tools: ['Digital Illustration'],
     gallery: [
       'projects/Illustrations/character design/lady_001.png',
@@ -278,8 +278,8 @@ window.projects = [
     links: [],
   },
   {
-    id: 'eye-study',
-    title: 'Eye Study',
+    id: 'eye-illustration',
+    title: 'Eye Illustration',
     category: 'Illustrations',
     date: 'July 2026',
     summary: 'Close-up render exploring iris detail, lash structure, and skin shading',
@@ -287,12 +287,27 @@ window.projects = [
     mediaType: 'image',
     mediaSrc: 'projects/Illustrations/character design/eye_new_001.png',
     description:
-      'Detailed close-up study of an eye, focused on iris texture, lash clusters, and the interplay of light across the sclera and surrounding skin. Cel-shaded rendering with warm tones builds depth and realism at a magnified scale.',
+      'Detailed close-up illustration of an eye, focused on iris texture, lash clusters, and the interplay of light across the sclera and surrounding skin. Cel-shaded rendering with warm tones builds depth and realism at a magnified scale.',
     tools: ['Digital Illustration'],
     gallery: [
       'projects/Illustrations/character design/eye2_001.png',
       'projects/Illustrations/character design/eye1_001.png'
     ],
+    links: [],
+  },
+  {
+    id: 'make-love-not-war',
+    title: 'Make Love, Not War',
+    category: 'Motion Graphics',
+    date: 'July 2026',
+    summary: 'Peace-driven motion piece contrasting conflict imagery with a message of unity',
+    thumbnail: 'projects/Motion Graphics/make-love-not-war/video.mp4',
+    mediaType: 'video',
+    mediaSrc: 'projects/Motion Graphics/make-love-not-war/video.mp4',
+    description:
+      'Motion graphics composition built around the classic anti-war message, pairing bold kinetic typography with contrasting visuals to underscore a call for peace over conflict.',
+    tools: ['Adobe After Effects'],
+    gallery: [],
     links: [],
   },
   {
