@@ -296,6 +296,26 @@ window.projects = [
     links: [],
   },
   {
+    id: 'fashion-illustration',
+    title: 'Fashion Illustration',
+    category: 'Illustrations',
+    date: 'July 2026',
+    summary: 'Full-body fashion figure styling a cropped top, belted mini skirt, and tall boots',
+    thumbnail: 'projects/Illustrations/fashion_final_001.png',
+    mediaType: 'image',
+    mediaSrc: 'projects/Illustrations/fashion_final_001.png',
+    description:
+      'Fashion figure illustration focused on garment silhouette and proportion, pairing a cropped red top and belted cream mini skirt with knee-high boots. Rendered from loose gesture sketch through clean lineart to a fully colored final pass.',
+    tools: ['Digital Illustration'],
+    gallery: [
+      'projects/Illustrations/fashion illustration.png',
+      'projects/Illustrations/fashion_001.png',
+      'projects/Illustrations/fashion darft_001.png',
+      'projects/Illustrations/fashion3_001.png'
+    ],
+    links: [],
+  },
+  {
     id: 'make-love-not-war',
     title: 'Make Love, Not War',
     category: 'Motion Graphics',
