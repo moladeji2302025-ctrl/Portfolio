@@ -317,6 +317,21 @@ window.projects = [
     links: [],
   },
   {
+    id: 'coat-fashion-turnaround',
+    title: 'Coat Fashion Turnaround',
+    category: 'Illustrations',
+    date: 'July 2026',
+    summary: 'Front and back fashion turnaround of a long buttoned coat over a braided-hair figure',
+    thumbnail: 'projects/Illustrations/fashion.png',
+    mediaType: 'image',
+    mediaSrc: 'projects/Illustrations/fashion.png',
+    description:
+      'Fashion turnaround sketch pairing a floor-length buttoned coat with boots and a pendant necklace, shown from front and back to establish garment drape and construction. Loose linework maps how the coat falls and folds across the figure in motion.',
+    tools: ['Digital Illustration'],
+    gallery: [],
+    links: [],
+  },
+  {
     id: 'make-love-not-war',
     title: 'Make Love, Not War',
     category: 'Motion Graphics',
