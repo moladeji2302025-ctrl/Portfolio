@@ -296,6 +296,24 @@ window.projects = [
     links: [],
   },
   {
+    id: 'glasses-character-portrait',
+    title: 'Glasses Character Portrait',
+    category: 'Illustrations',
+    date: 'July 2026',
+    summary: 'Rim-lit character bust in thin rectangular glasses, from lineart to final render',
+    thumbnail: 'projects/Illustrations/character design/art_001.png',
+    mediaType: 'image',
+    mediaSrc: 'projects/Illustrations/character design/art_001.png',
+    description:
+      'Character bust illustration built from clean lineart through flat color to a final cel-shaded pass. Rim lighting traces the shoulders and back against a dark backdrop, with thin rectangular glasses and closely cropped hair anchoring the profile.',
+    tools: ['Digital Illustration'],
+    gallery: [
+      'projects/Illustrations/character design/art1_001.png',
+      'projects/Illustrations/character design/art2_001.png'
+    ],
+    links: [],
+  },
+  {
     id: 'fashion-illustration',
     title: 'Fashion Illustration',
     category: 'Illustrations',
