@@ -1224,9 +1224,15 @@ const initContactForm = () => {
 
       form.reset();
       setFeedback('Thanks! Your message has been sent successfully.');
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'contact_form_submit', { outcome: 'success' });
+      }
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown submission error.';
       setFeedback(`Sorry, your message could not be sent (${errorMessage}). Please try again in a moment.`, true);
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'contact_form_submit', { outcome: 'error', error_message: errorMessage });
+      }
     } finally {
       submitButton.disabled = false;
       submitButton.removeAttribute('aria-busy');

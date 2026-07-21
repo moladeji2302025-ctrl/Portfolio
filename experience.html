@@ -13,6 +13,55 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@1,400;1,500;1,600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./styles.css" />
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2D0HS9BVYL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2D0HS9BVYL');
+
+    // Delegated interaction tracking: catches clicks on every link/button,
+    // including elements created dynamically after this script runs.
+    document.addEventListener('click', function (event) {
+      var target = event.target.closest('a, button, [role="button"]');
+      if (!target) return;
+
+      var href = target.tagName === 'A' ? (target.getAttribute('href') || '') : '';
+      var text = (target.textContent || target.getAttribute('aria-label') || '')
+        .trim().replace(/\s+/g, ' ').slice(0, 100);
+
+      gtag('event', 'element_click', {
+        element_tag: target.tagName.toLowerCase(),
+        element_text: text,
+        element_id: target.id || '',
+        link_url: href,
+        page_path: window.location.pathname
+      });
+
+      if (target.classList.contains('filter-btn')) {
+        gtag('event', 'filter_select', { filter_value: target.dataset.filter || 'all' });
+      }
+
+      if (target.classList.contains('project-card-link')) {
+        var qs = new URLSearchParams(href.split('?')[1] || '');
+        gtag('event', 'project_open', {
+          project_id: qs.get('id') || '',
+          project_category: qs.get('category') || ''
+        });
+      }
+
+      if (/instagram\.com|linkedin\.com|youtube\.com/.test(href)) {
+        var platform = href.indexOf('instagram') > -1 ? 'instagram'
+          : href.indexOf('linkedin') > -1 ? 'linkedin' : 'youtube';
+        gtag('event', 'social_click', { platform: platform, link_url: href });
+      }
+
+      if (target.id === 'mobile-menu-toggle') {
+        gtag('event', 'mobile_menu_toggle', {});
+      }
+    }, true);
+  </script>
 </head>
 <body>
   <div class="custom-cursor" aria-hidden="true"></div>
