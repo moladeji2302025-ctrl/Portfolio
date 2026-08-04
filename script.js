@@ -1,5 +1,34 @@
 window.projects = [
   {
+    id: 'lea',
+    title: 'LEA',
+    category: 'Animations',
+    subcategory: 'Blender',
+    date: 'August 2026',
+    summary: 'Casual walk',
+    thumbnail: 'projects/Animations/lea/video.mkv',
+    mediaType: 'video',
+    mediaSrc: 'projects/Animations/lea/video.mkv',
+    description: 'A casual walk cycle exploring relaxed, natural motion for the character LEA.',
+    tools: ['Blender'],
+    gallery: [],
+    links: [],
+    variants: [
+      {
+        id: 'main',
+        label: 'Main',
+        mediaType: 'video',
+        mediaSrc: 'projects/Animations/lea/video.mkv',
+      },
+      {
+        id: 'sub-video',
+        label: 'Sub Video',
+        mediaType: 'video',
+        mediaSrc: 'projects/Animations/lea/sub-video.mp4',
+      },
+    ],
+  },
+  {
     id: 'project-preview',
     title: 'Project Preview',
     category: 'Animations',
