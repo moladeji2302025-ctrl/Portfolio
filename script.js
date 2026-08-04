@@ -22,7 +22,7 @@ window.projects = [
       },
       {
         id: 'sub-video',
-        label: 'Sub Video',
+        label: 'Workbench',
         mediaType: 'video',
         mediaSrc: 'projects/Animations/lea/sub-video.mp4',
       },
