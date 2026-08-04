@@ -1054,18 +1054,6 @@ const initCounters = () => {
   }
 };
 
-const initVideoLightbox = () => {
-  const trigger = document.getElementById('play-reel');
-  const feedback = document.getElementById('reel-feedback');
-  if (!trigger || !feedback) return;
-
-  trigger.addEventListener('click', () => {
-    if (trigger.disabled) return;
-    feedback.textContent = 'Reel currently unavailable';
-    feedback.setAttribute('aria-hidden', 'false');
-    trigger.disabled = true;
-  });
-};
 
 const initHeroProfileImage = () => {
   const imageNode = document.getElementById('hero-profile-image');
@@ -1302,7 +1290,6 @@ const initApp = () => {
   initMobileMenu();
   initScrollReveal();
   initCounters();
-  initVideoLightbox();
   initHeroProfileImage();
   initCustomCursor();
   initNavHighlight();
