@@ -7,15 +7,11 @@
   var root = document.documentElement;
 
   /* ---------------- theme ---------------- */
-  /* Theme alternates every load rather than being randomized or remembered
-     as a fixed preference - an inline script earlier in <body> already
-     flipped it against localStorage's 'mo-theme-cycle' and set data-theme
-     before first paint (so there's no flash), same trick the page-loader
-     uses for mo-nav. This just reads that pick and wires up manual
-     toggling for the rest of this page view. A manual toggle also updates
-     'mo-theme-cycle', so the next reload's flip continues from whatever
-     the user actually left it on rather than reverting to the automatic
-     sequence. */
+  /* Light is the default; a stored preference (set only by the manual
+     toggle) is what persists across reloads and page navigations - an
+     inline script earlier in <body> already applied it before first
+     paint (so there's no flash), same trick the page-loader uses for
+     mo-nav. This just reads that state and wires up the toggle itself. */
   var themeSwitch = document.getElementById('theme-switch');
 
   function isLight() {
@@ -31,7 +27,7 @@
     themeSwitch.addEventListener('click', function () {
       var next = isLight() ? 'dark' : 'light';
       root.setAttribute('data-theme', next);
-      try { localStorage.setItem('mo-theme-cycle', next); } catch (e) {}
+      try { localStorage.setItem('mo-theme', next); } catch (e) {}
       syncThemeSwitch();
       playToggle();
       if (window.__refreshGasColors) window.__refreshGasColors();
@@ -223,6 +219,18 @@
       var OUT_DELAY = 480;
 
       function revealPage() {
+        /* The load state itself renders in the alternate of the persisted
+           theme (set by the inline pre-paint script before first paint) -
+           purely a load-state effect. Switch back to the real persisted
+           theme now, before the cover disperses, so the actual page
+           content underneath is revealed in the correct theme rather than
+           the alternate one the loader was shown in. */
+        try {
+          var persistedTheme = localStorage.getItem('mo-theme') || 'light';
+          root.setAttribute('data-theme', persistedTheme);
+          if (typeof syncThemeSwitch === 'function') syncThemeSwitch();
+          if (window.__refreshGasColors) window.__refreshGasColors();
+        } catch (e) {}
         triggerGentleRelease();
         setTimeout(function () {
           pageLoader.classList.remove('is-instant');
@@ -264,6 +272,15 @@
         setCanvasFront(true);
         pageLoader.classList.add('is-active');
         try { sessionStorage.setItem('mo-nav', '1'); } catch (e) {}
+        /* Flip to the alternate theme the instant the cover activates here
+           too, not just on the destination page - otherwise this brief
+           outgoing cover shows the normal theme for an instant before the
+           destination page's load state flips to the alternate, which
+           would read as a jarring mid-transition theme change. */
+        try {
+          var outgoingPersisted = localStorage.getItem('mo-theme') || 'light';
+          root.setAttribute('data-theme', outgoingPersisted === 'light' ? 'dark' : 'light');
+        } catch (e) {}
         setTimeout(function () {
           window.location.href = href;
         }, OUT_DELAY);

@@ -72,10 +72,10 @@
   <div class="page-loader" id="pageLoader" aria-hidden="true"></div>
   <script>
     try {
-      var lastTheme = localStorage.getItem('mo-theme-cycle');
-      var nextTheme = lastTheme === 'light' ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', nextTheme);
-      localStorage.setItem('mo-theme-cycle', nextTheme);
+      var storedTheme = localStorage.getItem('mo-theme') || 'light';
+      var arrivingViaNav = sessionStorage.getItem('mo-nav') === '1';
+      var loadTheme = arrivingViaNav ? (storedTheme === 'light' ? 'dark' : 'light') : storedTheme;
+      document.documentElement.setAttribute('data-theme', loadTheme);
     } catch (e) {}
     try {
       if (sessionStorage.getItem('mo-nav') === '1') {
