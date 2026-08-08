@@ -520,14 +520,6 @@
     var swirlK = reducedMotion ? 0.006 : 0.012;
     var repelK = 0.9;
     var damping = 0.82;
-    /* A preferred radius, not just a spring toward the center: particles
-       inside it get pushed out, particles beyond it get pulled in, so the
-       swarm settles into a comfortable ring rather than a filled disk -
-       sparse right at the cursor and sparse out at the far edge, densest
-       in the middle band between them. Same particle count and overall
-       footprint as before, just redistributed. */
-    var RING_RADIUS = 240;
-    var RING_K = 0.09;
     /* Particle count was halved (1040 -> 520) to reduce visual density
        against the text; spacing is scaled up by sqrt(2) so the swarm's
        overall footprint (count x spacing^2 for a packed 2D cluster)
@@ -701,14 +693,6 @@
         ax += (-dy / dist) * swirlK * Math.min(dist, 340) * pullMult;
         ay += (dx / dist) * swirlK * Math.min(dist, 340) * pullMult;
 
-        /* Ring-shaping force: outward when closer to the cursor than
-           RING_RADIUS, inward when farther - hollows out the center and
-           caps the outer edge so density concentrates in the middle band
-           instead of filling a disk evenly. */
-        var toRing = (RING_RADIUS - dist) * RING_K * pullMult;
-        ax += -(dx / dist) * toRing;
-        ay += -(dy / dist) * toRing;
-
         if (speedFactor > 0.001) {
           /* Particles trailing behind the direction of travel get less pull
              (they drag, like the back of a flock), particles leading get to
@@ -807,10 +791,18 @@
         /* Full size only lives in a middle "sweet spot" band - particles
            shrink smoothly both as they close in on the cursor/target and as
            they drift far out past it, since dist changes constantly as the
-           swarm moves either direction. */
+           swarm moves either direction. At the extremes they don't just
+           shrink to a fixed tiny size, they keep pulsing between "extremely
+           small" and "nearly invisible" continuously (own phase per
+           particle, so it shimmers rather than blinking in unison) - always
+           running, not just while idle, since this is about position
+           relative to the cursor rather than the ambient idle breathing. */
         var nearT = Math.max(0, 1 - dist / 130);
         var farT = Math.min(1, Math.max(0, (dist - 340) / 300));
-        var sizeMult = 1 - nearT * 0.9 - farT * 0.4;
+        var extremeT = Math.max(nearT, farT);
+        var extremePulse = 0.5 + Math.sin(t * 0.0055 + p.wobblePhase) * 0.5;
+        var extremeSize = 0.02 + extremePulse * 0.06;
+        var sizeMult = 1 - extremeT * (1 - extremeSize);
 
         ctx.save();
         ctx.translate(p.x, p.y);
