@@ -11,71 +11,32 @@
   <link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
-  <!-- Surgena is the site's major-header display font (section titles etc.),
-       self-hosted from /fonts and declared via @font-face in styles.css. -->
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="preload" href="./fonts/Surgena.ttf" as="font" type="font/ttf" crossorigin />
   <link rel="stylesheet" href="./styles.css" />
-  <!-- Google Analytics (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-2D0HS9BVYL"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-2D0HS9BVYL');
-
-    // Delegated interaction tracking: catches clicks on every link/button,
-    // including elements created dynamically after this script runs.
     document.addEventListener('click', function (event) {
       var target = event.target.closest('a, button, [role="button"]');
       if (!target) return;
-
       var href = target.tagName === 'A' ? (target.getAttribute('href') || '') : '';
-      var text = (target.textContent || target.getAttribute('aria-label') || '')
-        .trim().replace(/\s+/g, ' ').slice(0, 100);
-
-      gtag('event', 'element_click', {
-        element_tag: target.tagName.toLowerCase(),
-        element_text: text,
-        element_id: target.id || '',
-        link_url: href,
-        page_path: window.location.pathname
-      });
-
-      if (target.classList.contains('filter-btn')) {
-        gtag('event', 'filter_select', { filter_value: target.dataset.filter || 'all' });
-      }
-
-      if (target.classList.contains('project-card-link')) {
-        var qs = new URLSearchParams(href.split('?')[1] || '');
-        gtag('event', 'project_open', {
-          project_id: qs.get('id') || '',
-          project_category: qs.get('category') || ''
-        });
-      }
-
-      if (/instagram\.com|linkedin\.com|youtube\.com/.test(href)) {
-        var platform = href.indexOf('instagram') > -1 ? 'instagram'
-          : href.indexOf('linkedin') > -1 ? 'linkedin' : 'youtube';
-        gtag('event', 'social_click', { platform: platform, link_url: href });
-      }
-
-      if (target.id === 'mobile-menu-toggle') {
-        gtag('event', 'mobile_menu_toggle', {});
-      }
+      var text = (target.textContent || target.getAttribute('aria-label') || '').trim().replace(/\s+/g, ' ').slice(0, 100);
+      gtag('event', 'element_click', { element_tag: target.tagName.toLowerCase(), element_text: text, element_id: target.id || '', link_url: href, page_path: window.location.pathname });
+      if (target.classList.contains('tab')) gtag('event', 'filter_select', { filter_value: target.dataset.filter || 'all' });
+      if (target.id === 'mobile-menu-toggle') gtag('event', 'mobile_menu_toggle', {});
     }, true);
   </script>
 </head>
 <body>
-  <div class="custom-cursor" aria-hidden="true"></div>
-  <div class="custom-cursor-dot" aria-hidden="true"></div>
   <div class="page-loader" id="pageLoader" aria-hidden="true"></div>
   <script>
     try {
       var storedTheme = localStorage.getItem('mo-theme') || 'light';
-      var arrivingViaNav = sessionStorage.getItem('mo-nav') === '1';
-      var loadTheme = arrivingViaNav ? (storedTheme === 'light' ? 'dark' : 'light') : storedTheme;
-      document.documentElement.setAttribute('data-theme', loadTheme);
+      document.documentElement.setAttribute('data-theme', storedTheme);
     } catch (e) {}
     try {
       if (sessionStorage.getItem('mo-nav') === '1') {
@@ -87,26 +48,24 @@
 
   <header class="site-header">
     <div class="container nav-wrap">
-      <a href="index.html#home" class="logo">MO</a>
+      <a href="index.html#home" class="logo">MOFEOLUWA OLADEJI</a>
       <nav class="nav-links">
-        <a class="nav-link" href="index.html#home">Home</a>
-        <a class="nav-link" href="index.html#portfolio">Portfolio</a>
-        <a class="nav-link" href="about.html">About</a>
+        <a class="nav-link" href="index.html#work">Work</a>
+        <a class="nav-link" href="index.html#about">About</a>
+        <a class="nav-link" href="index.html#contact">Contact</a>
       </nav>
       <div class="header-tools">
         <button id="theme-switch" class="theme-switch" role="switch" aria-checked="false" aria-label="Toggle light and dark mode">
           <span class="theme-switch-thumb"></span>
         </button>
-        <a class="nav-cta" href="index.html#contact">Hire Me</a>
         <button id="mobile-menu-toggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
       </div>
     </div>
   </header>
 
   <div id="mobile-menu" class="mobile-menu">
-    <a href="index.html#home">Home</a>
-    <a href="index.html#portfolio">Portfolio</a>
-    <a href="about.html">About</a>
+    <a href="index.html#work">Work</a>
+    <a href="index.html#about">About</a>
     <a href="index.html#contact">Contact</a>
   </div>
 
@@ -136,13 +95,13 @@
 
           <div class="section-heading" style="margin-top:1.6rem;">
             <span class="section-label">Tools</span>
-            <h3 class="section-title" style="font-size:3rem;">Used</h3>
+            <h3 class="section-title" style="font-size:2.4rem;">Used</h3>
           </div>
           <ul id="project-tools" class="detail-meta"></ul>
 
           <div class="section-heading" style="margin-top:1.6rem;">
             <span class="section-label">Explore</span>
-            <h3 class="section-title" style="font-size:3rem;">More Categories</h3>
+            <h3 class="section-title" style="font-size:2.4rem;">More categories</h3>
           </div>
           <div id="other-categories-list" class="detail-meta"></div>
         </article>
@@ -171,8 +130,8 @@
 
   <footer class="footer">
     <div class="container footer-bottom">
-      <p>© <span id="year"></span> MofeOluwa Oladeji. All Rights Reserved.</p>
-      <p><a href="index.html#portfolio" class="inline-link">Back to Portfolio</a></p>
+      <span>© <span id="year"></span> MofeOluwa Oladeji</span>
+      <a href="index.html#work" class="inline-link">Back to Work</a>
     </div>
   </footer>
 

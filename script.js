@@ -771,189 +771,127 @@ window.projects = [
 
 const yearNode = document.getElementById('year');
 
-const FEATURED_PROJECT_IDS = [
-  'character-design-turnaround',
-  'asian-cloth-illustration',
-  'king-illustration',
-  'lecrae',
-  'adam-sandler-drawing',
-  'african-woman-drawing',
-  'flaming-basketball',
-  'timeline-1',
-  'spider-animation',
-  'woman-punching',
-  'woman-jumping',
-  'facial-animation'
-];
-
 const resolveProjectThumb = (project) => project.thumbnail || project.mediaSrc || '';
 
-const PORTFOLIO_GLYPH = {
+const WORK_GLYPH = {
   'Motion Graphics': '<path d="M3 12h3l2-7 4 14 2-9 2 5h5"/>',
   Animations: '<path d="M9 7l9 5-9 5V7z"/><rect x="3" y="4" width="18" height="16" rx="3"/>',
   Illustrations: '<path d="M4 20l4-1 10-10a2.1 2.1 0 0 0-3-3L5 16l-1 4z"/>',
   Drawings: '<path d="M4 20l4-1 10-10a2.1 2.1 0 0 0-3-3L5 16l-1 4z"/><path d="M13 6l3 3"/>'
 };
 
-const createExperienceCard = (experience) => {
-  const card = document.createElement('article');
-  card.className = 'skill-card reveal';
-  card.dataset.animate = '';
+const createExperienceRow = (experience) => {
+  const row = document.createElement('a');
+  row.className = 'exp-row reveal';
+  row.dataset.animate = '';
+  row.href = `experience.html?id=${experience.id}`;
 
-  const label = document.createElement('p');
-  label.className = 'section-label';
-  label.style.fontSize = '.9rem';
-  label.style.margin = '0 0 0.4rem';
-  label.textContent = experience.organization;
+  const period = document.createElement('span');
+  period.className = 'exp-row-period';
+  period.textContent = experience.period || '';
 
-  const title = document.createElement('h3');
+  const body = document.createElement('span');
+  body.className = 'exp-row-body';
+  const title = document.createElement('strong');
   title.textContent = experience.title;
+  const org = document.createElement('span');
+  org.className = 'exp-row-org';
+  org.textContent = ` — ${experience.organization}`;
+  body.append(title, org);
 
-  const summary = document.createElement('p');
-  summary.className = 'muted';
-  summary.textContent = experience.summary || experience.description;
+  const arrow = document.createElement('span');
+  arrow.className = 'exp-row-arrow';
+  arrow.setAttribute('aria-hidden', 'true');
+  arrow.textContent = '→';
 
-  const meta = document.createElement('div');
-  meta.className = 'detail-meta';
-  meta.style.marginTop = '1rem';
-
-  [experience.period, experience.type, experience.location].filter(Boolean).forEach((value) => {
-    const item = document.createElement('span');
-    item.className = 'tag-pill';
-    item.textContent = value;
-    meta.appendChild(item);
-  });
-
-  const link = document.createElement('a');
-  link.className = 'read-link';
-  link.href = `experience.html?id=${experience.id}`;
-  link.textContent = 'Read More →';
-
-  card.append(label, title, summary, meta, link);
-  return card;
+  row.append(period, body, arrow);
+  return row;
 };
 
-const initPortfolio = () => {
-  const shelf = document.getElementById('portfolio-shelf');
-  const tabsWrap = document.getElementById('portfolio-tabs');
-  const indicator = document.getElementById('portfolio-indicator');
-  const infoInner = document.getElementById('portfolio-info');
-  if (!shelf || !tabsWrap || !indicator || !infoInner) return;
+/* The homepage "Work" section: a text list of the active category's
+   projects on one side, a single large preview pane on the other that
+   swaps to whichever project is hovered/focused - large-format
+   art-gallery browsing instead of a grid of small thumbnail tiles.
+   Clicking a row still goes straight to project.html, same as before. */
+const initWork = () => {
+  const list = document.getElementById('work-list');
+  const tabsWrap = document.getElementById('work-tabs');
+  const previewMedia = document.getElementById('work-preview-media');
+  if (!list || !tabsWrap || !previewMedia) return;
 
-  const buttons = [...tabsWrap.querySelectorAll('.filter-btn')];
+  const buttons = [...tabsWrap.querySelectorAll('.tab')];
   const defaultBtn = buttons.find((b) => b.classList.contains('active')) || buttons[0];
   let activeCat = defaultBtn ? defaultBtn.dataset.filter : 'Animations';
   let activeIndex = 0;
-  let infoSwapTimer = null;
+  let swapTimer = null;
 
   const currentItems = () => window.projects.filter((p) => p.category === activeCat);
 
-  const buildInfoHTML = (project) =>
-    `<p class="info-meta">${project.category} · ${project.date || ''}</p>` +
-    `<h3 class="info-title">${project.title}</h3>` +
-    `<p class="info-desc">${project.summary || project.description || ''}</p>` +
-    `<div class="info-tools">${(project.tools || []).map((tool) => `<span class="info-tag">${tool}</span>`).join('')}</div>`;
-
-  const updateInfo = (instant) => {
-    const project = currentItems()[activeIndex];
-    if (!project) {
-      infoInner.innerHTML = '';
-      return;
-    }
-    const render = () => { infoInner.innerHTML = buildInfoHTML(project); };
+  const renderPreview = (project, instant) => {
+    const render = () => {
+      previewMedia.innerHTML = '';
+      if (!project) return;
+      const src = resolveProjectThumb(project);
+      if (!src) return;
+      if (project.mediaType === 'video') {
+        const video = document.createElement('video');
+        video.src = src;
+        video.muted = true;
+        video.loop = true;
+        video.autoplay = true;
+        video.playsInline = true;
+        video.setAttribute('muted', '');
+        video.setAttribute('loop', '');
+        video.setAttribute('autoplay', '');
+        previewMedia.appendChild(video);
+      } else {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = project.title;
+        previewMedia.appendChild(img);
+      }
+    };
     if (instant) {
       render();
       return;
     }
-    if (infoSwapTimer) clearTimeout(infoSwapTimer);
-    infoInner.classList.add('info-fade');
-    infoSwapTimer = setTimeout(() => {
+    if (swapTimer) clearTimeout(swapTimer);
+    previewMedia.classList.add('is-swapping');
+    swapTimer = setTimeout(() => {
       render();
       requestAnimationFrame(() => {
-        requestAnimationFrame(() => infoInner.classList.remove('info-fade'));
+        requestAnimationFrame(() => previewMedia.classList.remove('is-swapping'));
       });
-    }, 220);
+    }, 180);
   };
 
-  const positionIndicator = () => {
-    const activeTile = shelf.querySelector('.tile.is-active');
-    if (!activeTile) return;
-    const shelfRect = shelf.getBoundingClientRect();
-    const tileRect = activeTile.getBoundingClientRect();
-    const center = tileRect.left - shelfRect.left + tileRect.width / 2 + shelf.scrollLeft;
-    indicator.style.transform = `translateX(${center - shelf.parentElement.clientWidth / 2}px)`;
-  };
-
-  const setActive = (index) => {
+  const setActive = (index, items) => {
     if (index === activeIndex) return;
     activeIndex = index;
-    shelf.querySelectorAll('.tile').forEach((tile, idx) => {
-      tile.classList.toggle('is-active', idx === index);
+    list.querySelectorAll('.work-row').forEach((row, idx) => {
+      row.classList.toggle('is-active', idx === index);
     });
-    updateInfo(false);
-    positionIndicator();
+    renderPreview(items[index], false);
   };
 
-  const focusTileAt = (index) => {
-    const tiles = shelf.querySelectorAll('.tile');
-    if (tiles[index]) tiles[index].focus();
-  };
-
-  const renderShelf = () => {
+  const renderList = () => {
     const items = currentItems();
-    shelf.innerHTML = '';
+    list.innerHTML = '';
     items.forEach((project, index) => {
-      const tile = document.createElement('a');
-      tile.className = `tile project-card-link${index === activeIndex ? ' is-active' : ''}`;
-      tile.href = `project.html?id=${project.id}&category=${encodeURIComponent(project.category)}`;
-      tile.setAttribute('aria-label', `View ${project.title}`);
-
-      const media = document.createElement('div');
-      media.className = 'tile-media';
-      const thumbSrc = resolveProjectThumb(project);
-      if (thumbSrc) {
-        if (project.mediaType === 'video') {
-          const video = document.createElement('video');
-          video.src = thumbSrc;
-          video.muted = true;
-          video.loop = true;
-          video.autoplay = true;
-          video.playsInline = true;
-          video.setAttribute('muted', '');
-          video.setAttribute('loop', '');
-          video.setAttribute('autoplay', '');
-          media.appendChild(video);
-        } else {
-          const img = document.createElement('img');
-          img.src = thumbSrc;
-          img.alt = '';
-          img.loading = 'lazy';
-          media.appendChild(img);
-        }
-      }
-
-      const scrim = document.createElement('div');
-      scrim.className = 'tile-scrim';
-
-      const body = document.createElement('div');
-      body.className = 'tile-body';
-      body.innerHTML =
-        `<span class="tile-num">${String(index + 1).padStart(2, '0')}</span>` +
-        `<svg class="tile-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${PORTFOLIO_GLYPH[project.category] || ''}</svg>` +
-        `<span class="tile-name">${project.title}</span>`;
-
-      tile.append(media, scrim, body);
-      tile.addEventListener('mouseenter', () => setActive(index));
-      tile.addEventListener('focus', () => setActive(index));
-      tile.addEventListener('keydown', (event) => {
-        if (event.key === 'ArrowRight') { event.preventDefault(); focusTileAt(Math.min(index + 1, items.length - 1)); }
-        if (event.key === 'ArrowLeft') { event.preventDefault(); focusTileAt(Math.max(index - 1, 0)); }
-      });
-      shelf.appendChild(tile);
+      const row = document.createElement('a');
+      row.className = `work-row${index === activeIndex ? ' is-active' : ''}`;
+      row.href = `project.html?id=${project.id}&category=${encodeURIComponent(project.category)}`;
+      row.innerHTML =
+        `<span class="work-row-index">${String(index + 1).padStart(2, '0')}</span>` +
+        `<span class="work-row-title">${project.title}</span>` +
+        `<span class="work-row-meta">${[project.subcategory, project.date].filter(Boolean).join(' · ')}</span>` +
+        `<svg class="work-row-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${WORK_GLYPH[project.category] || ''}</svg>`;
+      row.addEventListener('mouseenter', () => setActive(index, items));
+      row.addEventListener('focus', () => setActive(index, items));
+      list.appendChild(row);
     });
     activeIndex = Math.min(activeIndex, Math.max(items.length - 1, 0));
-    updateInfo(true);
-    requestAnimationFrame(positionIndicator);
+    renderPreview(items[activeIndex], true);
   };
 
   buttons.forEach((btn) => {
@@ -962,7 +900,7 @@ const initPortfolio = () => {
       activeCat = btn.dataset.filter;
       activeIndex = 0;
       buttons.forEach((b) => b.classList.toggle('active', b === btn));
-      renderShelf();
+      renderList();
     });
   });
 
@@ -977,17 +915,16 @@ const initPortfolio = () => {
     sessionStorage.removeItem('portfolioFilter');
   }
 
-  renderShelf();
-  window.addEventListener('resize', positionIndicator);
+  renderList();
 };
 
 const initExperience = () => {
-  const grid = document.getElementById('experience-grid');
-  if (!grid || !Array.isArray(window.experiences)) return;
+  const list = document.getElementById('experience-grid');
+  if (!list || !Array.isArray(window.experiences)) return;
 
-  grid.innerHTML = '';
+  list.innerHTML = '';
   window.experiences.forEach((experience) => {
-    grid.appendChild(createExperienceCard(experience));
+    list.appendChild(createExperienceRow(experience));
   });
 };
 
@@ -1041,51 +978,6 @@ const initScrollReveal = () => {
   revealNodes.forEach((node) => observer.observe(node));
 };
 
-const countUp = (el, target, duration = 2000) => {
-  let start = 0;
-  const step = target / (duration / 16);
-  const tick = () => {
-    start = Math.min(start + step, target);
-    el.textContent = `${Math.floor(start)}${el.dataset.suffix || ''}`;
-    if (start < target) requestAnimationFrame(tick);
-  };
-  requestAnimationFrame(tick);
-};
-
-const initCounters = () => {
-  const counters = document.querySelectorAll('[data-counter]');
-  if (counters.length === 0) return;
-
-  const runCounters = () => {
-    counters.forEach((counter) => {
-      if (counter.dataset.counted === 'true') return;
-      const target = Number(counter.dataset.counter || '0');
-      counter.dataset.counted = 'true';
-      countUp(counter, target);
-    });
-  };
-
-  if (!('IntersectionObserver' in window)) {
-    runCounters();
-    return;
-  }
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        runCounters();
-        observer.disconnect();
-      }
-    });
-  }, { threshold: 0.3 });
-
-  const statsSection = document.getElementById('stats');
-  if (statsSection) {
-    observer.observe(statsSection);
-  }
-};
-
-
 const initNavHighlight = () => {
   const links = [...document.querySelectorAll('.nav-link')];
   const sections = links
@@ -1109,50 +1001,6 @@ const initNavHighlight = () => {
 
   window.addEventListener('scroll', update, { passive: true });
   update();
-};
-
-const initTestimonials = () => {
-  const track = document.getElementById('testimonial-track');
-  const prev = document.getElementById('testimonial-prev');
-  const next = document.getElementById('testimonial-next');
-  const dots = [...document.querySelectorAll('[data-testimonial-dot]')];
-  if (!track || dots.length === 0) return;
-
-  let index = 0;
-
-  const render = () => {
-    track.style.transform = `translateX(-${index * 100}%)`;
-    dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-  };
-
-  prev?.addEventListener('click', () => {
-    index = index === 0 ? dots.length - 1 : index - 1;
-    render();
-  });
-
-  next?.addEventListener('click', () => {
-    index = index === dots.length - 1 ? 0 : index + 1;
-    render();
-  });
-
-  dots.forEach((dot) => {
-    dot.addEventListener('click', () => {
-      index = Number(dot.dataset.testimonialDot || '0');
-      render();
-    });
-  });
-};
-
-const initFaq = () => {
-  const items = document.querySelectorAll('.faq-item');
-  if (items.length === 0) return;
-
-  items.forEach((item) => {
-    const trigger = item.querySelector('.faq-trigger');
-    trigger?.addEventListener('click', () => {
-      item.classList.toggle('open');
-    });
-  });
 };
 
 const sanitizeInput = (value = '') =>
@@ -1254,14 +1102,11 @@ const setCurrentYear = () => {
 };
 
 const initApp = () => {
-  initPortfolio();
+  initWork();
   initExperience();
   initMobileMenu();
   initScrollReveal();
-  initCounters();
   initNavHighlight();
-  initTestimonials();
-  initFaq();
   initContactForm();
   setCurrentYear();
 };

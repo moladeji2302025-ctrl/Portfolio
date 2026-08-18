@@ -94,7 +94,7 @@ const renderVariantSwitcher = (project, mediaContainer, initialVariantId) => {
   const buttons = project.variants.map((variant, index) => {
     const button = document.createElement('button');
     button.type = 'button';
-    button.className = 'filter-btn';
+    button.className = 'tab';
     button.textContent = variant.label;
     button.classList.toggle('active', index === startIndex);
     button.addEventListener('click', () => {
